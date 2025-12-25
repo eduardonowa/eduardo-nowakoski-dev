@@ -81,3 +81,4 @@ npm run type-check # Verificar tipos
 ---
 
 **Dúvidas?** Consulte a documentação completa ou abra uma issue.
+

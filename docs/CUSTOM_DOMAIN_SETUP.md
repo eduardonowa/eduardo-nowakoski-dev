@@ -7,12 +7,14 @@ Este guia mostra como configurar um domínio customizado como `eduardo-nowakoski
 ### 1️⃣ Comprar o Domínio
 
 **Onde comprar:**
+
 - **Namecheap** (recomendado): https://www.namecheap.com (~$10-15/ano)
 - **Google Domains**: https://domains.google
 - **GoDaddy**: https://www.godaddy.com
 - **Registro.br**: https://registro.br (para domínios .br)
 
 **Sugestões de domínios:**
+
 - `eduardo-nowakoski-dev.com`
 - `eduardo-nowakoski.com`
 - `nowakoski.dev`
@@ -50,6 +52,7 @@ A Vercel mostrará instruções específicas. Aqui está o que você precisa faz
 4. Adicione os seguintes registros:
 
 **Registro 1 - Domínio raiz:**
+
 ```
 Type: A Record
 Host: @
@@ -58,6 +61,7 @@ TTL: Automatic (ou 30 min)
 ```
 
 **Registro 2 - Subdomínio www:**
+
 ```
 Type: CNAME Record
 Host: www
@@ -90,6 +94,7 @@ TTL: Automatic (ou 30 min)
 - Você pode verificar o status na Vercel (Settings > Domains)
 
 **Verificar propagação:**
+
 - Use https://dnschecker.org
 - Digite seu domínio e verifique se os registros estão corretos
 
@@ -111,12 +116,14 @@ TTL: Automatic (ou 30 min)
 ### Redirecionar www para domínio raiz
 
 Na Vercel (Settings > Domains), você pode configurar:
+
 - `eduardo-nowakoski-dev.com` → principal
 - `www.eduardo-nowakoski-dev.com` → redireciona para o domínio raiz
 
 ### Adicionar múltiplos domínios
 
 Você pode adicionar vários domínios:
+
 - `eduardo-nowakoski-dev.com`
 - `eduardo-nowakoski.com`
 - `nowakoski.dev`
@@ -128,10 +135,12 @@ Todos apontarão para o mesmo site.
 ### DNS não propagou
 
 **Sintomas:**
+
 - Domínio não carrega
 - Erro "DNS_PROBE_FINISHED_NXDOMAIN"
 
 **Soluções:**
+
 1. Aguarde mais tempo (até 48h)
 2. Verifique se os registros DNS estão corretos
 3. Limpe cache DNS:
@@ -142,10 +151,12 @@ Todos apontarão para o mesmo site.
 ### HTTPS não funciona
 
 **Sintomas:**
+
 - Site carrega mas sem HTTPS
 - Erro de certificado
 
 **Soluções:**
+
 1. Aguarde alguns minutos (Vercel precisa gerar certificado)
 2. Verifique se o domínio está adicionado corretamente na Vercel
 3. Se persistir, remova e readicione o domínio na Vercel
@@ -153,6 +164,7 @@ Todos apontarão para o mesmo site.
 ### Erro 404 ou domínio não encontrado
 
 **Soluções:**
+
 1. Verifique se o DNS propagou: https://dnschecker.org
 2. Verifique se o domínio está adicionado na Vercel
 3. Verifique se os registros DNS estão corretos
@@ -161,12 +173,14 @@ Todos apontarão para o mesmo site.
 ## 📊 Verificar Status
 
 ### Na Vercel:
+
 - Settings > Domains > Veja o status do domínio
 - ✅ Verde = Configurado e funcionando
 - ⚠️ Amarelo = Aguardando configuração DNS
 - ❌ Vermelho = Erro na configuração
 
 ### Ferramentas úteis:
+
 - **DNS Checker:** https://dnschecker.org
 - **SSL Checker:** https://www.ssllabs.com/ssltest/
 - **Ping:** `ping eduardo-nowakoski-dev.com`
@@ -192,12 +206,13 @@ Todos apontarão para o mesmo site.
 ## 🎉 Pronto!
 
 Seu portfólio estará disponível em:
+
 - ✅ https://eduardo-nowakoski-dev.com
 - ✅ https://www.eduardo-nowakoski-dev.com (se configurado)
 
 ---
 
 **Dúvidas?** Consulte a documentação oficial:
+
 - Vercel Domains: https://vercel.com/docs/concepts/projects/domains
 - Suporte Vercel: https://vercel.com/support
-

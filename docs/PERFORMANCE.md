@@ -51,3 +51,4 @@ O bfcache é uma otimização do navegador que permite que páginas sejam restau
 - Os recursos tenham headers de cache apropriados
 - Não haja listeners de eventos que impeçam o bfcache
 
+

@@ -33,3 +33,4 @@ export function useParallax({ speed = 0.5, offset = 0 }: ParallaxOptions = {}) {
   return { ref, translateY }
 }
 
+

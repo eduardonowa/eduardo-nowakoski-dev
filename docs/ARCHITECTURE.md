@@ -228,3 +228,4 @@ A arquitetura escolhida prioriza:
 - ✅ Acessibilidade
 
 Todas as decisões foram tomadas considerando as melhores práticas da indústria e as necessidades específicas de um portfólio profissional moderno.
+

@@ -247,3 +247,4 @@ Para customizar o Design System:
 3. **Teste em ambos os temas** (dark e light)
 4. **Valide acessibilidade** com ferramentas como Lighthouse
 5. **Mantenha performance** evitando animações pesadas
+
