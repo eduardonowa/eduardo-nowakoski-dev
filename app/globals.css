@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme Colors - Dracula inspired */
+    --color-primary: 139 92 246; /* Dracula Purple - darker for better contrast */
+    --color-primary-light: 189 147 249;
+    --color-primary-dark: 124 58 237;
+
+    --color-secondary: 255 121 198; /* Dracula Pink */
+    --color-secondary-light: 255 184 219;
+    --color-secondary-dark: 255 85 184;
+
+    --color-background: 255 255 255;
+    --color-background-secondary: 248 248 242; /* Dracula Foreground light */
+
+    --color-text: 40 42 54; /* Dracula Background */
+    --color-text-secondary: 68 71 90; /* Dracula Selection */
+    --color-text-muted: 98 114 164; /* Dracula Comment */
+
+    --color-border: 230 230 230;
+    --color-border-light: 245 245 245;
+
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+    /* Spacing */
+    --spacing-section: 6rem;
+    --spacing-container: 1.5rem;
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    /* Dark Theme Colors - Dracula Theme */
+    --color-primary: 189 147 249; /* Dracula Purple */
+    --color-primary-light: 212 191 255;
+    --color-primary-dark: 139 92 246;
+
+    --color-secondary: 255 121 198; /* Dracula Pink */
+    --color-secondary-light: 255 184 219;
+    --color-secondary-dark: 255 85 184;
+
+    --color-background: 40 42 54; /* Dracula Background */
+    --color-background-secondary: 68 71 90; /* Dracula Selection */
+
+    --color-text: 248 248 242; /* Dracula Foreground */
+    --color-text-secondary: 189 147 249; /* Dracula Purple */
+    --color-text-muted: 98 114 164; /* Dracula Comment */
+
+    --color-border: 68 71 90; /* Dracula Selection */
+    --color-border-light: 40 42 54; /* Dracula Background */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text antialiased;
+    font-family: var(--font-sans);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-gradient {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background: rgba(40, 42, 54, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glow-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+  }
+
+  .dark .glow-hover:hover {
+    box-shadow: 0 0 20px rgba(189, 147, 249, 0.5), 0 0 40px rgba(189, 147, 249, 0.3);
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .gradient-animated {
+    background: linear-gradient(
+      -45deg,
+      rgb(139 92 246),
+      rgb(255 121 198),
+      rgb(189 147 249),
+      rgb(255 121 198)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+}
