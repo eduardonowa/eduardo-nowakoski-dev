@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const codeSnippets = [
@@ -113,18 +113,27 @@ const getColorClass = (type: string) => {
 export function CodeSnippets() {
   const [snippets, setSnippets] = useState<Array<{ id: number; lines: any[]; x: number; y: number }>>([])
   const [isVisible, setIsVisible] = useState(false)
+  const snippetsRef = useRef<Array<{ id: number; lines: any[]; x: number; y: number }>>([])
+  const isInitializedRef = useRef(false)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    // Delay inicial para não bloquear o carregamento
+    // Reduz o delay para aparecer mais rápido, mas ainda dá tempo para o conteúdo principal carregar
     const initialDelay = setTimeout(() => {
       setIsVisible(true)
-    }, 2000)
+    }, 500)
 
     return () => clearTimeout(initialDelay)
   }, [])
 
   useEffect(() => {
     if (!isVisible) return
+
+    // Se já foi inicializado, mantém os snippets existentes
+    if (isInitializedRef.current && snippetsRef.current.length > 0) {
+      setSnippets([...snippetsRef.current]) // Cria uma cópia para forçar re-render se necessário
+      return
+    }
 
     const generateSnippets = () => {
       const newSnippets = codeSnippets.map((snippet, index) => ({
@@ -133,15 +142,28 @@ export function CodeSnippets() {
         x: Math.random() * 80 + 10, // 10% to 90%
         y: Math.random() * 80 + 10,
       }))
+      snippetsRef.current = newSnippets
       setSnippets(newSnippets)
+      isInitializedRef.current = true
     }
 
     generateSnippets()
-    const interval = setInterval(() => {
+    
+    // Limpa intervalo anterior se existir
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+    
+    intervalRef.current = setInterval(() => {
       generateSnippets()
     }, 15000)
 
-    return () => clearInterval(interval)
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
   }, [isVisible])
 
   const shouldRender = isVisible && snippets.length > 0
@@ -150,17 +172,19 @@ export function CodeSnippets() {
   }
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, minHeight: '100vh' }}>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, height: '100vh' }}>
       {snippets.map((snippet) => {
-        // Calcula posição inicial baseada na altura do documento, não da viewport
-        const documentHeight = globalThis.window === undefined ? 2000 : document.documentElement.scrollHeight
-        const startY = documentHeight + 100
-        const endY = -300
+        // Calcula posição inicial baseada na viewport, não no scroll
+        // Os snippets começam na parte inferior da viewport e sobem
+        const viewportHeight = globalThis.window === undefined ? 1000 : window.innerHeight
+        const startY = viewportHeight + 100 // Começa logo abaixo da viewport
+        const endY = -300 // Termina acima da viewport
         const randomX = Math.random() * 40 - 20
         
+        // Usa uma chave estável baseada no ID para manter as animações
         return (
           <motion.div
-            key={snippet.id}
+            key={`snippet-${snippet.id}`}
             initial={{ opacity: 0, translateY: startY, translateX: snippet.x }}
             animate={{
               opacity: [0, 0.2, 0.2, 0],

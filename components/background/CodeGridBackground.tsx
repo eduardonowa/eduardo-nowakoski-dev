@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const CODE_LINES = [
@@ -21,12 +21,22 @@ export function CodeGridBackground() {
   const y = useTransform(scrollY, [0, 1000], [0, -120])
 
   const [lines, setLines] = useState<string[]>([])
+  const linesRef = useRef<string[]>([])
+  const isInitializedRef = useRef(false)
 
   useEffect(() => {
+    // Se já foi inicializado, mantém as linhas existentes
+    if (isInitializedRef.current && linesRef.current.length > 0) {
+      setLines(linesRef.current)
+      return
+    }
+
     const repeated = Array.from({ length: 32 }, () =>
       CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)]
     )
+    linesRef.current = repeated
     setLines(repeated)
+    isInitializedRef.current = true
   }, [])
 
   return (
