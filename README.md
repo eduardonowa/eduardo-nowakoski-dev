@@ -1,278 +1,293 @@
-# Portfolio - Eduardo Nowakoski
+# 💼 Portfolio - Eduardo Nowakoski
 
-Portfólio profissional completo para desenvolvedor Senior Front-End / Full-Stack AEM, desenvolvido com Next.js, TypeScript, Tailwind CSS e Framer Motion.
+> Modern, responsive portfolio website for Senior Front-End / Full-Stack AEM Developer built with Next.js, TypeScript, and Tailwind CSS.
 
-## 🚀 Visão Geral
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
 
-Este projeto é um portfólio moderno e profissional que apresenta a experiência e habilidades de um desenvolvedor sênior especializado em Front-End e AEM (Adobe Experience Manager). O portfólio foi construído com foco em performance, acessibilidade, design moderno e experiência do usuário.
+## ✨ Features
 
-## 🛠️ Stack Tecnológica
+- 🎨 **Modern UI/UX** - Clean, professional design with smooth animations
+- 🌓 **Dark/Light Mode** - Theme switching with persistent user preference
+- 🌍 **Internationalization** - Support for Portuguese (pt-BR) and English (en-US)
+- 📱 **Fully Responsive** - Mobile-first design that works on all devices
+- ⚡ **Performance Optimized** - Built with Next.js 14 for optimal performance
+- ♿ **Accessible** - WCAG 2.1 Level AA compliant
+- 🔍 **SEO Optimized** - Meta tags, Open Graph, and semantic HTML
+- 🎭 **Smooth Animations** - Powered by Framer Motion
+- 🧪 **Well Tested** - Comprehensive test coverage with Jest
+- 📚 **Storybook** - Component documentation and testing
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📜 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run type-check` | Check TypeScript types |
+| `npm test` | Run tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Generate test coverage report |
+| `npm run storybook` | Start Storybook |
+| `npm run build-storybook` | Build Storybook for production |
+
+## 🛠️ Tech Stack
 
 ### Core
+- **[Next.js 14](https://nextjs.org/)** - React framework with SSR/SSG
+- **[React 18](https://reactjs.org/)** - UI library
+- **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 
-- **Next.js 14** - Framework React com SSR/SSG para otimização de performance e SEO
-- **React 18** - Biblioteca UI moderna
-- **TypeScript** - Tipagem estática para maior segurança e produtividade
+### Styling
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **CSS Variables** - Design tokens for theming
 
-### Estilização
+### Features
+- **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+- **[next-themes](https://github.com/pacocrawford/next-themes)** - Theme management
+- **[react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)** - Scroll animations
+- **[lucide-react](https://lucide.dev/)** - Icon library
 
-- **Tailwind CSS** - Framework CSS utility-first
-- **CSS Variables** - Design tokens para temas e customização
-- **PostCSS** - Processamento de CSS
+### Development
+- **[Jest](https://jestjs.io/)** - Testing framework
+- **[Storybook](https://storybook.js.org/)** - Component documentation
+- **[ESLint](https://eslint.org/)** - Code linting
 
-### Funcionalidades
-
-- **Framer Motion** - Animações fluidas e microinterações
-- **next-themes** - Gerenciamento de temas (Dark/Light mode)
-- **react-intersection-observer** - Animações baseadas em scroll
-- **lucide-react** - Ícones modernos e leves
-
-## 📁 Estrutura de Pastas
+## 📁 Project Structure
 
 ```
 portfolio/
-├── app/                    # App Router do Next.js
-│   ├── globals.css        # Estilos globais e design tokens
-│   ├── layout.tsx         # Layout raiz com providers
-│   └── page.tsx           # Página principal
+├── app/                          # Next.js App Router
+│   ├── globals.css               # Global styles and design tokens
+│   ├── layout.tsx                 # Root layout with providers
+│   └── page.tsx                   # Home page
 ├── components/
-│   ├── layout/            # Componentes de layout
-│   │   ├── Header.tsx     # Cabeçalho com navegação
-│   │   └── Footer.tsx     # Rodapé
-│   ├── providers/         # Context providers
-│   │   ├── ThemeProvider.tsx  # Provider de temas
-│   │   └── I18nProvider.tsx  # Provider de internacionalização
-│   └── sections/          # Seções do portfólio
-│       ├── Hero.tsx       # Seção hero/apresentação
-│       ├── About.tsx      # Sobre mim
-│       ├── Experience.tsx # Experiência profissional
-│       ├── Technologies.tsx # Tecnologias
-│       └── Contact.tsx    # Contato
+│   ├── background/               # Background components
+│   │   ├── CodeGridBackground.tsx
+│   │   └── CodeSnippets.tsx
+│   ├── layout/                   # Layout components
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── providers/                # Context providers
+│   │   ├── ThemeProvider.tsx
+│   │   └── I18nProvider.tsx
+│   ├── sections/                 # Page sections
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Experience.tsx
+│   │   ├── ProfessionalExperience.tsx
+│   │   ├── Technologies.tsx
+│   │   └── Contact.tsx
+│   └── ui/                       # UI components
+│       ├── LoadingSkeleton.tsx
+│       ├── ScrollProgress.tsx
+│       └── TextReveal.tsx
+├── hooks/                        # Custom React hooks
+│   ├── useMagnetic.ts
+│   └── useParallax.ts
 ├── lib/
 │   └── i18n/
-│       └── translations.ts # Traduções (pt-BR e en-US)
-├── public/                # Arquivos estáticos
-├── package.json
-├── tsconfig.json
-├── tailwind.config.ts
-├── next.config.js
-└── README.md
+│       └── translations.ts       # i18n translations
+├── __tests__/                    # Test files
+├── docs/                        # Documentation
+├── public/                       # Static assets
+└── .storybook/                 # Storybook configuration
 ```
 
 ## 🎨 Design System
 
-O projeto utiliza um Design System baseado em CSS Variables, permitindo fácil customização e suporte a temas.
+The project uses a design system based on CSS Variables (Dracula-inspired theme) for easy customization and theme support.
 
-### Tokens de Design
+### Theme Colors
 
-Os tokens estão definidos em `app/globals.css` e incluem:
+- **Primary**: Purple (#BD93F9)
+- **Secondary**: Pink (#FF79C6)
+- **Background**: Dark (#282A36) / Light (#FFFFFF)
+- **Text**: Foreground (#F8F8F2) / Dark (#282A36)
 
-- **Cores**: Primária, secundária, backgrounds, textos, bordas
-- **Tipografia**: Fontes e tamanhos
-- **Espaçamentos**: Seções e containers
-- **Border Radius**: Valores padronizados
-- **Shadows**: Sombras para elevação
+### Customization
 
-### Temas
+Edit CSS variables in `app/globals.css` to customize colors, spacing, and other design tokens.
 
-- **Dark Mode** (padrão): Tema escuro moderno
-- **Light Mode**: Tema claro profissional
-- Persistência da preferência do usuário via localStorage
+## 🌍 Internationalization
 
-## 🌍 Internacionalização (i18n)
+The portfolio supports two languages:
+- 🇧🇷 **Portuguese (pt-BR)** - Default
+- 🇺🇸 **English (en-US)**
 
-O portfólio suporta dois idiomas:
+Language preference is stored in localStorage and persists across sessions.
 
-- 🇧🇷 **Português (pt-BR)** - Idioma padrão
-- 🇺🇸 **Inglês (en-US)**
+## 🧪 Testing
 
-O sistema de i18n é customizado e armazena a preferência do usuário no localStorage.
-
-## 🚀 Como Rodar Localmente
-
-### Pré-requisitos
-
-- Node.js 18+
-- npm, yarn ou pnpm
-
-### Instalação
-
-1. Clone o repositório:
+### Run Tests
 
 ```bash
-git clone <repository-url>
-cd portfolio
+npm test
 ```
 
-2. Instale as dependências:
+### Watch Mode
 
 ```bash
-npm install
-# ou
-yarn install
-# ou
-pnpm install
+npm run test:watch
 ```
 
-3. Execute o servidor de desenvolvimento:
+### Coverage Report
 
 ```bash
-npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
+npm run test:coverage
 ```
 
-4. Abra [http://localhost:3000](http://localhost:3000) no navegador
+### Storybook
 
-### Scripts Disponíveis
+```bash
+npm run storybook
+```
 
-- `npm run dev` - Inicia servidor de desenvolvimento
-- `npm run build` - Cria build de produção
-- `npm run start` - Inicia servidor de produção
-- `npm run lint` - Executa ESLint
-- `npm run type-check` - Verifica tipos TypeScript
+Opens Storybook at [http://localhost:6006](http://localhost:6006)
 
-## 📦 Deploy
+## 📦 Deployment
 
-### Vercel (Recomendado)
+### Vercel (Recommended)
 
-1. Faça push do código para um repositório Git (GitHub, GitLab, Bitbucket)
-2. Importe o projeto na [Vercel](https://vercel.com)
-3. A Vercel detectará automaticamente Next.js e configurará o build
-4. Deploy automático a cada push
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Import the project on [Vercel](https://vercel.com)
+3. Vercel will automatically detect Next.js and configure the build
+4. Automatic deployments on every push
 
-### Domínio Customizado
+### Custom Domain
 
-Para usar um domínio customizado como `eduardo-nowakoski-dev.com`:
+For detailed instructions on setting up a custom domain (e.g., `eduardo-nowakoski-dev.com`), see [docs/CUSTOM_DOMAIN_SETUP.md](docs/CUSTOM_DOMAIN_SETUP.md)
 
-📖 **Guia completo:** Veja [docs/CUSTOM_DOMAIN_SETUP.md](docs/CUSTOM_DOMAIN_SETUP.md)
+### Other Platforms
 
-**Resumo rápido:**
-
-1. Compre um domínio (Namecheap, Google Domains, etc.)
-2. Adicione o domínio na Vercel (Settings > Domains)
-3. Configure os registros DNS no seu registrador
-4. Aguarde a propagação DNS (1-2 horas)
-5. HTTPS será configurado automaticamente
-
-### Outras Plataformas
-
-O projeto pode ser deployado em qualquer plataforma que suporte Next.js:
-
+This project can be deployed on any platform that supports Next.js:
 - Netlify
 - AWS Amplify
 - Railway
 - Render
 
-## ✨ Funcionalidades
+## 📚 Documentation
+
+- [Deployment Guide](docs/DEPLOY.md)
+- [Custom Domain Setup](docs/CUSTOM_DOMAIN_SETUP.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Components](docs/COMPONENTS.md)
+- [Design System](docs/DESIGN_SYSTEM.md)
+- [Performance](docs/PERFORMANCE.md)
+
+## 🏗️ Architecture Decisions
+
+### Why Next.js?
+
+- **SEO**: Native SSR/SSG for better search engine indexing
+- **Performance**: Automatic optimizations (code splitting, image optimization)
+- **Developer Experience**: Great DX with hot reload, TypeScript support
+- **Deployment**: Seamless integration with Vercel
+- **Ecosystem**: Large community and resources
+
+### Why TypeScript?
+
+- **Type Safety**: Catch errors at compile time
+- **IntelliSense**: Better IDE support and autocomplete
+- **Refactoring**: Safer and more reliable code changes
+- **Documentation**: Types serve as inline documentation
+
+### Why Tailwind CSS?
+
+- **Productivity**: Faster development with utility classes
+- **Consistency**: Integrated design system
+- **Performance**: Optimized and purged CSS
+- **Customization**: Easy to extend with design tokens
+
+## ✨ Key Features
 
 ### Performance
+- ✅ Automatic code splitting
+- ✅ Lazy loading components
+- ✅ Image optimization (when images are added)
+- ✅ SSR/SSG for better SEO
 
-- ✅ Code splitting automático
-- ✅ Lazy loading de componentes
-- ✅ Otimização de imagens (quando adicionadas)
-- ✅ SSR/SSG para melhor SEO
-
-### Acessibilidade
-
+### Accessibility
 - ✅ ARIA labels
-- ✅ Navegação por teclado
-- ✅ Contraste adequado (WCAG)
-- ✅ Semântica HTML correta
+- ✅ Keyboard navigation
+- ✅ WCAG 2.1 Level AA compliant
+- ✅ Semantic HTML
 
 ### UX/UI
-
-- ✅ Animações suaves com Framer Motion
-- ✅ Scroll animations
-- ✅ Microinterações
-- ✅ Design responsivo (mobile-first)
+- ✅ Smooth animations with Framer Motion
+- ✅ Scroll-based animations
+- ✅ Micro-interactions
+- ✅ Responsive design (mobile-first)
 - ✅ Dark/Light mode toggle
 
 ### SEO
-
-- ✅ Metadata otimizada
+- ✅ Optimized metadata
 - ✅ Open Graph tags
-- ✅ Estrutura semântica
-- ✅ URLs amigáveis
+- ✅ Semantic structure
+- ✅ Clean URLs
 
-## 🏗️ Decisões Arquiteturais
+## 🤝 Contributing
 
-### Por que Next.js?
+This is a personal portfolio project. However, if you find any issues or have suggestions, feel free to open an issue or submit a pull request.
 
-- **SEO**: SSR/SSG nativo para melhor indexação
-- **Performance**: Otimizações automáticas (code splitting, image optimization)
-- **Developer Experience**: API routes, middleware, etc.
-- **Deploy**: Integração perfeita com Vercel
-- **Ecosystem**: Grande comunidade e recursos
+## 📄 License
 
-### Por que TypeScript?
+This project is private and personal.
 
-- **Type Safety**: Reduz bugs em tempo de desenvolvimento
-- **IntelliSense**: Melhor experiência de desenvolvimento
-- **Refactoring**: Mais seguro e confiável
-- **Documentação**: Tipos servem como documentação
-
-### Por que Tailwind CSS?
-
-- **Produtividade**: Desenvolvimento mais rápido
-- **Consistência**: Design system integrado
-- **Performance**: CSS otimizado e purgado
-- **Customização**: Fácil extensão com design tokens
-
-### Por que Framer Motion?
-
-- **Performance**: Animações otimizadas
-- **API**: Declarativa e intuitiva
-- **Flexibilidade**: Animações complexas com pouco código
-- **Acessibilidade**: Respeita preferências de movimento
-
-## 📝 Boas Práticas Adotadas
-
-1. **Componentização**: Componentes reutilizáveis e modulares
-2. **Separação de Responsabilidades**: Lógica separada da apresentação
-3. **TypeScript Strict**: Tipagem rigorosa para maior segurança
-4. **Clean Code**: Código limpo e legível
-5. **Performance First**: Otimizações desde o início
-6. **Acessibilidade**: WCAG 2.1 Level AA
-7. **SEO**: Otimizações para mecanismos de busca
-8. **Documentação**: Código e decisões documentados
-
-## 🔧 Customização
-
-### Cores
-
-Edite as variáveis CSS em `app/globals.css`:
-
-```css
-:root {
-  --color-primary: 59 130 246; /* Azul */
-  --color-secondary: 139 92 246; /* Roxo */
-  /* ... */
-}
-```
-
-### Conteúdo
-
-Edite as traduções em `lib/i18n/translations.ts` para atualizar textos.
-
-### Seções
-
-Adicione novas seções em `components/sections/` e importe em `app/page.tsx`.
-
-## 📄 Licença
-
-Este projeto é privado e pessoal.
-
-## 👤 Autor
+## 👤 Author
 
 **Eduardo Lopes Nowakoski**
 
-- Email: eduardo_nowa@hotmail.com
-- LinkedIn: [linkedin.com/in/eduardo-nowakoski-1598071a4](https://linkedin.com/in/eduardo-nowakoski-1598071a4)
-- Phone: +55 54 99648-5010
+- 📧 Email: eduardo_nowa@hotmail.com
+- 💼 LinkedIn: [linkedin.com/in/eduardo-nowakoski-1598071a4](https://linkedin.com/in/eduardo-nowakoski-1598071a4)
+- 📱 Phone: +55 54 99648-5010
 
 ---
 
-Desenvolvido com ❤️ usando Next.js, TypeScript e Tailwind CSS
+<div align="center">
+
+Made with ❤️ using [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com/)
+
+</div>
