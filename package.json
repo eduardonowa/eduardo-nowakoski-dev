@@ -2,7 +2,7 @@
   "name": "portfolio-eduardo-nowakoski",
   "version": "1.0.0",
   "private": true,
-  "description": "Professional portfolio for Senior Front-End / Full-Stack AEM Developer",
+  "description": "Professional portfolio for Senior Front-End Engineer / Senior Full-Stack AEM Engineer",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

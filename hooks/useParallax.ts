@@ -10,10 +10,10 @@ export function useParallax({ speed = 0.5, offset = 0 }: ParallaxOptions = {}) {
   const [translateY, setTranslateY] = useState(0)
 
   useEffect(() => {
-    const element = ref.current
-    if (!element) return
-
     const handleScroll = () => {
+      const element = ref.current
+      if (!element) return
+
       const rect = element.getBoundingClientRect()
       const elementTop = rect.top + window.scrollY
       const scrollPosition = window.scrollY + window.innerHeight
@@ -32,5 +32,6 @@ export function useParallax({ speed = 0.5, offset = 0 }: ParallaxOptions = {}) {
 
   return { ref, translateY }
 }
+
 
 

@@ -8,13 +8,10 @@ jest.mock('react-intersection-observer', () => ({
   useInView: () => mockUseInView(),
 }))
 
-// Mock dynamic import
+// Mock next/dynamic para sempre retornar um componente válido
 jest.mock('next/dynamic', () => ({
   __esModule: true,
-  default: (fn: any) => {
-    const Component = fn()
-    return Component
-  },
+  default: () => () => null,
 }))
 
 const renderHero = () => {
@@ -38,8 +35,9 @@ describe('Hero', () => {
 
     // Wait for text reveal animation
     await new Promise(resolve => setTimeout(resolve, 100))
-    
-    expect(screen.getByText(/Eduardo Nowakoski/i)).toBeInTheDocument()
+
+    expect(screen.getByText(/Eduardo/i)).toBeInTheDocument()
+    expect(screen.getByText(/Nowakoski/i)).toBeInTheDocument()
   })
 
   it('should render greeting text', () => {
@@ -86,7 +84,8 @@ describe('Hero', () => {
 
     renderHero()
 
-    expect(screen.getByText(/Eduardo Nowakoski/i)).toBeInTheDocument()
+    expect(screen.getByText(/Eduardo/i)).toBeInTheDocument()
+    expect(screen.getByText(/Nowakoski/i)).toBeInTheDocument()
   })
 
   it('should render MagneticButton with useMagnetic hook', () => {

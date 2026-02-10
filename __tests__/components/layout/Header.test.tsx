@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import { Header, FlagIcon } from '@/components/layout/Header'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
@@ -48,13 +48,9 @@ describe('Header', () => {
   })
 
   it('should toggle locale from en-US to pt-BR', () => {
-    // Mock I18nProvider to start with en-US
-    const mockSetLocale = jest.fn()
-    jest.spyOn(require('@/components/providers/I18nProvider'), 'useI18n').mockReturnValue({
-      locale: 'en-US',
-      setLocale: mockSetLocale,
-      t: require('@/lib/i18n/translations').translations['en-US'],
-    })
+    // Força locale inicial como en-US via localStorage
+    const originalLocale = window.localStorage.getItem('locale')
+    window.localStorage.setItem('locale', 'en-US')
 
     renderHeader()
     
@@ -62,8 +58,15 @@ describe('Header', () => {
     const langButton = screen.getByLabelText(/toggle language/i)
     fireEvent.click(langButton)
 
-    // Should call setLocale with 'pt-BR' (covers locale === 'pt-BR' ? 'en-US' : 'pt-BR')
-    expect(mockSetLocale).toHaveBeenCalledWith('pt-BR')
+    // Locale label should now show PT
+    expect(screen.getByText(/PT/)).toBeInTheDocument()
+
+    // Restore locale
+    if (originalLocale === null) {
+      window.localStorage.removeItem('locale')
+    } else {
+      window.localStorage.setItem('locale', originalLocale)
+    }
   })
 
   it('should open mobile menu when hamburger is clicked', async () => {
@@ -96,8 +99,8 @@ describe('Header', () => {
     fireEvent.click(homeLink)
 
     await waitFor(() => {
-      // Menu should close
-      expect(menuButton).toBeInTheDocument()
+      // Menu should close; re-query so we don't use a stale reference
+      expect(screen.getByLabelText(/toggle menu/i)).toBeInTheDocument()
     })
   })
 
@@ -139,8 +142,10 @@ describe('Header', () => {
 
     renderHeader()
 
-    const scrollEvent = new Event('scroll')
-    window.dispatchEvent(scrollEvent)
+    act(() => {
+      const scrollEvent = new Event('scroll')
+      window.dispatchEvent(scrollEvent)
+    })
 
     // Header should have scrolled styles
     const header = screen.getByRole('banner')
@@ -156,8 +161,10 @@ describe('Header', () => {
 
     renderHeader()
 
-    const scrollEvent = new Event('scroll')
-    window.dispatchEvent(scrollEvent)
+    act(() => {
+      const scrollEvent = new Event('scroll')
+      window.dispatchEvent(scrollEvent)
+    })
 
     const header = screen.getByRole('banner')
     expect(header).toBeInTheDocument()
@@ -202,9 +209,9 @@ describe('Header', () => {
       fireEvent.click(navLinks[0])
     }
 
-    // Menu should close (onClick handler should be called)
+    // Menu should close (onClick handler should be called); re-query so we don't use a stale reference
     await waitFor(() => {
-      expect(menuButton).toBeInTheDocument()
+      expect(screen.getByLabelText(/toggle menu/i)).toBeInTheDocument()
     })
   })
 

@@ -13,16 +13,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Eduardo Nowakoski | Senior Front-End & Full-Stack AEM Developer',
-  description: 'Senior Front-End Developer and Full-Stack AEM Developer specialized in Vue.js, Angular, Adobe Experience Manager, and modern web applications.',
-  keywords: ['Front-End Developer', 'AEM Developer', 'Vue.js', 'Angular', 'React', 'TypeScript', 'Full-Stack'],
+  title: 'Eduardo Nowakoski | Senior Front-End Engineer & Senior Full-Stack AEM Engineer',
+  description: 'Senior Front-End Engineer and Senior Full-Stack AEM Engineer specialized in Vue.js, Angular, Adobe Experience Manager, and modern web applications.',
+  keywords: ['Senior Front-End Engineer', 'Senior Full-Stack AEM Engineer', 'Vue.js', 'Angular', 'React', 'TypeScript', 'Full-Stack'],
   authors: [{ name: 'Eduardo Lopes Nowakoski' }],
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     alternateLocale: 'en_US',
-    title: 'Eduardo Nowakoski | Senior Front-End & Full-Stack AEM Developer',
-    description: 'Senior Front-End Developer and Full-Stack AEM Developer specialized in modern web applications.',
+    title: 'Eduardo Nowakoski | Senior Front-End Engineer & Senior Full-Stack AEM Engineer',
+    description: 'Senior Front-End Engineer and Senior Full-Stack AEM Engineer specialized in modern web applications.',
   },
 }
 

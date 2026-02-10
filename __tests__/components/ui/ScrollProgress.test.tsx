@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
 describe('ScrollProgress', () => {
@@ -6,21 +6,24 @@ describe('ScrollProgress', () => {
     Object.defineProperty(document.documentElement, 'scrollTop', {
       writable: true,
       value: 0,
+      configurable: true,
     })
     Object.defineProperty(document.documentElement, 'scrollHeight', {
       writable: true,
       value: 2000,
+      configurable: true,
     })
     Object.defineProperty(document.documentElement, 'clientHeight', {
       writable: true,
       value: 1000,
+      configurable: true,
     })
   })
 
   it('should render progress bar', () => {
-    const { container } = render(<ScrollProgress />)
+    render(<ScrollProgress />)
 
-    const progressBar = container.querySelector('[style*="scaleX"]')
+    const progressBar = screen.getByTestId('scroll-progress-bar')
     expect(progressBar).toBeInTheDocument()
   })
 
@@ -29,18 +32,19 @@ describe('ScrollProgress', () => {
 
     // Wait for component to mount
     await waitFor(() => {
-      expect(document.querySelector('[style*="scaleX"]')).toBeInTheDocument()
+      expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
     })
 
-    // Simulate scroll
-    Object.defineProperty(document.documentElement, 'scrollTop', {
-      writable: true,
-      value: 500,
-      configurable: true,
+    // Simulate scroll (wrap in act to flush setState from scroll handler)
+    act(() => {
+      Object.defineProperty(document.documentElement, 'scrollTop', {
+        writable: true,
+        value: 500,
+        configurable: true,
+      })
+      const scrollEvent = new Event('scroll', { bubbles: true })
+      window.dispatchEvent(scrollEvent)
     })
-
-    const scrollEvent = new Event('scroll', { bubbles: true })
-    window.dispatchEvent(scrollEvent)
 
     // Component should handle scroll
     await waitFor(() => {
@@ -57,18 +61,19 @@ describe('ScrollProgress', () => {
     render(<ScrollProgress />)
 
     await waitFor(() => {
-      expect(document.querySelector('[style*="scaleX"]')).toBeInTheDocument()
+      expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
     })
 
     // First scroll event - ticking should be false, so should enter if (!ticking)
-    Object.defineProperty(document.documentElement, 'scrollTop', {
-      writable: true,
-      value: 100,
-      configurable: true,
+    act(() => {
+      Object.defineProperty(document.documentElement, 'scrollTop', {
+        writable: true,
+        value: 100,
+        configurable: true,
+      })
+      const scrollEvent1 = new Event('scroll', { bubbles: true })
+      window.dispatchEvent(scrollEvent1)
     })
-    
-    const scrollEvent1 = new Event('scroll', { bubbles: true })
-    window.dispatchEvent(scrollEvent1)
 
     // Should use requestAnimationFrame (covers the if (!ticking) branch)
     await waitFor(() => {
@@ -76,14 +81,15 @@ describe('ScrollProgress', () => {
     })
 
     // Second scroll event immediately after - ticking should be true, so should NOT enter if
-    Object.defineProperty(document.documentElement, 'scrollTop', {
-      writable: true,
-      value: 200,
-      configurable: true,
+    act(() => {
+      Object.defineProperty(document.documentElement, 'scrollTop', {
+        writable: true,
+        value: 200,
+        configurable: true,
+      })
+      const scrollEvent2 = new Event('scroll', { bubbles: true })
+      window.dispatchEvent(scrollEvent2)
     })
-    
-    const scrollEvent2 = new Event('scroll', { bubbles: true })
-    window.dispatchEvent(scrollEvent2)
 
     // After RAF callback, ticking should be false again
     await waitFor(() => {
@@ -109,7 +115,7 @@ describe('ScrollProgress', () => {
     render(<ScrollProgress />)
 
     await waitFor(() => {
-      expect(document.querySelector('[style*="scaleX"]')).toBeInTheDocument()
+      expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
     })
   })
 

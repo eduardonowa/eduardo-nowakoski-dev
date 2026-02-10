@@ -65,8 +65,11 @@ describe('TextReveal', () => {
   it('should not add space after last word', () => {
     const { container } = render(<TextReveal splitBy="word">Single</TextReveal>)
 
-    const spans = container.querySelectorAll('span')
-    expect(spans.length).toBe(1)
+    // Ignora o span externo do wrapper e considera apenas os spans internos
+    const wrapperSpan = container.querySelector('span')
+    const innerSpans = wrapperSpan?.querySelectorAll('span') ?? []
+
+    expect(innerSpans.length).toBe(1)
   })
 })
 

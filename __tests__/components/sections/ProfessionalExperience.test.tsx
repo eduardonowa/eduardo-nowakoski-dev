@@ -2,11 +2,12 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { ProfessionalExperience } from '@/components/sections/ProfessionalExperience'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 
-// Mock framer-motion
+// Mock framer-motion (strip motion-only props to avoid DOM warnings)
+const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    li: ({ children, ...props }: any) => <li {...props}>{children}</li>,
+    div: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('div', rest, children) },
+    li: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('li', rest, children) },
   },
 }))
 
@@ -41,8 +42,9 @@ describe('ProfessionalExperience', () => {
       </I18nProvider>
     )
 
-    // Check for company names from translations
-    expect(screen.getByText(/NTT Data|Compass|Merkle/i)).toBeInTheDocument()
+    // Check for company names from translations (may appear multiple times)
+    const companies = screen.getAllByText(/NTT Data|Compass|Merkle/i)
+    expect(companies.length).toBeGreaterThan(0)
   })
 
   it('should render company positions', () => {
@@ -52,7 +54,10 @@ describe('ProfessionalExperience', () => {
       </I18nProvider>
     )
 
-    expect(screen.getByText(/Full-Stack AEM Developer|Front-End Developer/i)).toBeInTheDocument()
+    const positions = screen.getAllByText(
+      /Desenvolvedor Full-Stack AEM Senior|Desenvolvedor Front-End|Senior Full-Stack AEM Engineer|Front-End Engineer/i
+    )
+    expect(positions.length).toBeGreaterThan(0)
   })
 
   it('should render company periods', () => {
@@ -132,5 +137,6 @@ describe('ProfessionalExperience', () => {
     expect(screen.getByText(/Histórico Profissional|Professional History/i)).toBeInTheDocument()
   })
 })
+
 
 

@@ -35,7 +35,8 @@ describe('Contact', () => {
 
     expect(screen.getByText(/Email/i)).toBeInTheDocument()
     expect(screen.getByText(/Phone|Telefone/i)).toBeInTheDocument()
-    expect(screen.getByText(/LinkedIn/i)).toBeInTheDocument()
+    // Usa correspondência exata para evitar colisão com a URL do LinkedIn
+    expect(screen.getByText(/^LinkedIn$/i)).toBeInTheDocument()
   })
 
   it('should have correct contact links', () => {
