@@ -1,6 +1,6 @@
 # 💼 Portfolio - Eduardo Nowakoski
 
-> Modern, responsive portfolio website for Senior Front-End / Full-Stack AEM Developer built with Next.js, TypeScript, and Tailwind CSS.
+> Modern, responsive portfolio website for Senior Front-End Engineer / Senior Full-Stack AEM Engineer built with Next.js, TypeScript, and Tailwind CSS.
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -192,18 +192,8 @@ npm run storybook
 
 Opens Storybook at [http://localhost:6006](http://localhost:6006)
 
-## 📦 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub/GitLab/Bitbucket
-2. Import the project on [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and configure the build
-4. Automatic deployments on every push
-
 ## 📚 Documentation
 
-- [Deployment Guide](docs/DEPLOY.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Components](docs/COMPONENTS.md)
 - [Design System](docs/DESIGN_SYSTEM.md)

@@ -108,7 +108,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       greeting: 'Olá, eu sou',
       title: 'Eduardo Nowakoski',
-      subtitle: 'Senior Front-End & Full-Stack AEM Developer',
+      subtitle: 'Desenvolvedor Front-End Senior & Desenvolvedor Full-Stack AEM Senior',
       description:
         'Especializado em desenvolvimento de aplicações web escaláveis, integração com Adobe Experience Manager (AEM) e arquiteturas modernas de front-end.',
       ctaProjects: 'Ver Projetos',
@@ -117,7 +117,7 @@ export const translations: Record<Locale, Translations> = {
     about: {
       title: 'Sobre Mim',
       content: [
-        'Transicionei minha carreira em 2022, migrando da Engenharia Civil para o Desenvolvimento de Software, e desde então trabalho como Full-Stack AEM Developer, construindo e mantendo aplicações web escaláveis para plataformas de e-commerce.',
+        'Transicionei minha carreira em 2022, migrando da Engenharia Civil para o Desenvolvimento de Software, e desde então trabalho como Desenvolvedor Full-Stack AEM Senior, construindo e mantendo aplicações web escaláveis para plataformas de e-commerce.',
         'Especializado em Adobe Experience Manager (AEM), trabalho end-to-end — desde integrações front-end até a implementação de componentes, templates, Experience Fragments e Sling Models em Java.',
         'Tenho forte experiência com Vue.js (2/3, Pinia, Vuex) e Angular, além de participação em arquiteturas de microfrontends e design systems, sempre priorizando qualidade de código, performance e reutilização. Trabalho com cultura sólida de testes (Jest, Cypress), versionamento profissional com GitFlow, pipelines de CI/CD e metodologias ágeis (Scrum/Kanban).',
         'Inglês avançado e mentalidade colaborativa, trabalhando em estreita colaboração com equipes de produto, UX e negócios para transformar requisitos complexos em soluções técnicas robustas e escaláveis.',
@@ -131,7 +131,7 @@ export const translations: Record<Locale, Translations> = {
         ntt: {
           company: 'NTT Data',
           period: 'Fevereiro 2025 - Presente',
-          position: 'Full-Stack AEM Developer',
+          position: 'Desenvolvedor Full-Stack AEM Senior',
           activities: [
             'Desenvolvimento de aplicações web escaláveis usando Angular, TypeScript, SCSS e Java, totalmente integradas com Adobe Experience Manager (AEM).',
             'Migração estrutural de quatro portais legados para arquitetura Angular + AEM, liderando definições de templates, componentes e Experience Fragments.',
@@ -144,9 +144,9 @@ export const translations: Record<Locale, Translations> = {
         merkle: {
           company: 'Merkle (Dentsu Group)',
           period: 'Março 2025 - Dezembro 2025',
-          position: 'Full-Stack AEM Developer',
+          position: 'Desenvolvedor Full-Stack AEM Senior',
           activities: [
-            'Trabalho como Full-Stack AEM Developer em solução Vue 3 + AEM baseada em arquitetura de microfrontends para ecossistema de e-commerce multimarcas.',
+            'Trabalho como Desenvolvedor Full-Stack AEM Senior em solução Vue 3 + AEM baseada em arquitetura de microfrontends para ecossistema de e-commerce multimarcas.',
             'Co-criação e implementação de Design System integrado com AEM, permitindo tokenização de marca, reutilização de componentes e autonomia do cliente.',
             'Desenvolvimento de features front-end de alta performance usando Vue.js 3, Pinia e Swiper, focando em modularidade e lazy loading.',
             'Implementação de lógica backend em AEM usando Java, Sling Models e HTL, garantindo comunicação eficiente entre CMS e microfrontends.',
@@ -157,7 +157,7 @@ export const translations: Record<Locale, Translations> = {
         compass: {
           company: 'Compass',
           period: 'Janeiro 2022 - Fevereiro 2025',
-          position: 'Front-End Developer',
+          position: 'Desenvolvedor Front-End ',
           activities: [
             'Desenvolvimento de features e componentes de alta complexidade usando Vue.js 3 e Pinia, garantindo escalabilidade e eficiência em e-commerce.',
             'Manutenção, evolução e modernização de sistemas legados construídos com Vue.js 2 e Vuex, garantindo estabilidade da plataforma.',
@@ -171,7 +171,7 @@ export const translations: Record<Locale, Translations> = {
         intern: {
           company: 'Compass',
           period: 'Janeiro 2022 - Dezembro 2022',
-          position: 'Front-End & AEM Intern',
+          position: 'Desenvolvedor Front-End AEM ',
           activities: [
             'Participação em programa intensivo de treinamento focado em tecnologias front-end modernas e ecossistema Adobe Experience Manager (AEM).',
             'Desenvolvimento de base sólida em HTML, CSS/SASS, JavaScript e Vue.js com aplicações práticas em projetos.',
@@ -236,7 +236,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       greeting: 'Hello, I am',
       title: 'Eduardo Nowakoski',
-      subtitle: 'Senior Front-End & Full-Stack AEM Developer',
+      subtitle: 'Senior Front-End Engineer & Senior Full-Stack AEM Engineer',
       description:
         'Specialized in developing scalable web applications, Adobe Experience Manager (AEM) integration, and modern front-end architectures.',
       ctaProjects: 'View Projects',
@@ -245,7 +245,7 @@ export const translations: Record<Locale, Translations> = {
     about: {
       title: 'About Me',
       content: [
-        'I transitioned careers in 2022, moving from Civil Engineering to Software Development, and since then I have been working as a Full-Stack AEM Developer, building and maintaining scalable web applications for e-commerce platforms.',
+        'I transitioned careers in 2022, moving from Civil Engineering to Software Development, and since then I have been working as a Senior Full-Stack AEM Engineer, building and maintaining scalable web applications for e-commerce platforms.',
         'Specialized in Adobe Experience Manager (AEM), I work end-to-end — from front-end integrations to the implementation of components, templates, Experience Fragments and Sling Models in Java.',
         'I have strong experience with Vue.js (2/3, Pinia, Vuex) and Angular, as well as participation in microfrontend architectures and design systems, always prioritizing code quality, performance and reusability. I work with a solid testing culture (Jest, Cypress), professional GitFlow versioning, CI/CD pipelines and agile methodologies (Scrum/Kanban).',
         'Advanced English and a collaborative mindset, working closely with product, UX and business teams to transform complex requirements into robust and scalable technical solutions.',
@@ -259,7 +259,7 @@ export const translations: Record<Locale, Translations> = {
         ntt: {
           company: 'NTT Data',
           period: 'February 2025 - Present',
-          position: 'Full-Stack AEM Developer',
+          position: 'Senior Full-Stack AEM Engineer',
           activities: [
             'Development of scalable web applications using Angular, TypeScript, SCSS and Java, fully integrated with Adobe Experience Manager (AEM).',
             'Structural migration of four legacy portals to Angular + AEM architecture, leading definitions of templates, components and Experience Fragments.',
@@ -272,9 +272,9 @@ export const translations: Record<Locale, Translations> = {
         merkle: {
           company: 'Merkle (Dentsu Group)',
           period: 'March 2025 - December 2025',
-          position: 'Full-Stack AEM Developer',
+          position: 'Senior Full-Stack AEM Engineer',
           activities: [
-            'Work as Full-Stack AEM Developer in Vue 3 + AEM solution based on microfrontend architecture for multibrand e-commerce ecosystem.',
+            'Work as Senior Full-Stack AEM Engineer in Vue 3 + AEM solution based on microfrontend architecture for multibrand e-commerce ecosystem.',
             'Co-creation and implementation of Design System integrated with AEM, enabling brand tokenization, component reuse and client autonomy.',
             'Development of high-performance front-end features using Vue.js 3, Pinia and Swiper, focusing on modularity and lazy loading.',
             'Backend logic implementation in AEM using Java, Sling Models and HTL, ensuring efficient communication between CMS and microfrontends.',
@@ -285,7 +285,7 @@ export const translations: Record<Locale, Translations> = {
         compass: {
           company: 'Compass',
           period: 'January 2022 - February 2025',
-          position: 'Front-End Developer',
+          position: 'Front-End Engineer',
           activities: [
             'Development of high-complexity features and components using Vue.js 3 and Pinia, ensuring scalability and efficiency in e-commerce.',
             'Maintenance, evolution and modernization of legacy systems built with Vue.js 2 and Vuex, ensuring platform stability.',
@@ -299,7 +299,7 @@ export const translations: Record<Locale, Translations> = {
         intern: {
           company: 'Compass',
           period: 'January 2022 - December 2022',
-          position: 'Front-End & AEM Intern',
+          position: 'Front-End Engineer & AEM Intern',
           activities: [
             'Participation in intensive training program focused on modern front-end technologies and Adobe Experience Manager (AEM) ecosystem.',
             'Development of strong foundation in HTML, CSS/SASS, JavaScript and Vue.js with practical project applications.',
