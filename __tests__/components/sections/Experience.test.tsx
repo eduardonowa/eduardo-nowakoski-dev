@@ -33,13 +33,17 @@ describe('Experience', () => {
   it('should render project cards', () => {
     renderExperience()
 
-    // Check for project titles or segments
-    const telecomText = screen.queryByText(/Telecom|Telecommunications/i)
-    const automotiveText = screen.queryByText(/Automotive|Automotivo/i)
-    const energyText = screen.queryByText(/Energy|Energia/i)
+    // Check for project titles or segments (can appear in more than one place)
+    const telecomText = screen.queryAllByText(/Telecom|Telecommunications/i)
+    const automotiveText = screen.queryAllByText(/Automotive|Automotivo/i)
+    const energyText = screen.queryAllByText(/Energy|Energia/i)
 
     // At least one should be present
-    expect(telecomText || automotiveText || energyText).toBeTruthy()
+    expect(
+      telecomText.length > 0 ||
+        automotiveText.length > 0 ||
+        energyText.length > 0
+    ).toBe(true)
   })
 
   it('should have correct section id', () => {
@@ -52,9 +56,9 @@ describe('Experience', () => {
   it('should display project details', () => {
     renderExperience()
 
-    expect(screen.getByText(/Segmento|Segment/i)).toBeInTheDocument()
-    expect(screen.getByText(/Tipo|Type/i)).toBeInTheDocument()
-    expect(screen.getByText(/Stack/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Segmento|Segment/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Tipo|Type/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Stack/i).length).toBeGreaterThan(0)
   })
 
   it('should handle inView false state', () => {
@@ -71,9 +75,8 @@ describe('Experience', () => {
   it('should render maintenance text for telecom project', () => {
     renderExperience()
 
-    // Check if maintenance text is rendered (for telecom project)
-    const maintenanceText = screen.queryByText(/Manutenção|Maintenance/i)
-    // May or may not be present depending on translations
+    // Maintenance text may or may not be present depending on translations,
+    // so we just ensure the section renders without throwing.
     expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
   })
 })

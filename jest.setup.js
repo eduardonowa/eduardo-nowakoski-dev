@@ -11,19 +11,30 @@ jest.mock('next-themes', () => ({
   ThemeProvider: ({ children }) => children,
 }))
 
-// Mock framer-motion
+// Mock framer-motion: strip motion-only props to avoid React DOM warnings in tests
+const MOTION_PROPS = [
+  'whileHover', 'whileTap', 'whileFocus', 'whileInView',
+  'initial', 'animate', 'exit', 'transition', 'variants', 'custom',
+  'layout', 'layoutId', 'onAnimationStart', 'onAnimationComplete',
+]
+function createMotionComponent(type) {
+  const Component = ({ children, ...props }) => {
+    const rest = { ...props }
+    MOTION_PROPS.forEach(p => delete rest[p])
+    return require('react').createElement(type, rest, children)
+  }
+  Component.displayName = `motion.${type}`
+  return Component
+}
 jest.mock('framer-motion', () => ({
-  motion: {
-    div: 'div',
-    header: 'header',
-    section: 'section',
-    h1: 'h1',
-    h2: 'h2',
-    p: 'p',
-    span: 'span',
-    li: 'li',
-    a: 'a',
-  },
+  motion: new Proxy(
+    {},
+    {
+      get(_, prop) {
+        return createMotionComponent(prop)
+      },
+    }
+  ),
   AnimatePresence: ({ children }) => children,
   useScroll: () => ({ scrollY: { get: () => 0 } }),
   useTransform: () => 0,

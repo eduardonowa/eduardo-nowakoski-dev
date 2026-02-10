@@ -1,14 +1,12 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { CodeGridBackground } from '@/components/background/CodeGridBackground'
 
-// Mock framer-motion
+// Mock framer-motion (strip motion-only props to avoid DOM warnings)
 const mockScrollY = { get: jest.fn(() => 0) }
 const mockTransform = jest.fn(() => 0)
-
+const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
 jest.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-  },
+  motion: { div: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('div', rest, children) } },
   useScroll: () => ({ scrollY: mockScrollY }),
   useTransform: () => mockTransform,
 }))

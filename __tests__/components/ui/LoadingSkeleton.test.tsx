@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton'
 
-// Mock framer-motion
+// Mock framer-motion (strip motion-only props to avoid DOM warnings)
+const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    p: ({ children, ...props }: any) => <p {...props}>{children}</p>,
+    div: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('div', rest, children) },
+    p: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('p', rest, children) },
   },
 }))
 
@@ -44,5 +45,6 @@ describe('LoadingSkeleton', () => {
     expect(wrapper).toBeInTheDocument()
   })
 })
+
 
 

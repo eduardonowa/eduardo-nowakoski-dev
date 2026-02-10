@@ -44,12 +44,20 @@ describe('useMagnetic', () => {
   })
 
   it('should apply magnetic effect on mouse move within threshold', () => {
-    const { result } = renderHook(() => useMagnetic({ strength: 0.3, threshold: 50 }))
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Mouse near center (within threshold)
@@ -69,12 +77,20 @@ describe('useMagnetic', () => {
   })
 
   it('should apply magnetic effect with distance calculation', () => {
-    const { result } = renderHook(() => useMagnetic({ strength: 0.3, threshold: 50 }))
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Mouse slightly offset from center (within threshold)
@@ -117,12 +133,20 @@ describe('useMagnetic', () => {
 
   it('should reset transform on mouse leave', () => {
     jest.useFakeTimers()
-    const { result } = renderHook(() => useMagnetic())
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // First apply a transform
@@ -160,12 +184,20 @@ describe('useMagnetic', () => {
   })
 
   it('should handle mouse move with distance calculation', () => {
-    const { result } = renderHook(() => useMagnetic({ strength: 0.3, threshold: 50 }))
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Mouse at center
@@ -217,12 +249,20 @@ describe('useMagnetic', () => {
 
   it('should clean up event listeners on unmount', () => {
     const removeEventListenerSpy = jest.spyOn(HTMLElement.prototype, 'removeEventListener')
-    const { result, unmount } = renderHook(() => useMagnetic())
+    const { result, unmount, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Garante que os listeners foram registrados antes do unmount
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     act(() => {
@@ -258,12 +298,20 @@ describe('useMagnetic', () => {
   })
 
   it('should apply correct transform values based on strength', () => {
-    const { result } = renderHook(() => useMagnetic({ strength: 0.5, threshold: 100 }))
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.5, threshold: 80 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.5, threshold: 100 })
     })
 
     // Mouse slightly offset
@@ -285,12 +333,20 @@ describe('useMagnetic', () => {
 
   it('should handle mouse leave with setTimeout cleanup', () => {
     jest.useFakeTimers()
-    const { result } = renderHook(() => useMagnetic())
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Apply transform first
@@ -368,12 +424,20 @@ describe('useMagnetic', () => {
 
   it('should handle element existing during setTimeout cleanup', () => {
     jest.useFakeTimers()
-    const { result } = renderHook(() => useMagnetic())
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Apply transform first to ensure willChange is set
@@ -417,12 +481,20 @@ describe('useMagnetic', () => {
   })
 
   it('should handle multiple mouse moves', () => {
-    const { result } = renderHook(() => useMagnetic({ strength: 0.3, threshold: 50 }))
+    const { result, rerender } = renderHook(
+      ({ strength, threshold }) => useMagnetic({ strength, threshold }),
+      { initialProps: { strength: 0.3, threshold: 40 } }
+    )
 
     act(() => {
       if (result.current.current === null) {
         result.current.current = mockElement
       }
+    })
+
+    // Re-executa o efeito com o elemento já atribuído ao ref
+    act(() => {
+      rerender({ strength: 0.3, threshold: 50 })
     })
 
     // Multiple mouse moves
