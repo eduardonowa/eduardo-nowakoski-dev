@@ -24,7 +24,7 @@
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn, or pnpm
 
 ### Installation
@@ -60,37 +60,41 @@ pnpm dev
 
 ## 📜 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run type-check` | Check TypeScript types |
-| `npm test` | Run tests |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:coverage` | Generate test coverage report |
-| `npm run storybook` | Start Storybook |
+| Script                    | Description                    |
+| ------------------------- | ------------------------------ |
+| `npm run dev`             | Start development server       |
+| `npm run build`           | Build for production           |
+| `npm run start`           | Start production server        |
+| `npm run lint`            | Run ESLint                     |
+| `npm run type-check`      | Check TypeScript types         |
+| `npm test`                | Run tests                      |
+| `npm run test:watch`      | Run tests in watch mode        |
+| `npm run test:coverage`   | Generate test coverage report  |
+| `npm run storybook`       | Start Storybook                |
 | `npm run build-storybook` | Build Storybook for production |
 
 ## 🛠️ Tech Stack
 
 ### Core
+
 - **[Next.js 14](https://nextjs.org/)** - React framework with SSR/SSG
 - **[React 18](https://reactjs.org/)** - UI library
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 
 ### Styling
+
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **CSS Variables** - Design tokens for theming
 
 ### Features
+
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library
 - **[next-themes](https://github.com/pacocrawford/next-themes)** - Theme management
 - **[react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)** - Scroll animations
 - **[lucide-react](https://lucide.dev/)** - Icon library
 
 ### Development
+
 - **[Jest](https://jestjs.io/)** - Testing framework
 - **[Storybook](https://storybook.js.org/)** - Component documentation
 - **[ESLint](https://eslint.org/)** - Code linting
@@ -154,6 +158,7 @@ Edit CSS variables in `app/globals.css` to customize colors, spacing, and other 
 ## 🌍 Internationalization
 
 The portfolio supports two languages:
+
 - 🇧🇷 **Portuguese (pt-BR)** - Default
 - 🇺🇸 **English (en-US)**
 
@@ -196,22 +201,9 @@ Opens Storybook at [http://localhost:6006](http://localhost:6006)
 3. Vercel will automatically detect Next.js and configure the build
 4. Automatic deployments on every push
 
-### Custom Domain
-
-For detailed instructions on setting up a custom domain (e.g., `eduardo-nowakoski-dev.com`), see [docs/CUSTOM_DOMAIN_SETUP.md](docs/CUSTOM_DOMAIN_SETUP.md)
-
-### Other Platforms
-
-This project can be deployed on any platform that supports Next.js:
-- Netlify
-- AWS Amplify
-- Railway
-- Render
-
 ## 📚 Documentation
 
 - [Deployment Guide](docs/DEPLOY.md)
-- [Custom Domain Setup](docs/CUSTOM_DOMAIN_SETUP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Components](docs/COMPONENTS.md)
 - [Design System](docs/DESIGN_SYSTEM.md)
@@ -244,18 +236,21 @@ This project can be deployed on any platform that supports Next.js:
 ## ✨ Key Features
 
 ### Performance
+
 - ✅ Automatic code splitting
 - ✅ Lazy loading components
 - ✅ Image optimization (when images are added)
 - ✅ SSR/SSG for better SEO
 
 ### Accessibility
+
 - ✅ ARIA labels
 - ✅ Keyboard navigation
 - ✅ WCAG 2.1 Level AA compliant
 - ✅ Semantic HTML
 
 ### UX/UI
+
 - ✅ Smooth animations with Framer Motion
 - ✅ Scroll-based animations
 - ✅ Micro-interactions
@@ -263,6 +258,7 @@ This project can be deployed on any platform that supports Next.js:
 - ✅ Dark/Light mode toggle
 
 ### SEO
+
 - ✅ Optimized metadata
 - ✅ Open Graph tags
 - ✅ Semantic structure
