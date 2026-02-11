@@ -26,7 +26,7 @@ describe('Footer', () => {
     renderFooter()
 
     expect(screen.getByText(/Eduardo Nowakoski/i)).toBeInTheDocument()
-    expect(screen.getByText(/2025/i)).toBeInTheDocument()
+    expect(screen.getByText(/20\d{2}/)).toBeInTheDocument()
   })
 
   it('should render "Made with" text', () => {

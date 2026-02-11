@@ -21,9 +21,9 @@ export function Footer() {
     if (globalThis.window === undefined) return
 
     if (isProduction) {
-      // Em produção, abre o PageSpeed Insights
-      const currentUrl = globalThis.window.location.href
-      const pageSpeedUrl = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(currentUrl)}`
+      // Em produção, abre o PageSpeed Insights com o domínio do portfolio
+      const portfolioUrl = 'https://eduardonowakoski.dev/'
+      const pageSpeedUrl = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(portfolioUrl)}`
       globalThis.window.open(pageSpeedUrl, '_blank', 'noopener,noreferrer')
     } else {
       // Em desenvolvimento, mostra instruções
