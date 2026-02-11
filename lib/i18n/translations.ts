@@ -224,7 +224,7 @@ export const translations: Record<Locale, Translations> = {
       cta: 'Enviar Mensagem',
     },
     footer: {
-      copyright: '© 2025 Eduardo Nowakoski. Todos os direitos reservados.',
+      copyright: '© 2026 Eduardo Nowakoski. Todos os direitos reservados.',
       madeWith: 'Desenvolvido com',
       using: 'usando',
       lighthouse: 'Ver Performance (Lighthouse)',
@@ -355,7 +355,7 @@ export const translations: Record<Locale, Translations> = {
       cta: 'Send Message',
     },
     footer: {
-      copyright: '© 2025 Eduardo Nowakoski. All rights reserved.',
+      copyright: '© 2026 Eduardo Nowakoski. All rights reserved.',
       madeWith: 'Built with',
       using: 'using',
       lighthouse: 'View Performance (Lighthouse)',
