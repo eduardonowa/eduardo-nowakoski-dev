@@ -24,6 +24,9 @@ export interface Translations {
     title: string;
     professionalTitle: string;
     projectsTitle: string;
+    segmentLabel: string;
+    typeLabel: string;
+    stackLabel: string;
     companies: {
       ntt: {
         company: string;
@@ -31,7 +34,7 @@ export interface Translations {
         position: string;
         activities: string[];
       };
-      merkle: {
+      dentsu: {
         company: string;
         period: string;
         position: string;
@@ -119,7 +122,7 @@ export const translations: Record<Locale, Translations> = {
       content: [
         'Transicionei minha carreira em 2022, migrando da Engenharia Civil para o Desenvolvimento de Software, e desde então trabalho como Desenvolvedor Full-Stack AEM Senior, construindo e mantendo aplicações web escaláveis para plataformas de e-commerce.',
         'Especializado em Adobe Experience Manager (AEM), trabalho end-to-end — desde integrações front-end até a implementação de componentes, templates, Experience Fragments e Sling Models em Java.',
-        'Tenho forte experiência com Vue.js (2/3, Pinia, Vuex) e Angular, além de participação em arquiteturas de microfrontends e design systems, sempre priorizando qualidade de código, performance e reutilização. Trabalho com cultura sólida de testes (Jest, Cypress), versionamento profissional com GitFlow, pipelines de CI/CD e metodologias ágeis (Scrum/Kanban).',
+        'Tenho forte experiência com Vue.js (2/3, Pinia, Vuex), React, Next.js, Angular, além de participação em arquiteturas de microfrontends e design systems, sempre priorizando qualidade de código, performance e reutilização. Trabalho com cultura sólida de testes (Jest, Cypress), versionamento profissional com GitFlow, pipelines de CI/CD e metodologias ágeis (Scrum/Kanban).',
         'Inglês avançado e mentalidade colaborativa, trabalhando em estreita colaboração com equipes de produto, UX e negócios para transformar requisitos complexos em soluções técnicas robustas e escaláveis.',
       ],
     },
@@ -127,6 +130,9 @@ export const translations: Record<Locale, Translations> = {
       title: 'Experiência Profissional',
       professionalTitle: 'Histórico Profissional',
       projectsTitle: 'Projetos Destaque',
+      segmentLabel: 'Segmento:',
+      typeLabel: 'Tipo:',
+      stackLabel: 'Stack:',
       companies: {
         ntt: {
           company: 'NTT Data',
@@ -141,8 +147,8 @@ export const translations: Record<Locale, Translations> = {
             'Aplicação de práticas de engenharia com GitFlow, GitLab, Bitbucket, Azure DevOps e Jira, suportando pipelines e code reviews.',
           ],
         },
-        merkle: {
-          company: 'Merkle (Dentsu Group)',
+        dentsu: {
+          company: 'Dentsu',
           period: 'Março 2025 - Dezembro 2025',
           position: 'Desenvolvedor Full-Stack AEM Senior',
           activities: [
@@ -185,7 +191,7 @@ export const translations: Record<Locale, Translations> = {
           title: 'Projeto – Telecomunicações',
           segment: 'Telecomunicações',
           type: 'E-commerce B2B (Aluguel de Equipamentos)',
-          stack: 'Vue 3, Pinia, AEM, Jest, Cypress',
+          stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress, ',
           role: 'Desenvolvimento end-to-end, criação e manutenção de componentes, integração com CMS, testes automatizados.',
           maintenance: 'Manutenção posterior: Vue 2, Vuex, AEM',
         },
@@ -193,14 +199,14 @@ export const translations: Record<Locale, Translations> = {
           title: 'Projeto – Automotivo',
           segment: 'Automotivo (Multimarcas)',
           type: 'Landing Page Reutilizável',
-          stack: 'Vue 3, AEM, Storybook, Jest',
+          stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Arquitetura reutilizável, Design System integrado ao CMS, componentização e documentação.',
         },
         energy: {
           title: 'Projeto – Energia',
           segment: 'Energia',
           type: 'Portais Institucionais',
-          stack: 'Angular, AEM',
+          stack: 'Angular, RxJS, React, Next.js, AEM, Java',
           role: 'Migração de layout, migração de infraestrutura (AWS → AEM), padronização e escalabilidade de múltiplos portais.',
         },
       },
@@ -247,7 +253,7 @@ export const translations: Record<Locale, Translations> = {
       content: [
         'I transitioned careers in 2022, moving from Civil Engineering to Software Development, and since then I have been working as a Senior Full-Stack AEM Engineer, building and maintaining scalable web applications for e-commerce platforms.',
         'Specialized in Adobe Experience Manager (AEM), I work end-to-end — from front-end integrations to the implementation of components, templates, Experience Fragments and Sling Models in Java.',
-        'I have strong experience with Vue.js (2/3, Pinia, Vuex) and Angular, as well as participation in microfrontend architectures and design systems, always prioritizing code quality, performance and reusability. I work with a solid testing culture (Jest, Cypress), professional GitFlow versioning, CI/CD pipelines and agile methodologies (Scrum/Kanban).',
+        'I have strong experience with Vue.js (2/3, Pinia, Vuex), React, Next.js, Angular, as well as participation in microfrontend architectures and design systems, always prioritizing code quality, performance and reusability. I work with a solid testing culture (Jest, Cypress), professional GitFlow versioning, CI/CD pipelines and agile methodologies (Scrum/Kanban).',
         'Advanced English and a collaborative mindset, working closely with product, UX and business teams to transform complex requirements into robust and scalable technical solutions.',
       ],
     },
@@ -255,6 +261,9 @@ export const translations: Record<Locale, Translations> = {
       title: 'Professional Experience',
       professionalTitle: 'Professional History',
       projectsTitle: 'Featured Projects',
+      segmentLabel: 'Segment:',
+      typeLabel: 'Type:',
+      stackLabel: 'Stack:',
       companies: {
         ntt: {
           company: 'NTT Data',
@@ -269,8 +278,8 @@ export const translations: Record<Locale, Translations> = {
             'Application of engineering practices with GitFlow, GitLab, Bitbucket, Azure DevOps and Jira, supporting pipelines and code reviews.',
           ],
         },
-        merkle: {
-          company: 'Merkle (Dentsu Group)',
+        dentsu: {
+          company: 'Dentsu',
           period: 'March 2025 - December 2025',
           position: 'Senior Full-Stack AEM Engineer',
           activities: [
@@ -313,7 +322,7 @@ export const translations: Record<Locale, Translations> = {
           title: 'Project – Telecommunications',
           segment: 'Telecommunications',
           type: 'B2B E-commerce (Equipment Rental)',
-          stack: 'Vue 3, Pinia, AEM, Jest, Cypress',
+          stack: 'Vue 3, Pinia, React, Redux, AEM, Jest, Java, Cypress, ',
           role: 'End-to-end development, component creation and maintenance, CMS integration, automated testing.',
           maintenance: 'Later maintenance: Vue 2, Vuex, AEM',
         },
@@ -321,14 +330,14 @@ export const translations: Record<Locale, Translations> = {
           title: 'Project – Automotive',
           segment: 'Automotive (Multi-brand)',
           type: 'Reusable Landing Page',
-          stack: 'Vue 3, AEM, Storybook, Jest',
+          stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Reusable architecture, Design System integrated with CMS, componentization and documentation.',
         },
         energy: {
           title: 'Project – Energy',
           segment: 'Energy',
           type: 'Institutional Portals',
-          stack: 'Angular, AEM',
+          stack: 'Angular, RxJS, React, Next.js, AEM, Java',
           role: 'Layout migration, infrastructure migration (AWS → AEM), standardization and scalability of multiple portals.',
         },
       },

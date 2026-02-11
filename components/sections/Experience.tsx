@@ -76,13 +76,13 @@ export function Experience() {
                 <h3 className="text-xl font-bold text-text mb-2">{project.title}</h3>
                 <div className="space-y-2 text-sm text-text-secondary mb-4">
                   <p>
-                    <span className="font-medium">Segmento:</span> {project.segment}
+                    <span className="font-medium">{t.experience.segmentLabel}</span> {project.segment}
                   </p>
                   <p>
-                    <span className="font-medium">Tipo:</span> {project.type}
+                    <span className="font-medium">{t.experience.typeLabel}</span> {project.type}
                   </p>
                   <p>
-                    <span className="font-medium">Stack:</span> {project.stack}
+                    <span className="font-medium">{t.experience.stackLabel}</span> {project.stack}
                   </p>
                 </div>
                 <p className="text-sm text-text-muted leading-relaxed mb-3">

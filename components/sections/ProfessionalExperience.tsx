@@ -3,7 +3,7 @@
 import { useI18n } from '@/components/providers/I18nProvider'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Briefcase, Calendar, MapPin } from 'lucide-react'
+import { Briefcase, Calendar } from 'lucide-react'
 
 export function ProfessionalExperience() {
   const { t } = useI18n()
@@ -19,9 +19,9 @@ export function ProfessionalExperience() {
       ...t.experience.companies.ntt,
     },
     {
-      id: 'merkle',
+      id: 'dentsu',
       icon: Briefcase,
-      ...t.experience.companies.merkle,
+      ...t.experience.companies.dentsu,
     },
     {
       id: 'compass',

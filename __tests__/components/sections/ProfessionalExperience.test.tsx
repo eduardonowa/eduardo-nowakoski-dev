@@ -43,7 +43,7 @@ describe('ProfessionalExperience', () => {
     )
 
     // Check for company names from translations (may appear multiple times)
-    const companies = screen.getAllByText(/NTT Data|Compass|Merkle/i)
+    const companies = screen.getAllByText(/NTT Data|Compass|Dentsu/i)
     expect(companies.length).toBeGreaterThan(0)
   })
 

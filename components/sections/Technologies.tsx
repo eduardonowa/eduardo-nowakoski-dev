@@ -16,25 +16,37 @@ import {
 } from 'lucide-react'
 
 const technologies = [
+  // Frameworks & libraries
+  { name: 'React', icon: FileCode, color: 'text-blue-500' },
+  { name: 'Next.js', icon: FileCode, color: 'text-gray-100' },
   { name: 'Vue.js', icon: FileCode, color: 'text-green-500' },
   { name: 'Angular', icon: FileCode, color: 'text-red-500' },
-  { name: 'React', icon: FileCode, color: 'text-blue-500' },
+  // Language & core
   { name: 'TypeScript', icon: Code2, color: 'text-blue-600' },
   { name: 'JavaScript', icon: Code2, color: 'text-yellow-500' },
+  // State management
+  { name: 'Redux', icon: Database, color: 'text-purple-500' },
+  { name: 'Zustand', icon: Database, color: 'text-amber-500' },
+  { name: 'Pinia', icon: Database, color: 'text-yellow-600' },
+  { name: 'Vuex', icon: Database, color: 'text-green-600' },
+  // AEM & backend
   { name: 'AEM', icon: Box, color: 'text-orange-500' },
   { name: 'Java', icon: Code2, color: 'text-red-600' },
   { name: 'HTL', icon: FileCode, color: 'text-purple-500' },
   { name: 'Sling Models', icon: Layers, color: 'text-indigo-500' },
-  { name: 'Pinia', icon: Database, color: 'text-yellow-600' },
-  { name: 'Vuex', icon: Database, color: 'text-green-600' },
-  { name: 'Jest', icon: TestTube, color: 'text-red-500' },
-  { name: 'Cypress', icon: TestTube, color: 'text-cyan-500' },
-  { name: 'Storybook', icon: FileCode, color: 'text-pink-500' },
+  // Styling
   { name: 'Tailwind CSS', icon: Palette, color: 'text-cyan-600' },
   { name: 'SCSS', icon: Palette, color: 'text-pink-600' },
+  // Testing
+  { name: 'Jest', icon: TestTube, color: 'text-red-500' },
+  { name: 'Cypress', icon: TestTube, color: 'text-cyan-500' },
+  // Tooling & practices
+  { name: 'Storybook', icon: FileCode, color: 'text-pink-500' },
   { name: 'Git', icon: GitBranch, color: 'text-orange-600' },
   { name: 'GitFlow', icon: GitBranch, color: 'text-blue-500' },
   { name: 'CI/CD', icon: Settings, color: 'text-gray-500' },
+  { name: 'Azure DevOps', icon: Settings, color: 'text-blue-700' },
+  { name: 'GitLab', icon: GitBranch, color: 'text-orange-500' },
   { name: 'Microfrontends', icon: Layers, color: 'text-purple-600' },
 ]
 
