@@ -158,6 +158,7 @@ export const translations: Record<Locale, Translations> = {
             'Implementação de lógica backend em AEM usando Java, Sling Models e HTL, garantindo comunicação eficiente entre CMS e microfrontends.',
             'Contribuição para escalabilidade do ecossistema multimarcas, entregando aplicação reutilizada em múltiplos produtos e contextos.',
             'Aplicação de testes unitários (Jest) e end-to-end (Cypress), documentação e padronização de código para manter qualidade em ambiente de alto tráfego.',
+            'Melhoria de aproximadamente 40% nas principais métricas de performance (por exemplo, Lighthouse e tempo de carregamento) em ecossistema de e-commerce multimarcas.',
           ],
         },
         compass: {
@@ -172,6 +173,7 @@ export const translations: Record<Locale, Translations> = {
             'Implementação de otimizações de performance como lazy loading, melhorias de Lighthouse score, otimização de imagens.',
             'Criação e evolução de integrações de API, desde desenvolvimento mock até integrações reais para fluxos complexos como carrinho e checkout.',
             'Construção e manutenção de testes automatizados unitários (Jest) e End-to-end (Cypress) com cenários completos.',
+            'Melhoria de cerca de 20% na performance geral da aplicação e redução de aproximadamente 50% dos incidentes em produção por meio de refatorações arquiteturais e otimizações de front-end.',
           ],
         },
         intern: {
@@ -191,23 +193,26 @@ export const translations: Record<Locale, Translations> = {
           title: 'Projeto – Telecomunicações',
           segment: 'Telecomunicações',
           type: 'E-commerce B2B (Aluguel de Equipamentos)',
-          stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress, ',
-          role: 'Desenvolvimento end-to-end, criação e manutenção de componentes, integração com CMS, testes automatizados.',
+          stack: 'AEM 6.x, Sling Models (Java), HTL, Vue 3, Pinia, React, Redux, Jest, Cypress',
+          role:
+            'Arquitetura e desenvolvimento end-to-end em plataforma B2B integrada a Adobe Experience Manager (AEM), criando componentes AEM reutilizáveis (HTL, Sling Models, Experience Fragments) e integrações com front-end em Vue 3/React para fluxos críticos de carrinho, pedidos e gestão de contratos.',
           maintenance: 'Manutenção posterior: Vue 2, Vuex, AEM',
         },
         automotive: {
           title: 'Projeto – Automotivo',
           segment: 'Automotivo (Multimarcas)',
           type: 'Landing Page Reutilizável',
-          stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
-          role: 'Arquitetura reutilizável, Design System integrado ao CMS, componentização e documentação.',
+          stack: 'AEM 6.x, Experience Fragments, React, Next.js, Vue 3, Pinia, Java, Storybook, Jest',
+          role:
+            'Definição de arquitetura reutilizável baseada em Adobe Experience Manager (AEM) e microfrontends para múltiplas marcas automotivas, co-criando um Design System integrado ao CMS com tokenização de marca, componentes reaproveitáveis e documentação em Storybook para acelerar o lançamento de novas campanhas e landing pages.',
         },
         energy: {
           title: 'Projeto – Energia',
           segment: 'Energia',
           type: 'Portais Institucionais',
-          stack: 'Angular, RxJS, React, Next.js, AEM, Java',
-          role: 'Migração de layout, migração de infraestrutura (AWS → AEM), padronização e escalabilidade de múltiplos portais.',
+          stack: 'AEM as a Cloud Service, Angular, RxJS, React, Next.js, Java',
+          role:
+            'Migração de múltiplos portais institucionais para AEM as a Cloud Service, padronizando layout, arquitetura de conteúdo e integrações com front-end em Angular/React, com foco em performance, escalabilidade e governança de conteúdo para diferentes unidades de negócio.',
         },
       },
     },
@@ -289,6 +294,7 @@ export const translations: Record<Locale, Translations> = {
             'Backend logic implementation in AEM using Java, Sling Models and HTL, ensuring efficient communication between CMS and microfrontends.',
             'Contribution to scalability of the multibrand ecosystem, delivering an application reused across multiple products and contexts.',
             'Application of unit tests (Jest) and end-to-end tests (Cypress), documentation and code standardization to maintain quality in high-traffic environments.',
+            'Improved key performance metrics by around 40% (for example, Lighthouse and load time) in a multibrand e-commerce ecosystem.',
           ],
         },
         compass: {
@@ -303,6 +309,7 @@ export const translations: Record<Locale, Translations> = {
             'Implementation of performance optimizations such as lazy loading, Lighthouse score improvements, image optimization.',
             'Creation and evolution of API integrations, from mock development to real integrations for complex flows such as cart and checkout.',
             'Building and maintaining automated unit tests (Jest) and End-to-end tests (Cypress) with complete scenarios.',
+            'Improved overall application performance by around 20% and reduced production incidents by roughly 50% through architectural refactoring and front-end optimizations.',
           ],
         },
         intern: {
@@ -322,23 +329,26 @@ export const translations: Record<Locale, Translations> = {
           title: 'Project – Telecommunications',
           segment: 'Telecommunications',
           type: 'B2B E-commerce (Equipment Rental)',
-          stack: 'Vue 3, Pinia, React, Redux, AEM, Jest, Java, Cypress, ',
-          role: 'End-to-end development, component creation and maintenance, CMS integration, automated testing.',
+          stack: 'AEM 6.x, Sling Models (Java), HTL, Vue 3, Pinia, React, Redux, Jest, Cypress',
+          role:
+            'Designed and implemented an AEM-centered B2B e-commerce platform, building reusable AEM components (HTL, Sling Models, Experience Fragments) and integrating Vue 3/React front-ends for critical flows such as cart, orders and contract management.',
           maintenance: 'Later maintenance: Vue 2, Vuex, AEM',
         },
         automotive: {
           title: 'Project – Automotive',
           segment: 'Automotive (Multi-brand)',
           type: 'Reusable Landing Page',
-          stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
-          role: 'Reusable architecture, Design System integrated with CMS, componentization and documentation.',
+          stack: 'AEM 6.x, Experience Fragments, React, Next.js, Vue 3, Pinia, Java, Storybook, Jest',
+          role:
+            'Defined a reusable architecture based on Adobe Experience Manager (AEM) and microfrontends for multiple automotive brands, co-creating a Design System integrated with the CMS with brand tokenization, reusable components and Storybook documentation to speed up new campaign and landing page rollouts.',
         },
         energy: {
           title: 'Project – Energy',
           segment: 'Energy',
           type: 'Institutional Portals',
-          stack: 'Angular, RxJS, React, Next.js, AEM, Java',
-          role: 'Layout migration, infrastructure migration (AWS → AEM), standardization and scalability of multiple portals.',
+          stack: 'AEM as a Cloud Service, Angular, RxJS, React, Next.js, Java',
+          role:
+            'Migrated multiple institutional portals to AEM as a Cloud Service, standardizing layout, content architecture and integrations with Angular/React front-ends, focusing on performance, scalability and content governance across different business units.',
         },
       },
     },
