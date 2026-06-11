@@ -2,12 +2,22 @@ import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import { Header, FlagIcon } from '@/components/layout/Header'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { MotionProvider } from '@/components/providers/MotionProvider'
+
+jest.mock('@/hooks/useScrollSpy', () => ({
+  useScrollSpy: () => ({
+    activeId: 'home',
+    pinSection: jest.fn(),
+  }),
+}))
 
 const renderHeader = () => {
   return render(
     <ThemeProvider>
       <I18nProvider>
-        <Header />
+        <MotionProvider>
+          <Header />
+        </MotionProvider>
       </I18nProvider>
     </ThemeProvider>
   )
@@ -28,13 +38,14 @@ describe('Header', () => {
 
     expect(screen.getByText(/Início|Home/i)).toBeInTheDocument()
     expect(screen.getByText(/Sobre|About/i)).toBeInTheDocument()
-    expect(screen.getByText(/Experiência|Experience/i)).toBeInTheDocument()
+    expect(screen.getByText(/Histórico|History/i)).toBeInTheDocument()
+    expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
   })
 
   it('should toggle locale when language button is clicked', () => {
     renderHeader()
 
-    const langButton = screen.getByLabelText(/toggle language/i)
+    const langButton = screen.getByLabelText(/Alternar idioma|Toggle language/i)
     expect(langButton).toBeInTheDocument()
 
     // Get initial locale text
@@ -55,7 +66,7 @@ describe('Header', () => {
     renderHeader()
     
     // Click to toggle to pt-BR (covers the : 'pt-BR' branch in setLocale)
-    const langButton = screen.getByLabelText(/toggle language/i)
+    const langButton = screen.getByLabelText(/Alternar idioma|Toggle language/i)
     fireEvent.click(langButton)
 
     // Locale label should now show PT
@@ -72,7 +83,7 @@ describe('Header', () => {
   it('should open mobile menu when hamburger is clicked', async () => {
     renderHeader()
 
-    const menuButton = screen.getByLabelText(/toggle menu/i)
+    const menuButton = screen.getByLabelText(/Alternar menu|Toggle menu/i)
     expect(menuButton).toBeInTheDocument()
 
     fireEvent.click(menuButton)
@@ -87,7 +98,7 @@ describe('Header', () => {
   it('should close mobile menu when item is clicked', async () => {
     renderHeader()
 
-    const menuButton = screen.getByLabelText(/toggle menu/i)
+    const menuButton = screen.getByLabelText(/Alternar menu|Toggle menu/i)
     fireEvent.click(menuButton)
 
     await waitFor(() => {
@@ -107,7 +118,7 @@ describe('Header', () => {
   it('should toggle theme when theme button is clicked', () => {
     renderHeader()
 
-    const themeButton = screen.getByLabelText(/toggle theme/i)
+    const themeButton = screen.getByLabelText(/Alternar tema|Toggle theme/i)
     expect(themeButton).toBeInTheDocument()
 
     fireEvent.click(themeButton)
@@ -121,12 +132,13 @@ describe('Header', () => {
     const mockSetTheme = jest.fn()
     jest.spyOn(require('next-themes'), 'useTheme').mockReturnValue({
       theme: 'dark',
+      resolvedTheme: 'dark',
       setTheme: mockSetTheme,
     })
 
     renderHeader()
 
-    const themeButton = screen.getByLabelText(/toggle theme/i)
+    const themeButton = screen.getByLabelText(/Alternar tema|Toggle theme/i)
     fireEvent.click(themeButton)
 
     // Should call setTheme with 'light' (covers the : 'light' branch)
@@ -183,7 +195,7 @@ describe('Header', () => {
   it('should show background when menu is open', async () => {
     renderHeader()
 
-    const menuButton = screen.getByLabelText(/toggle menu/i)
+    const menuButton = screen.getByLabelText(/Alternar menu|Toggle menu/i)
     fireEvent.click(menuButton)
 
     await waitFor(() => {
@@ -195,7 +207,7 @@ describe('Header', () => {
   it('should close menu when navigation item is clicked', async () => {
     renderHeader()
 
-    const menuButton = screen.getByLabelText(/toggle menu/i)
+    const menuButton = screen.getByLabelText(/Alternar menu|Toggle menu/i)
     fireEvent.click(menuButton)
 
     await waitFor(() => {
@@ -218,7 +230,7 @@ describe('Header', () => {
   it('should call setIsMenuOpen(false) when menu item is clicked', async () => {
     renderHeader()
 
-    const menuButton = screen.getByLabelText(/toggle menu/i)
+    const menuButton = screen.getByLabelText(/Alternar menu|Toggle menu/i)
     fireEvent.click(menuButton)
 
     await waitFor(() => {

@@ -4,6 +4,22 @@ import { I18nProvider } from '@/components/providers/I18nProvider'
 
 // Mock react-intersection-observer
 const mockUseInView = jest.fn()
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: ({ alt, priority: _priority, ...props }: any) =>
+    require('react').createElement('img', { alt, ...props }),
+}))
+
+jest.mock('@/hooks/useCardTilt', () => ({
+  useCardTilt: () => ({
+    ref: { current: null },
+    transform: 'none',
+    onMouseMove: jest.fn(),
+    onMouseLeave: jest.fn(),
+    reducedMotion: true,
+  }),
+}))
+
 jest.mock('react-intersection-observer', () => ({
   useInView: () => mockUseInView(),
 }))
@@ -27,7 +43,7 @@ describe('Experience', () => {
   it('should render experience title', () => {
     renderExperience()
 
-    expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
+    expect(screen.getByText(/Projetos Destaque|Featured Projects/i)).toBeInTheDocument()
   })
 
   it('should render project cards', () => {
@@ -49,14 +65,14 @@ describe('Experience', () => {
   it('should have correct section id', () => {
     renderExperience()
 
-    const section = screen.getByText(/Projetos|Projects/i).closest('section')
+    const section = screen.getByText(/Projetos Destaque|Featured Projects/i).closest('section')
     expect(section).toHaveAttribute('id', 'experience')
   })
 
   it('should display project details', () => {
     renderExperience()
 
-    expect(screen.getAllByText(/Segmento|Segment/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Empresa|Employer/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText(/Tipo|Type/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText(/Stack/i).length).toBeGreaterThan(0)
   })
@@ -69,7 +85,7 @@ describe('Experience', () => {
 
     renderExperience()
 
-    expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
+    expect(screen.getByText(/Projetos Destaque|Featured Projects/i)).toBeInTheDocument()
   })
 
   it('should render maintenance text for telecom project', () => {
@@ -77,7 +93,7 @@ describe('Experience', () => {
 
     // Maintenance text may or may not be present depending on translations,
     // so we just ensure the section renders without throwing.
-    expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
+    expect(screen.getByText(/Projetos Destaque|Featured Projects/i)).toBeInTheDocument()
   })
 })
 

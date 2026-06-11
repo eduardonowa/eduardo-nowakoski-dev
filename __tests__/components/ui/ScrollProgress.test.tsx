@@ -1,5 +1,13 @@
 import { render, screen, waitFor, act } from '@testing-library/react'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { I18nProvider } from '@/components/providers/I18nProvider'
+
+const renderScrollProgress = () =>
+  render(
+    <I18nProvider>
+      <ScrollProgress />
+    </I18nProvider>
+  )
 
 describe('ScrollProgress', () => {
   beforeEach(() => {
@@ -21,14 +29,14 @@ describe('ScrollProgress', () => {
   })
 
   it('should render progress bar', () => {
-    render(<ScrollProgress />)
+    renderScrollProgress()
 
     const progressBar = screen.getByTestId('scroll-progress-bar')
     expect(progressBar).toBeInTheDocument()
   })
 
   it('should update progress on scroll', async () => {
-    render(<ScrollProgress />)
+    renderScrollProgress()
 
     // Wait for component to mount
     await waitFor(() => {
@@ -58,7 +66,7 @@ describe('ScrollProgress', () => {
       return 0
     })
     
-    render(<ScrollProgress />)
+    renderScrollProgress()
 
     await waitFor(() => {
       expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
@@ -112,7 +120,7 @@ describe('ScrollProgress', () => {
       configurable: true,
     })
 
-    render(<ScrollProgress />)
+    renderScrollProgress()
 
     await waitFor(() => {
       expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
@@ -120,7 +128,7 @@ describe('ScrollProgress', () => {
   })
 
   it('should not render until mounted', () => {
-    const { container } = render(<ScrollProgress />)
+    const { container } = renderScrollProgress()
     
     // Should render after mount
     expect(container.firstChild).toBeInTheDocument()
