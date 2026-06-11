@@ -3,12 +3,16 @@ import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton'
 
 // Mock framer-motion (strip motion-only props to avoid DOM warnings)
 const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
-jest.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('div', rest, children) },
-    p: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('p', rest, children) },
-  },
-}))
+jest.mock('framer-motion', () => {
+  const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
+  const createEl = (type: string) => ({ children, ...props }: any) => {
+    const rest = { ...props }
+    motionProps.forEach((p: string) => delete rest[p])
+    return require('react').createElement(type, rest, children)
+  }
+  const motionElements = { div: createEl('div'), p: createEl('p') }
+  return { motion: motionElements, m: motionElements }
+})
 
 describe('LoadingSkeleton', () => {
   it('should render loading spinner', () => {

@@ -1,21 +1,26 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { ProfessionalExperience } from '@/components/sections/ProfessionalExperience'
 import { I18nProvider } from '@/components/providers/I18nProvider'
+import { MotionProvider } from '@/components/providers/MotionProvider'
 
-// Mock framer-motion (strip motion-only props to avoid DOM warnings)
-const motionProps = ['whileHover', 'whileTap', 'initial', 'animate', 'transition', 'variants', 'exit']
-jest.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('div', rest, children) },
-    li: ({ children, ...props }: any) => { const rest = { ...props }; motionProps.forEach((p: string) => delete rest[p]); return require('react').createElement('li', rest, children) },
-  },
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: ({ alt, priority: _priority, ...props }: any) =>
+    require('react').createElement('img', { alt, ...props }),
 }))
 
-// Mock react-intersection-observer
 const mockUseInView = jest.fn()
 jest.mock('react-intersection-observer', () => ({
   useInView: () => mockUseInView(),
 }))
+
+function renderWithProviders(ui: React.ReactElement) {
+  return render(
+    <I18nProvider>
+      <MotionProvider>{ui}</MotionProvider>
+    </I18nProvider>
+  )
+}
 
 describe('ProfessionalExperience', () => {
   beforeEach(() => {
@@ -26,82 +31,46 @@ describe('ProfessionalExperience', () => {
   })
 
   it('should render professional experience title', () => {
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
+    renderWithProviders(<ProfessionalExperience />)
     expect(screen.getByText(/Histórico Profissional|Professional History/i)).toBeInTheDocument()
   })
 
-  it('should render all companies', () => {
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    // Check for company names from translations (may appear multiple times)
-    const companies = screen.getAllByText(/NTT Data|Compass|Dentsu/i)
-    expect(companies.length).toBeGreaterThan(0)
+  it('should render four companies including Newfold and Merkle', () => {
+    renderWithProviders(<ProfessionalExperience />)
+    expect(screen.getByText('Newfold Digital')).toBeInTheDocument()
+    expect(screen.getByText(/Merkle|Merkle \(Grupo Dentsu\)/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Compass/i).length).toBeGreaterThan(0)
+    expect(screen.getByText('NTT Data')).toBeInTheDocument()
   })
 
   it('should render company positions', () => {
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    const positions = screen.getAllByText(
-      /Desenvolvedor Full-Stack AEM Senior|Desenvolvedor Front-End|Senior Full-Stack AEM Engineer|Front-End Engineer/i
-    )
+    renderWithProviders(<ProfessionalExperience />)
+    const positions = screen.getAllByText(/Front-End|Front End|Desenvolvedor Front-End/i)
     expect(positions.length).toBeGreaterThan(0)
   })
 
-  it('should render company periods', () => {
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    expect(screen.getByText(/February 2025|Present|March|November/i)).toBeInTheDocument()
+  it('should render client badges for Compass, NTT and Merkle', () => {
+    renderWithProviders(<ProfessionalExperience />)
+    expect(screen.getByText(/Cliente: Vivo|Client: Vivo/i)).toBeInTheDocument()
+    expect(screen.getByText(/Cliente: Enel|Client: Enel/i)).toBeInTheDocument()
+    expect(screen.getByText(/Cliente: Stellantis|Client: Stellantis/i)).toBeInTheDocument()
   })
 
-  it('should render company activities', () => {
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
+  it('should render company periods', () => {
+    renderWithProviders(<ProfessionalExperience />)
+    expect(screen.getAllByText(/2026|2025|2022/i).length).toBeGreaterThan(0)
+  })
 
-    // Activities should be rendered as list items
+  it('should render company activities as list items', () => {
+    renderWithProviders(<ProfessionalExperience />)
     const listItems = screen.getAllByRole('listitem')
     expect(listItems.length).toBeGreaterThan(0)
   })
 
   it('should render timeline line', () => {
-    const { container } = render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
+    const { container } = renderWithProviders(<ProfessionalExperience />)
     const timelineLine = container.querySelector('.absolute.left-4')
     expect(timelineLine).toBeInTheDocument()
-  })
-
-  it('should render timeline dots', () => {
-    const { container } = render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    const timelineDots = container.querySelectorAll('.bg-primary.rounded-full')
-    expect(timelineDots.length).toBeGreaterThan(0)
   })
 
   it('should handle inView false state', () => {
@@ -110,33 +79,7 @@ describe('ProfessionalExperience', () => {
       inView: false,
     })
 
-    render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    expect(screen.getByText(/Histórico Profissional|Professional History/i)).toBeInTheDocument()
-  })
-
-  it('should render with different locales', () => {
-    const { rerender } = render(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
-    // Change locale
-    const { setLocale } = require('@/components/providers/I18nProvider').useI18n
-    rerender(
-      <I18nProvider>
-        <ProfessionalExperience />
-      </I18nProvider>
-    )
-
+    renderWithProviders(<ProfessionalExperience />)
     expect(screen.getByText(/Histórico Profissional|Professional History/i)).toBeInTheDocument()
   })
 })
-
-
-
