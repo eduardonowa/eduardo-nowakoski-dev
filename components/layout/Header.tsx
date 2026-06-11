@@ -35,9 +35,17 @@ const SECTION_IDS = ['home', 'about', 'professional-experience', 'metrics', 'exp
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
   const { locale, setLocale, t } = useI18n()
   const activeSection = useScrollSpy(SECTION_IDS)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Match defaultTheme="dark" on SSR to avoid Sun/Moon hydration mismatch
+  const isDark = !mounted || resolvedTheme === 'dark'
 
   useEffect(() => {
     let ticking = false
@@ -117,11 +125,11 @@ export function Header() {
             </button>
             <button
               type="button"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className="p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-background-secondary transition-colors"
               aria-label={t.a11y.toggleTheme}
             >
-              {theme === 'dark' ? (
+              {isDark ? (
                 <Sun className="w-5 h-5" aria-hidden="true" />
               ) : (
                 <Moon className="w-5 h-5" aria-hidden="true" />
