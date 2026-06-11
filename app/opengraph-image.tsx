@@ -16,7 +16,7 @@ export default function OpenGraphImage() {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundColor: '#282a36',
+          backgroundColor: '#0C0C0E',
           padding: '80px',
         }}
       >
@@ -24,7 +24,7 @@ export default function OpenGraphImage() {
           style={{
             fontSize: 64,
             fontWeight: 700,
-            color: '#f8f8f2',
+            color: '#F5F5F4',
             marginBottom: 16,
           }}
         >
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
         <div
           style={{
             fontSize: 36,
-            color: '#bd93f9',
+            color: '#14B8A6',
             marginBottom: 32,
           }}
         >
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
         <div
           style={{
             fontSize: 28,
-            color: '#6272a4',
+            color: '#A8A29E',
           }}
         >
           React · Next.js · Vue.js · Angular · TypeScript
