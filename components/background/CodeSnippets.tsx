@@ -24,12 +24,12 @@ const codeSnippets = [
 
 const getColorClass = (type: string) => {
   const colors: Record<string, string> = {
-    keyword: 'text-[#ff79c6]',
-    string: 'text-[#f1fa8c]',
-    tag: 'text-[#8be9fd]',
-    array: 'text-[#f1fa8c]',
+    keyword: 'text-syntax-keyword',
+    string: 'text-syntax-string',
+    tag: 'text-syntax-tag',
+    array: 'text-syntax-string',
   }
-  return colors[type] || 'text-[#f8f8f2]'
+  return colors[type] || 'text-syntax'
 }
 
 type SnippetItem = {

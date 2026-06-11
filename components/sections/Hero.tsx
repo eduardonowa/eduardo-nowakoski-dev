@@ -7,6 +7,7 @@ import { ArrowDown, Briefcase, Code } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { useMagnetic } from '@/hooks/useMagnetic'
 import { TextReveal } from '@/components/ui/TextReveal'
+import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useEffect, useState, useRef } from 'react'
 
@@ -78,14 +79,23 @@ function HeroCodeGrid() {
 
 function MagneticButton({
   href,
-  className,
+  variant,
   children,
-}: Readonly<{ href: string; className: string; children: React.ReactNode }>) {
+}: Readonly<{
+  href: string
+  variant: 'primary' | 'outline'
+  children: React.ReactNode
+}>) {
   const magneticRef = useMagnetic({ strength: 0.2 })
   return (
-    <a ref={magneticRef as React.RefObject<HTMLAnchorElement>} href={href} className={className}>
+    <Button
+      ref={magneticRef as React.RefObject<HTMLAnchorElement>}
+      href={href}
+      variant={variant}
+      className="group glow-hover"
+    >
       {children}
-    </a>
+    </Button>
   )
 }
 
@@ -107,7 +117,7 @@ function RotatingKeywords() {
 
   if (reducedMotion) {
     return (
-      <span className="text-primary font-semibold">
+      <span className="text-accent font-semibold">
         {keywords.join(' · ')}
       </span>
     )
@@ -120,7 +130,7 @@ function RotatingKeywords() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.4 }}
-      className="inline-block text-primary font-semibold min-w-[8ch]"
+      className="inline-block text-accent font-semibold min-w-[8ch]"
     >
       {current}
     </m.span>
@@ -190,7 +200,7 @@ export function Hero() {
 
           <m.h2
             variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl text-primary mb-4 font-medium"
+            className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-4 font-medium"
           >
             {t.hero.subtitle}
           </m.h2>
@@ -210,21 +220,13 @@ export function Hero() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <MagneticButton
-              href="#experience"
-              className="group px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl glow-hover"
-            >
-              <Briefcase className="w-5 h-5 text-white" aria-hidden="true" />
-              <span className="text-white font-semibold">{t.hero.ctaProjects}</span>
+            <MagneticButton href="#experience" variant="primary">
+              <Briefcase className="w-5 h-5" aria-hidden="true" />
+              {t.hero.ctaProjects}
             </MagneticButton>
-            <MagneticButton
-              href="#contact"
-              className="group px-8 py-4 border-2 border-primary text-primary bg-background rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 glow-hover"
-            >
-              <Code className="w-5 h-5 text-primary group-hover:text-white transition-colors" aria-hidden="true" />
-              <span className="text-primary group-hover:text-white transition-colors font-semibold">
-                {t.hero.ctaContact}
-              </span>
+            <MagneticButton href="#contact" variant="outline">
+              <Code className="w-5 h-5" aria-hidden="true" />
+              {t.hero.ctaContact}
             </MagneticButton>
           </m.div>
 
