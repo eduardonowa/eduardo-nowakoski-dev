@@ -125,6 +125,13 @@ export interface Translations {
   technologies: {
     title: string;
     subtitle: string;
+    categories: {
+      frontend: string;
+      cms: string;
+      state: string;
+      testing: string;
+      devops: string;
+    };
   };
   contact: {
     title: string;
@@ -261,10 +268,10 @@ export const translations: Record<Locale, Translations> = {
       },
       projects: {
         telecom: {
-          title: 'Vivo — Telecomunicações',
+          title: 'E-commerce B2B — Telecom',
           client: 'Vivo',
           employer: 'Compass.uol',
-          segment: 'Telecomunicações (Vivo)',
+          segment: 'Telecomunicações',
           type: 'E-commerce B2B (Aluguel de Equipamentos)',
           stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress',
           role: 'Desenvolvimento end-to-end, componentes, integração com CMS e testes automatizados.',
@@ -272,20 +279,20 @@ export const translations: Record<Locale, Translations> = {
           brand: 'vivo',
         },
         automotive: {
-          title: 'Stellantis — Automotivo Multimarcas',
+          title: 'Landing Page — Automotivo multimarca',
           client: 'Stellantis',
           employer: 'Merkle (Grupo Dentsu)',
-          segment: 'Automotivo (Stellantis — Jeep, Fiat, Peugeot, …)',
+          segment: 'Automotivo',
           type: 'Landing Page Reutilizável',
           stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Arquitetura reutilizável, Design System integrado ao CMS, componentização e documentação.',
           brand: 'stellantis',
         },
         energy: {
-          title: 'Enel — Energia',
+          title: 'Portais Institucionais — Energia',
           client: 'Enel',
           employer: 'NTT Data',
-          segment: 'Energia (Enel)',
+          segment: 'Energia',
           type: 'Portais Institucionais',
           stack: 'Angular, RxJS, React, Next.js, AEM, Java',
           role: 'Migração de layout, infraestrutura (AWS → AEM), padronização e escalabilidade de múltiplos portais.',
@@ -296,6 +303,13 @@ export const translations: Record<Locale, Translations> = {
     technologies: {
       title: 'Tecnologias & Ferramentas',
       subtitle: 'Stack técnico e ferramentas que utilizo no dia a dia',
+      categories: {
+        frontend: 'Frontend Core',
+        cms: 'CMS & Backend',
+        state: 'State Management',
+        testing: 'Testing & Docs',
+        devops: 'Styling & DevOps',
+      },
     },
     contact: {
       title: 'Entre em Contato',
@@ -430,10 +444,10 @@ export const translations: Record<Locale, Translations> = {
       },
       projects: {
         telecom: {
-          title: 'Vivo — Telecommunications',
+          title: 'B2B E-commerce — Telecom',
           client: 'Vivo',
           employer: 'Compass.uol',
-          segment: 'Telecommunications (Vivo)',
+          segment: 'Telecommunications',
           type: 'B2B E-commerce (Equipment Rental)',
           stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress',
           role: 'End-to-end development, components, CMS integration, and automated testing.',
@@ -441,20 +455,20 @@ export const translations: Record<Locale, Translations> = {
           brand: 'vivo',
         },
         automotive: {
-          title: 'Stellantis — Multi-brand Automotive',
+          title: 'Reusable Landing Page — Multi-brand Automotive',
           client: 'Stellantis',
           employer: 'Merkle (Dentsu Group)',
-          segment: 'Automotive (Stellantis — Jeep, Fiat, Peugeot, …)',
+          segment: 'Automotive',
           type: 'Reusable Landing Page',
           stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Reusable architecture, Design System integrated with CMS, componentization and documentation.',
           brand: 'stellantis',
         },
         energy: {
-          title: 'Enel — Energy',
+          title: 'Institutional Portals — Energy',
           client: 'Enel',
           employer: 'NTT Data',
-          segment: 'Energy (Enel)',
+          segment: 'Energy',
           type: 'Institutional Portals',
           stack: 'Angular, RxJS, React, Next.js, AEM, Java',
           role: 'Layout migration, infrastructure (AWS → AEM), standardization and scalability of multiple portals.',
@@ -465,6 +479,13 @@ export const translations: Record<Locale, Translations> = {
     technologies: {
       title: 'Technologies & Tools',
       subtitle: 'Technical stack and tools I use daily',
+      categories: {
+        frontend: 'Frontend Core',
+        cms: 'CMS & Backend',
+        state: 'State Management',
+        testing: 'Testing & Docs',
+        devops: 'Styling & DevOps',
+      },
     },
     contact: {
       title: 'Get in Touch',
