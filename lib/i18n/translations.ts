@@ -1,12 +1,25 @@
 export type Locale = 'pt-BR' | 'en-US';
 
+export type BrandId = 'vivo' | 'enel' | 'stellantis';
+
+export type CompanyId = 'newfold' | 'ntt' | 'merkle' | 'compass';
+
 export interface Translations {
   nav: {
     home: string;
     about: string;
-    experience: string;
+    history: string;
+    projects: string;
     technologies: string;
     contact: string;
+  };
+  a11y: {
+    skipToContent: string;
+    toggleLanguage: string;
+    toggleTheme: string;
+    toggleMenu: string;
+    scrollProgress: string;
+    scrollDown: string;
   };
   hero: {
     greeting: string;
@@ -15,10 +28,19 @@ export interface Translations {
     description: string;
     ctaProjects: string;
     ctaContact: string;
+    keywords: string[];
   };
   about: {
     title: string;
     content: string[];
+  };
+  metrics: {
+    title: string;
+    items: {
+      performance: { label: string; value: number; suffix: string };
+      incidents: { label: string; value: number; suffix: string };
+      mobile: { label: string; value: number; suffix: string };
+    };
   };
   experience: {
     title: string;
@@ -27,54 +49,76 @@ export interface Translations {
     segmentLabel: string;
     typeLabel: string;
     stackLabel: string;
+    clientLabel: string;
+    employerLabel: string;
     companies: {
+      newfold: {
+        company: string;
+        period: string;
+        position: string;
+        logo: CompanyId;
+        activities: string[];
+      };
       ntt: {
         company: string;
         period: string;
         position: string;
+        logo: CompanyId;
+        clientBadge: string;
+        clientBrand: BrandId;
         activities: string[];
       };
-      dentsu: {
+      merkle: {
         company: string;
         period: string;
         position: string;
+        logo: CompanyId;
+        clientBadge: string;
+        clientBrand: BrandId;
         activities: string[];
       };
       compass: {
         company: string;
         period: string;
         position: string;
-        activities: string[];
-      };
-      intern: {
-        company: string;
-        period: string;
-        position: string;
+        progression: string;
+        clientBadge: string;
+        clientBrand: BrandId;
+        logo: CompanyId;
         activities: string[];
       };
     };
     projects: {
       telecom: {
         title: string;
+        client: string;
+        employer: string;
         segment: string;
         type: string;
         stack: string;
         role: string;
         maintenance: string;
+        brand: BrandId;
       };
       automotive: {
         title: string;
+        client: string;
+        employer: string;
         segment: string;
         type: string;
         stack: string;
         role: string;
+        brand: BrandId;
       };
       energy: {
         title: string;
+        client: string;
+        employer: string;
         segment: string;
         type: string;
         stack: string;
         role: string;
+        brand: BrandId;
       };
     };
   };
@@ -104,27 +148,45 @@ export const translations: Record<Locale, Translations> = {
     nav: {
       home: 'Início',
       about: 'Sobre',
-      experience: 'Experiência',
+      history: 'Histórico',
+      projects: 'Projetos',
       technologies: 'Tecnologias',
       contact: 'Contato',
+    },
+    a11y: {
+      skipToContent: 'Pular para o conteúdo principal',
+      toggleLanguage: 'Alternar idioma',
+      toggleTheme: 'Alternar tema',
+      toggleMenu: 'Alternar menu',
+      scrollProgress: 'Progresso de rolagem da página',
+      scrollDown: 'Rolar para baixo',
     },
     hero: {
       greeting: 'Olá, eu sou',
       title: 'Eduardo Nowakoski',
-      subtitle: 'Desenvolvedor Front-End Senior & Desenvolvedor Full-Stack AEM Senior',
+      subtitle: 'Desenvolvedor Front-End Senior',
       description:
-        'Especializado em desenvolvimento de aplicações web escaláveis, integração com Adobe Experience Manager (AEM) e arquiteturas modernas de front-end.',
+        'Especializado em React, Next.js, Vue.js, Angular e TypeScript — aplicações escaláveis, microfrontends, SSR/SSG e otimização de performance. Experiência com integração Adobe Experience Manager (AEM) em ambientes enterprise.',
       ctaProjects: 'Ver Projetos',
       ctaContact: 'Entre em Contato',
+      keywords: ['React', 'Next.js', 'Vue.js', 'Angular', 'TypeScript'],
     },
     about: {
       title: 'Sobre Mim',
       content: [
-        'Transicionei minha carreira em 2022, migrando da Engenharia Civil para o Desenvolvimento de Software, e desde então trabalho como Desenvolvedor Full-Stack AEM Senior, construindo e mantendo aplicações web escaláveis para plataformas de e-commerce.',
-        'Especializado em Adobe Experience Manager (AEM), trabalho end-to-end — desde integrações front-end até a implementação de componentes, templates, Experience Fragments e Sling Models em Java.',
-        'Tenho forte experiência com Vue.js (2/3, Pinia, Vuex), React, Next.js, Angular, além de participação em arquiteturas de microfrontends e design systems, sempre priorizando qualidade de código, performance e reutilização. Trabalho com cultura sólida de testes (Jest, Cypress), versionamento profissional com GitFlow, pipelines de CI/CD e metodologias ágeis (Scrum/Kanban).',
-        'Inglês avançado e mentalidade colaborativa, trabalhando em estreita colaboração com equipes de produto, UX e negócios para transformar requisitos complexos em soluções técnicas robustas e escaláveis.',
+        'Desenvolvedor Front-End Senior com mais de 4 anos de experiência construindo aplicações web escaláveis para e-commerce e ecossistemas integrados a CMS corporativos.',
+        'Atuação sólida com React, Next.js, Vue.js, Angular e TypeScript, incluindo arquiteturas de microfrontends, Design Systems, SSR/SSG e otimização avançada de performance em ambientes de alto tráfego.',
+        'Experiência em modernização de aplicações legadas, redução de incidentes em produção e melhoria de métricas Lighthouse. Integração com Adobe Experience Manager (AEM) como competência complementar.',
+        'Workflow de desenvolvimento assistido por IA (GitHub Copilot, Cursor, Claude), cultura de testes (Jest, Cypress), CI/CD e inglês avançado (C1) em equipes internacionais.',
       ],
+    },
+    metrics: {
+      title: 'Impacto em Números',
+      items: {
+        performance: { label: 'Melhoria de performance', value: 20, suffix: '%' },
+        incidents: { label: 'Redução de incidentes', value: 80, suffix: '%' },
+        mobile: { label: 'Melhoria mobile/desktop', value: 40, suffix: '%' },
+      },
     },
     experience: {
       title: 'Experiência Profissional',
@@ -133,81 +195,101 @@ export const translations: Record<Locale, Translations> = {
       segmentLabel: 'Segmento:',
       typeLabel: 'Tipo:',
       stackLabel: 'Stack:',
+      clientLabel: 'Cliente:',
+      employerLabel: 'Empresa:',
       companies: {
-        ntt: {
-          company: 'NTT Data',
-          period: 'Fevereiro 2025 - Presente',
-          position: 'Desenvolvedor Full-Stack AEM Senior',
+        newfold: {
+          company: 'Newfold Digital',
+          period: 'Abril de 2026 - Presente',
+          position: 'Desenvolvedor Front-End (Projetos Integrados ao AEM)',
+          logo: 'newfold',
           activities: [
-            'Desenvolvimento de aplicações web escaláveis usando Angular, TypeScript, SCSS e Java, totalmente integradas com Adobe Experience Manager (AEM).',
-            'Migração estrutural de quatro portais legados para arquitetura Angular + AEM, liderando definições de templates, componentes e Experience Fragments.',
-            'Implementação completa de componentes AEM (HTL, Sling Models, Dialogs, XFs, Editable Templates), garantindo alta capacidade de autoria.',
-            'Desenvolvimento do archetype AEM e definição arquitetural da solução, incluindo decisões de componentização e integração com Angular.',
-            'Integração do front-end Angular com REST APIs, realizando mapeamento, consumo e documentação de serviços.',
-            'Aplicação de práticas de engenharia com GitFlow, GitLab, Bitbucket, Azure DevOps e Jira, suportando pipelines e code reviews.',
+            'Desenvolvimento e manutenção de componentes reutilizáveis em AEM utilizando HTL, TypeScript, JavaScript e SCSS.',
+            'Criação de Editable Templates, Experience Fragments e estruturas reutilizáveis de conteúdo.',
+            'Desenvolvimento de componentes AEM para marcas do ecossistema Newfold: Domain, Network Solutions, HostGator, Bluehost e Web.com.',
+            'Colaboração diária com times internacionais utilizando inglês como idioma principal.',
+            'Utilização de ferramentas de IA (GitHub Copilot, Cursor, Claude) para acelerar desenvolvimento e entrega.',
           ],
         },
-        dentsu: {
-          company: 'Dentsu',
-          period: 'Março 2025 - Dezembro 2025',
-          position: 'Desenvolvedor Full-Stack AEM Senior',
+        ntt: {
+          company: 'NTT Data',
+          period: 'Março de 2025 - Março de 2026',
+          position: 'Desenvolvedor Front-End (Projetos Integrados ao AEM)',
+          logo: 'ntt',
+          clientBadge: 'Cliente: Enel',
+          clientBrand: 'enel',
           activities: [
-            'Trabalho como Desenvolvedor Full-Stack AEM Senior em solução Vue 3 + AEM baseada em arquitetura de microfrontends para ecossistema de e-commerce multimarcas.',
-            'Co-criação e implementação de Design System integrado com AEM, permitindo tokenização de marca, reutilização de componentes e autonomia do cliente.',
-            'Desenvolvimento de features front-end de alta performance usando Vue.js 3, Pinia e Swiper, focando em modularidade e lazy loading.',
-            'Implementação de lógica backend em AEM usando Java, Sling Models e HTL, garantindo comunicação eficiente entre CMS e microfrontends.',
-            'Contribuição para escalabilidade do ecossistema multimarcas, entregando aplicação reutilizada em múltiplos produtos.',
-            'Aplicação de testes unitários (Jest) e end-to-end (Cypress), documentação e padronização de código.',
+            'Desenvolvimento de aplicações escaláveis com React, Angular, TypeScript e SCSS integradas ao AEM Cloud Service.',
+            'Liderança técnica na migração de 4 portais legados de AngularJS para Angular 20.',
+            'Modernização arquitetural com melhoria de 20% na performance e redução de 80% nos incidentes em produção.',
+            'Desenvolvimento de componentes reutilizáveis alinhados a estratégias de Design System.',
+            'Integração com APIs REST, pipelines CI/CD e ferramentas de IA para debugging e refatoração.',
+          ],
+        },
+        merkle: {
+          company: 'Merkle (Grupo Dentsu)',
+          period: 'Março de 2025 - Dezembro de 2025',
+          position: 'Desenvolvedor Front-End (Projetos Integrados ao AEM)',
+          logo: 'merkle',
+          clientBadge: 'Cliente: Stellantis',
+          clientBrand: 'stellantis',
+          activities: [
+            'Desenvolvimento de aplicações com React, Next.js (SSR/SSG) e Vue 3 em arquitetura de microfrontends para e-commerce multimarcas.',
+            'Co-criação e implementação de Design System integrado ao AEM.',
+            'Otimização de performance com melhoria de 40% nas métricas mobile e desktop.',
+            'Implementação de testes automatizados (Jest e Cypress) e suporte a pipelines CI/CD.',
+            'Atuação em ambiente enterprise com alto volume de tráfego.',
           ],
         },
         compass: {
-          company: 'Compass',
-          period: 'Janeiro 2022 - Fevereiro 2025',
-          position: 'Desenvolvedor Front-End ',
+          company: 'Compass.uol',
+          period: 'Janeiro de 2022 - Fevereiro de 2025',
+          position: 'Desenvolvedor Front-End',
+          progression: 'Estágio Front-end & AEM → Desenvolvedor Front-End',
+          clientBadge: 'Cliente: Vivo',
+          clientBrand: 'vivo',
+          logo: 'compass',
           activities: [
-            'Desenvolvimento de features e componentes de alta complexidade usando Vue.js 3 e Pinia, garantindo escalabilidade e eficiência em e-commerce.',
-            'Manutenção, evolução e modernização de sistemas legados construídos com Vue.js 2 e Vuex, garantindo estabilidade da plataforma.',
-            'Integração profunda entre front-end e AEM, consumindo conteúdo via HTL e Sling Models e criando componentes altamente autoráveis.',
-            'Suporte a práticas de engenharia, documentação de componentes, Storybook, padrões de codificação e mentoria para novos membros.',
-            'Implementação de otimizações de performance como lazy loading, melhorias de Lighthouse score, otimização de imagens.',
-            'Criação e evolução de integrações de API, desde desenvolvimento mock até integrações reais para fluxos complexos como carrinho e checkout.',
-            'Construção e manutenção de testes automatizados unitários (Jest) e End-to-end (Cypress) com cenários completos.',
-          ],
-        },
-        intern: {
-          company: 'Compass',
-          period: 'Janeiro 2022 - Dezembro 2022',
-          position: 'Desenvolvedor Front-End AEM ',
-          activities: [
-            'Participação em programa intensivo de treinamento focado em tecnologias front-end modernas e ecossistema Adobe Experience Manager (AEM).',
-            'Desenvolvimento de base sólida em HTML, CSS/SASS, JavaScript e Vue.js com aplicações práticas em projetos.',
-            'Primeira experiência com AEM, compreendendo sua arquitetura, funcionalidade e padrões de integração front-end.',
-            'Adoção de metodologias Ágeis (Scrum/Kanban) e uso de ferramentas como Git, GitLab e Jest.',
+            'Progressão de Estágio Front-end & AEM para Desenvolvedor Front-End na mesma empresa.',
+            'Treinamento intensivo em front-end moderno, Vue.js e ecossistema Adobe Experience Manager (AEM).',
+            'Desenvolvimento com Vue.js 3, Pinia e React; modernização de legados Vue 2/Vuex.',
+            'Integração front-end + AEM (HTL, Sling Models, componentes autoráveis) para clientes como a Vivo.',
+            'Melhoria de 20% na performance e redução de 50% nos incidentes em produção.',
+            'Testes Jest/Cypress, CI/CD, GitFlow e mentoria de boas práticas.',
           ],
         },
       },
       projects: {
         telecom: {
-          title: 'Projeto – Telecomunicações',
-          segment: 'Telecomunicações',
+          title: 'Vivo — Telecomunicações',
+          client: 'Vivo',
+          employer: 'Compass.uol',
+          segment: 'Telecomunicações (Vivo)',
           type: 'E-commerce B2B (Aluguel de Equipamentos)',
-          stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress, ',
-          role: 'Desenvolvimento end-to-end, criação e manutenção de componentes, integração com CMS, testes automatizados.',
+          stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress',
+          role: 'Desenvolvimento end-to-end, componentes, integração com CMS e testes automatizados.',
           maintenance: 'Manutenção posterior: Vue 2, Vuex, AEM',
+          brand: 'vivo',
         },
         automotive: {
-          title: 'Projeto – Automotivo',
-          segment: 'Automotivo (Multimarcas)',
+          title: 'Stellantis — Automotivo Multimarcas',
+          client: 'Stellantis',
+          employer: 'Merkle (Grupo Dentsu)',
+          segment: 'Automotivo (Stellantis — Jeep, Fiat, Peugeot, …)',
           type: 'Landing Page Reutilizável',
           stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Arquitetura reutilizável, Design System integrado ao CMS, componentização e documentação.',
+          brand: 'stellantis',
         },
         energy: {
-          title: 'Projeto – Energia',
-          segment: 'Energia',
+          title: 'Enel — Energia',
+          client: 'Enel',
+          employer: 'NTT Data',
+          segment: 'Energia (Enel)',
           type: 'Portais Institucionais',
           stack: 'Angular, RxJS, React, Next.js, AEM, Java',
-          role: 'Migração de layout, migração de infraestrutura (AWS → AEM), padronização e escalabilidade de múltiplos portais.',
+          role: 'Migração de layout, infraestrutura (AWS → AEM), padronização e escalabilidade de múltiplos portais.',
+          brand: 'enel',
         },
       },
     },
@@ -235,27 +317,45 @@ export const translations: Record<Locale, Translations> = {
     nav: {
       home: 'Home',
       about: 'About',
-      experience: 'Experience',
+      history: 'History',
+      projects: 'Projects',
       technologies: 'Technologies',
       contact: 'Contact',
+    },
+    a11y: {
+      skipToContent: 'Skip to main content',
+      toggleLanguage: 'Toggle language',
+      toggleTheme: 'Toggle theme',
+      toggleMenu: 'Toggle menu',
+      scrollProgress: 'Page scroll progress',
+      scrollDown: 'Scroll down',
     },
     hero: {
       greeting: 'Hello, I am',
       title: 'Eduardo Nowakoski',
-      subtitle: 'Senior Front-End Engineer & Senior Full-Stack AEM Engineer',
+      subtitle: 'Senior Front-End Engineer',
       description:
-        'Specialized in developing scalable web applications, Adobe Experience Manager (AEM) integration, and modern front-end architectures.',
+        'Specialized in React, Next.js, Vue.js, Angular, and TypeScript — scalable applications, microfrontends, SSR/SSG, and performance optimization. Experience with Adobe Experience Manager (AEM) integration in enterprise environments.',
       ctaProjects: 'View Projects',
       ctaContact: 'Get in Touch',
+      keywords: ['React', 'Next.js', 'Vue.js', 'Angular', 'TypeScript'],
     },
     about: {
       title: 'About Me',
       content: [
-        'I transitioned careers in 2022, moving from Civil Engineering to Software Development, and since then I have been working as a Senior Full-Stack AEM Engineer, building and maintaining scalable web applications for e-commerce platforms.',
-        'Specialized in Adobe Experience Manager (AEM), I work end-to-end — from front-end integrations to the implementation of components, templates, Experience Fragments and Sling Models in Java.',
-        'I have strong experience with Vue.js (2/3, Pinia, Vuex), React, Next.js, Angular, as well as participation in microfrontend architectures and design systems, always prioritizing code quality, performance and reusability. I work with a solid testing culture (Jest, Cypress), professional GitFlow versioning, CI/CD pipelines and agile methodologies (Scrum/Kanban).',
-        'Advanced English and a collaborative mindset, working closely with product, UX and business teams to transform complex requirements into robust and scalable technical solutions.',
+        'Senior Front-End Engineer with 4+ years of experience building scalable web applications for e-commerce and CMS-driven enterprise ecosystems.',
+        'Strong expertise in React, Next.js, Vue.js, Angular, and TypeScript, including microfrontend architectures, Design Systems, SSR/SSG, and advanced performance optimization in high-traffic environments.',
+        'Experienced in legacy modernization, production incident reduction, and Lighthouse metric improvements. Adobe Experience Manager (AEM) integration as a complementary skill.',
+        'AI-assisted development workflow (GitHub Copilot, Cursor, Claude), testing culture (Jest, Cypress), CI/CD, and advanced English (C1) in international teams.',
       ],
+    },
+    metrics: {
+      title: 'Impact in Numbers',
+      items: {
+        performance: { label: 'Performance improvement', value: 20, suffix: '%' },
+        incidents: { label: 'Incident reduction', value: 80, suffix: '%' },
+        mobile: { label: 'Mobile/desktop improvement', value: 40, suffix: '%' },
+      },
     },
     experience: {
       title: 'Professional Experience',
@@ -264,81 +364,101 @@ export const translations: Record<Locale, Translations> = {
       segmentLabel: 'Segment:',
       typeLabel: 'Type:',
       stackLabel: 'Stack:',
+      clientLabel: 'Client:',
+      employerLabel: 'Company:',
       companies: {
-        ntt: {
-          company: 'NTT Data',
-          period: 'February 2025 - Present',
-          position: 'Senior Full-Stack AEM Engineer',
+        newfold: {
+          company: 'Newfold Digital',
+          period: 'April 2026 - Present',
+          position: 'Front End Engineer (AEM Integrated Projects)',
+          logo: 'newfold',
           activities: [
-            'Development of scalable web applications using Angular, TypeScript, SCSS and Java, fully integrated with Adobe Experience Manager (AEM).',
-            'Structural migration of four legacy portals to Angular + AEM architecture, leading definitions of templates, components and Experience Fragments.',
-            'Full implementation of AEM components (HTL, Sling Models, Dialogs, XFs, Editable Templates), ensuring high authoring capability.',
-            'Development of AEM archetype and architectural definition of the solution, including componentization decisions and Angular integration.',
-            'Integration of Angular front-end with REST APIs, performing mapping, consumption and documentation of services.',
-            'Application of engineering practices with GitFlow, GitLab, Bitbucket, Azure DevOps and Jira, supporting pipelines and code reviews.',
+            'Develop and maintain reusable AEM components using HTL, TypeScript, JavaScript, and SCSS.',
+            'Create Editable Templates, Experience Fragments, and reusable content structures.',
+            'Build AEM components for Newfold ecosystem brands: Domain, Network Solutions, HostGator, Bluehost, and Web.com.',
+            'Daily collaboration with international teams in a fully English-speaking environment.',
+            'Leverage AI tools (GitHub Copilot, Cursor, Claude) to accelerate development and delivery.',
           ],
         },
-        dentsu: {
-          company: 'Dentsu',
-          period: 'March 2025 - December 2025',
-          position: 'Senior Full-Stack AEM Engineer',
+        ntt: {
+          company: 'NTT Data',
+          period: 'March 2025 - March 2026',
+          position: 'Front End Engineer (AEM Integrated Projects)',
+          logo: 'ntt',
+          clientBadge: 'Client: Enel',
+          clientBrand: 'enel',
           activities: [
-            'Work as Senior Full-Stack AEM Engineer in Vue 3 + AEM solution based on microfrontend architecture for multibrand e-commerce ecosystem.',
-            'Co-creation and implementation of Design System integrated with AEM, enabling brand tokenization, component reuse and client autonomy.',
-            'Development of high-performance front-end features using Vue.js 3, Pinia and Swiper, focusing on modularity and lazy loading.',
-            'Backend logic implementation in AEM using Java, Sling Models and HTL, ensuring efficient communication between CMS and microfrontends.',
-            'Contribution to scalability of multibrand ecosystem, delivering application reused across multiple products.',
-            'Application of unit tests (Jest) and end-to-end tests (Cypress), documentation and code standardization.',
+            'Built scalable applications using React, Angular, TypeScript, and SCSS integrated with AEM Cloud Service.',
+            'Led migration of 4 enterprise portals from AngularJS to Angular 20.',
+            'Architectural modernization resulting in 20% performance improvement and 80% reduction in production incidents.',
+            'Developed reusable components aligned with Design System initiatives.',
+            'REST API integration, CI/CD pipelines, and AI-assisted debugging and refactoring.',
+          ],
+        },
+        merkle: {
+          company: 'Merkle (Dentsu Group)',
+          period: 'March 2025 - December 2025',
+          position: 'Front End Engineer (AEM Integrated Projects)',
+          logo: 'merkle',
+          clientBadge: 'Client: Stellantis',
+          clientBrand: 'stellantis',
+          activities: [
+            'Developed React, Next.js (SSR/SSG), and Vue.js applications within a microfrontend architecture for multibrand e-commerce.',
+            'Co-created and implemented Design System integrated with AEM.',
+            'Performance optimization achieving up to 40% improvement in mobile and desktop metrics.',
+            'Automated testing with Jest and Cypress integrated into CI/CD workflows.',
+            'Worked in high-traffic enterprise environments with critical performance requirements.',
           ],
         },
         compass: {
-          company: 'Compass',
+          company: 'Compass.uol',
           period: 'January 2022 - February 2025',
           position: 'Front-End Engineer',
+          progression: 'Front-End Intern → Front-End Engineer',
+          clientBadge: 'Client: Vivo',
+          clientBrand: 'vivo',
+          logo: 'compass',
           activities: [
-            'Development of high-complexity features and components using Vue.js 3 and Pinia, ensuring scalability and efficiency in e-commerce.',
-            'Maintenance, evolution and modernization of legacy systems built with Vue.js 2 and Vuex, ensuring platform stability.',
-            'Deep integration between front-end and AEM, consuming content via HTL and Sling Models and creating highly authorable components.',
-            'Support for engineering best practices, component documentation, Storybook, coding standards and mentorship for new team members.',
-            'Implementation of performance optimizations such as lazy loading, Lighthouse score improvements, image optimization.',
-            'Creation and evolution of API integrations, from mock development to real integrations for complex flows such as cart and checkout.',
-            'Building and maintaining automated unit tests (Jest) and End-to-end tests (Cypress) with complete scenarios.',
-          ],
-        },
-        intern: {
-          company: 'Compass',
-          period: 'January 2022 - December 2022',
-          position: 'Front-End Engineer & AEM Intern',
-          activities: [
-            'Participation in intensive training program focused on modern front-end technologies and Adobe Experience Manager (AEM) ecosystem.',
-            'Development of strong foundation in HTML, CSS/SASS, JavaScript and Vue.js with practical project applications.',
-            'First experience with AEM, understanding its architecture, functionality and front-end integration patterns.',
-            'Adoption of Agile methodologies (Scrum/Kanban) and use of tools such as Git, GitLab and Jest.',
+            'Progression from Front-End & AEM Intern to Front-End Engineer at the same company.',
+            'Intensive training in modern front-end, Vue.js, and Adobe Experience Manager (AEM).',
+            'Development with Vue.js 3, Pinia, and React; legacy Vue 2/Vuex modernization.',
+            'Front-end + AEM integration (HTL, Sling Models, authorable components) for clients such as Vivo.',
+            '20% performance improvement and 50% reduction in production incidents.',
+            'Jest/Cypress testing, CI/CD, GitFlow, and engineering best practices mentorship.',
           ],
         },
       },
       projects: {
         telecom: {
-          title: 'Project – Telecommunications',
-          segment: 'Telecommunications',
+          title: 'Vivo — Telecommunications',
+          client: 'Vivo',
+          employer: 'Compass.uol',
+          segment: 'Telecommunications (Vivo)',
           type: 'B2B E-commerce (Equipment Rental)',
-          stack: 'Vue 3, Pinia, React, Redux, AEM, Jest, Java, Cypress, ',
-          role: 'End-to-end development, component creation and maintenance, CMS integration, automated testing.',
+          stack: 'Vue 3, Pinia, React, Redux, AEM, Java, Jest, Cypress',
+          role: 'End-to-end development, components, CMS integration, and automated testing.',
           maintenance: 'Later maintenance: Vue 2, Vuex, AEM',
+          brand: 'vivo',
         },
         automotive: {
-          title: 'Project – Automotive',
-          segment: 'Automotive (Multi-brand)',
+          title: 'Stellantis — Multi-brand Automotive',
+          client: 'Stellantis',
+          employer: 'Merkle (Dentsu Group)',
+          segment: 'Automotive (Stellantis — Jeep, Fiat, Peugeot, …)',
           type: 'Reusable Landing Page',
           stack: 'Vue 3, Pinia, React, Next.js, Zustand, AEM, Java, Storybook, Jest',
           role: 'Reusable architecture, Design System integrated with CMS, componentization and documentation.',
+          brand: 'stellantis',
         },
         energy: {
-          title: 'Project – Energy',
-          segment: 'Energy',
+          title: 'Enel — Energy',
+          client: 'Enel',
+          employer: 'NTT Data',
+          segment: 'Energy (Enel)',
           type: 'Institutional Portals',
           stack: 'Angular, RxJS, React, Next.js, AEM, Java',
-          role: 'Layout migration, infrastructure migration (AWS → AEM), standardization and scalability of multiple portals.',
+          role: 'Layout migration, infrastructure (AWS → AEM), standardization and scalability of multiple portals.',
+          brand: 'enel',
         },
       },
     },
@@ -362,4 +482,17 @@ export const translations: Record<Locale, Translations> = {
       lighthouseTooltip: 'Opens PageSpeed Insights or instructions to open Lighthouse',
     },
   },
+};
+
+export const BRAND_ASSETS: Record<BrandId, { src: string; alt: string }> = {
+  vivo: { src: '/brands/vivo.svg', alt: 'Vivo' },
+  enel: { src: '/brands/enel.svg', alt: 'Enel' },
+  stellantis: { src: '/brands/stellantis.svg', alt: 'Stellantis' },
+};
+
+export const COMPANY_ASSETS: Record<CompanyId, { src: string; alt: string }> = {
+  newfold: { src: '/companies/newfold.svg', alt: 'Newfold Digital' },
+  ntt: { src: '/companies/ntt-data.svg', alt: 'NTT Data' },
+  merkle: { src: '/companies/dentsu.svg', alt: 'Merkle (Dentsu Group)' },
+  compass: { src: '/companies/compass-uol.svg', alt: 'Compass.uol' },
 };
