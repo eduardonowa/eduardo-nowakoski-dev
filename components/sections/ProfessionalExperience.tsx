@@ -6,7 +6,6 @@ import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Briefcase, Calendar } from 'lucide-react'
 import { CompanyIcon } from '@/components/ui/CompanyIcon'
-import { BrandIcon } from '@/components/ui/BrandIcon'
 import type { BrandId, CompanyId } from '@/lib/i18n/translations'
 
 export function ProfessionalExperience() {
@@ -128,27 +127,18 @@ export function ProfessionalExperience() {
                       isEven ? 'md:mr-auto md:max-w-[45%]' : 'md:ml-auto md:max-w-[45%]'
                     }`}
                   >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="flex shrink-0 items-center justify-center w-24 md:w-28">
-                        <CompanyIcon company={company.logo} priority={index === 0} />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl md:text-2xl font-bold text-text mb-1">{company.company}</h3>
+                    <div className="mb-4 space-y-3 border-b border-border/40 pb-4">
+                      <CompanyIcon company={company.logo} priority={index === 0} size="lg" />
+                      <div>
+                        <h3 className="sr-only">{company.company}</h3>
                         <p className="text-sm font-medium text-primary mb-1">{company.position}</p>
                         {company.progression && (
                           <p className="text-xs text-text-muted mb-1">{company.progression}</p>
                         )}
                         {company.clientBadge && (
-                          <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            {company.clientBrand && (
-                              <span className="inline-flex items-center shrink-0">
-                                <BrandIcon brand={company.clientBrand} className="max-h-4 max-w-[3.5rem]" />
-                              </span>
-                            )}
-                            <span className="inline-block text-xs bg-primary/10 text-primary px-2 py-0.5 rounded">
-                              {company.clientBadge}
-                            </span>
-                          </div>
+                          <span className="inline-block text-xs bg-primary/10 text-primary px-2 py-0.5 rounded mb-2">
+                            {company.clientBadge}
+                          </span>
                         )}
                         <div className="flex items-center gap-2 text-sm text-text-muted">
                           <Calendar className="w-4 h-4" aria-hidden="true" />

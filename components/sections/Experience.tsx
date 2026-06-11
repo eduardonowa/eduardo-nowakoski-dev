@@ -12,7 +12,6 @@ function ProjectCard({
   project,
   index,
   inView,
-  clientLabel,
   employerLabel,
   segmentLabel,
   typeLabel,
@@ -31,7 +30,6 @@ function ProjectCard({
   }
   index: number
   inView: boolean
-  clientLabel: string
   employerLabel: string
   segmentLabel: string
   typeLabel: string
@@ -47,38 +45,35 @@ function ProjectCard({
       style={{ transform }}
       className="[transform-style:preserve-3d]"
     >
-    <m.div
-      initial={{ opacity: 0, translateY: 30 }}
-      animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass bg-background-secondary/80 border border-border rounded-xl p-6 hover:shadow-lg transition-shadow duration-300 relative z-10 glow-hover h-full"
-    >
-      <div className="mb-4 flex items-center">
-        <BrandIcon brand={project.brand} />
-      </div>
-      <h3 className="text-xl font-bold text-text mb-2">{project.title}</h3>
-      <div className="space-y-2 text-sm text-text-secondary mb-4">
-        <p>
-          <span className="font-medium">{clientLabel}</span> {project.client}
-        </p>
-        <p>
-          <span className="font-medium">{employerLabel}</span> {project.employer}
-        </p>
-        <p>
-          <span className="font-medium">{segmentLabel}</span> {project.segment}
-        </p>
-        <p>
-          <span className="font-medium">{typeLabel}</span> {project.type}
-        </p>
-        <p>
-          <span className="font-medium">{stackLabel}</span> {project.stack}
-        </p>
-      </div>
-      <p className="text-sm text-text-muted leading-relaxed mb-3">{project.role}</p>
-      {project.maintenance && (
-        <p className="text-xs text-text-muted italic">{project.maintenance}</p>
-      )}
-    </m.div>
+      <m.div
+        initial={{ opacity: 0, translateY: 30 }}
+        animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="glass bg-background-secondary/80 border border-border rounded-xl p-6 hover:shadow-md transition-shadow duration-300 relative z-10 glow-hover h-full"
+      >
+        <div className="mb-4 border-b border-border/40 pb-4">
+          <BrandIcon brand={project.brand} size="lg" />
+        </div>
+        <h3 className="text-xl font-bold text-text mb-2">{project.title}</h3>
+        <div className="space-y-2 text-sm text-text-secondary mb-4">
+          <p>
+            <span className="font-medium">{employerLabel}</span> {project.employer}
+          </p>
+          <p>
+            <span className="font-medium">{segmentLabel}</span> {project.segment}
+          </p>
+          <p>
+            <span className="font-medium">{typeLabel}</span> {project.type}
+          </p>
+          <p>
+            <span className="font-medium">{stackLabel}</span> {project.stack}
+          </p>
+        </div>
+        <p className="text-sm text-text-muted leading-relaxed mb-3">{project.role}</p>
+        {project.maintenance && (
+          <p className="text-xs text-text-muted italic">{project.maintenance}</p>
+        )}
+      </m.div>
     </div>
   )
 }
@@ -125,7 +120,6 @@ export function Experience() {
               project={project}
               index={index}
               inView={inView}
-              clientLabel={t.experience.clientLabel}
               employerLabel={t.experience.employerLabel}
               segmentLabel={t.experience.segmentLabel}
               typeLabel={t.experience.typeLabel}
