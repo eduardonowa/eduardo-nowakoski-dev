@@ -26,18 +26,28 @@ function createMotionComponent(type) {
   Component.displayName = `motion.${type}`
   return Component
 }
-jest.mock('framer-motion', () => ({
-  motion: new Proxy(
+jest.mock('framer-motion', () => {
+  const motionProxy = new Proxy(
     {},
     {
       get(_, prop) {
         return createMotionComponent(prop)
       },
     }
-  ),
-  AnimatePresence: ({ children }) => children,
-  useScroll: () => ({ scrollY: { get: () => 0 } }),
-  useTransform: () => 0,
+  )
+  return {
+    motion: motionProxy,
+    m: motionProxy,
+    AnimatePresence: ({ children }) => children,
+    LazyMotion: ({ children }) => children,
+    domAnimation: {},
+    useScroll: () => ({ scrollY: { get: () => 0 }, scrollYProgress: { get: () => 0 } }),
+    useTransform: () => 0,
+  }
+})
+
+jest.mock('@/hooks/useReducedMotion', () => ({
+  useReducedMotion: () => true,
 }))
 
 // Mock react-intersection-observer
