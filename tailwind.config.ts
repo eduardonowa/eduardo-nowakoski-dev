@@ -20,6 +20,15 @@ const config: Config = {
           light: 'rgb(var(--color-secondary-light) / <alpha-value>)',
           dark: 'rgb(var(--color-secondary-dark) / <alpha-value>)',
         },
+        accent: {
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          light: 'rgb(var(--color-accent-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-accent-dark) / <alpha-value>)',
+        },
+        'on-primary': 'rgb(var(--color-on-primary) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        warning: 'rgb(var(--color-warning) / <alpha-value>)',
+        error: 'rgb(var(--color-error) / <alpha-value>)',
         background: {
           DEFAULT: 'rgb(var(--color-background) / <alpha-value>)',
           secondary: 'rgb(var(--color-background-secondary) / <alpha-value>)',
@@ -32,6 +41,12 @@ const config: Config = {
         border: {
           DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',
           light: 'rgb(var(--color-border-light) / <alpha-value>)',
+        },
+        syntax: {
+          keyword: 'rgb(var(--syntax-keyword) / <alpha-value>)',
+          string: 'rgb(var(--syntax-string) / <alpha-value>)',
+          tag: 'rgb(var(--syntax-tag) / <alpha-value>)',
+          DEFAULT: 'rgb(var(--syntax-default) / <alpha-value>)',
         },
       },
       fontFamily: {

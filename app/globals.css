@@ -4,40 +4,51 @@
 
 @layer base {
   :root {
-    /* Light Theme Colors - Dracula inspired */
-    --color-primary: 139 92 246; /* Dracula Purple - darker for better contrast */
-    --color-primary-light: 189 147 249;
-    --color-primary-dark: 124 58 237;
+    /* Warm Engineer — Light */
+    --color-primary: 13 148 136;
+    --color-primary-light: 20 184 166;
+    --color-primary-dark: 15 118 110;
 
-    --color-secondary: 255 121 198; /* Dracula Pink */
-    --color-secondary-light: 255 184 219;
-    --color-secondary-dark: 255 85 184;
+    --color-secondary: 120 113 108;
+    --color-secondary-light: 168 162 158;
+    --color-secondary-dark: 87 83 78;
 
-    --color-background: 255 255 255;
-    --color-background-secondary: 248 248 242; /* Dracula Foreground light */
+    --color-accent: 245 158 11;
+    --color-accent-light: 251 191 36;
+    --color-accent-dark: 217 119 6;
 
-    --color-text: 40 42 54; /* Dracula Background */
-    --color-text-secondary: 68 71 90; /* Dracula Selection */
-    --color-text-muted: 98 114 164; /* Dracula Comment */
+    --color-on-primary: 255 255 255;
 
-    --color-border: 230 230 230;
-    --color-border-light: 245 245 245;
+    --color-success: 22 163 74;
+    --color-warning: 217 119 6;
+    --color-error: 220 38 38;
 
-    /* Typography */
+    --color-background: 255 251 245;
+    --color-background-secondary: 245 240 235;
+
+    --color-text: 28 25 23;
+    --color-text-secondary: 87 83 78;
+    --color-text-muted: 120 113 108;
+
+    --color-border: 231 229 228;
+    --color-border-light: 245 240 235;
+
+    --syntax-keyword: 13 148 136;
+    --syntax-string: 180 83 9;
+    --syntax-tag: 15 118 110;
+    --syntax-default: 28 25 23;
+
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
       'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-    /* Spacing */
     --spacing-section: 6rem;
     --spacing-container: 1.5rem;
 
-    /* Border Radius */
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
 
-    /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -45,24 +56,35 @@
   }
 
   .dark {
-    /* Dark Theme Colors - Dracula Theme */
-    --color-primary: 189 147 249; /* Dracula Purple */
-    --color-primary-light: 212 191 255;
-    --color-primary-dark: 139 92 246;
+    /* Warm Engineer — Dark */
+    --color-primary: 20 184 166;
+    --color-primary-light: 45 212 191;
+    --color-primary-dark: 13 148 136;
 
-    --color-secondary: 255 121 198; /* Dracula Pink */
-    --color-secondary-light: 255 184 219;
-    --color-secondary-dark: 255 85 184;
+    --color-secondary: 168 162 158;
+    --color-secondary-light: 214 211 209;
+    --color-secondary-dark: 120 113 108;
 
-    --color-background: 40 42 54; /* Dracula Background */
-    --color-background-secondary: 68 71 90; /* Dracula Selection */
+    --color-accent: 251 191 36;
+    --color-accent-light: 253 224 71;
+    --color-accent-dark: 245 158 11;
 
-    --color-text: 248 248 242; /* Dracula Foreground */
-    --color-text-secondary: 189 147 249; /* Dracula Purple */
-    --color-text-muted: 98 114 164; /* Dracula Comment */
+    --color-on-primary: 255 255 255;
 
-    --color-border: 68 71 90; /* Dracula Selection */
-    --color-border-light: 40 42 54; /* Dracula Background */
+    --color-background: 12 12 14;
+    --color-background-secondary: 26 26 31;
+
+    --color-text: 245 245 244;
+    --color-text-secondary: 168 162 158;
+    --color-text-muted: 156 163 175;
+
+    --color-border: 42 42 48;
+    --color-border-light: 26 26 31;
+
+    --syntax-keyword: 45 212 191;
+    --syntax-string: 251 191 36;
+    --syntax-tag: 20 184 166;
+    --syntax-default: 245 245 244;
   }
 
   * {
@@ -97,7 +119,7 @@
   }
 
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white focus:font-medium;
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-on-primary focus:font-medium;
   }
 }
 
@@ -108,6 +130,20 @@
 
   .header-surface {
     @apply bg-background md:bg-background/80 md:backdrop-blur-md;
+  }
+
+  .logo-tile {
+    @apply inline-flex items-center justify-center;
+  }
+
+  .logo-tile--contrast {
+    @apply inline-flex items-center justify-center;
+  }
+
+  .dark .logo-tile--contrast {
+    @apply rounded-lg border px-4 py-2.5;
+    background: rgb(245 240 235 / 0.93);
+    border-color: rgb(231 229 228 / 0.35);
   }
 
   @media (max-width: 768px) {
@@ -160,27 +196,24 @@
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(var(--color-background-secondary) / 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgb(var(--color-border) / 0.8);
   }
 
   .dark .glass {
-    background: rgba(40, 42, 54, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgb(var(--color-background-secondary) / 0.5);
+    border: 1px solid rgb(var(--color-border) / 0.8);
   }
 
   .glow-hover {
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .glow-hover:hover {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
-  }
-
-  .dark .glow-hover:hover {
-    box-shadow: 0 0 20px rgba(189, 147, 249, 0.5), 0 0 40px rgba(189, 147, 249, 0.3);
+    border-color: rgb(var(--color-primary) / 0.35);
+    box-shadow: var(--shadow-md);
   }
 
   @keyframes gradient-shift {
@@ -196,10 +229,10 @@
   .gradient-animated {
     background: linear-gradient(
       -45deg,
-      rgb(139 92 246),
-      rgb(255 121 198),
-      rgb(189 147 249),
-      rgb(255 121 198)
+      rgb(var(--color-primary)),
+      rgb(var(--color-accent)),
+      rgb(var(--color-primary-light)),
+      rgb(var(--color-accent))
     );
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
