@@ -30,7 +30,15 @@ export function FlagIcon({ locale }: Readonly<FlagIconProps>) {
   )
 }
 
-const SECTION_IDS = ['home', 'about', 'professional-experience', 'metrics', 'experience', 'technologies', 'contact']
+const NAV_SECTION_IDS = [
+  'home',
+  'about',
+  'professional-experience',
+  'experience',
+  'ai-workflow',
+  'technologies',
+  'contact',
+] as const
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -38,7 +46,11 @@ export function Header() {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const { locale, setLocale, t } = useI18n()
-  const activeSection = useScrollSpy(SECTION_IDS)
+  const { activeId: activeSection, pinSection } = useScrollSpy([...NAV_SECTION_IDS])
+
+  const handleNavClick = (sectionId: string) => {
+    pinSection(sectionId)
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -72,6 +84,7 @@ export function Header() {
     { id: 'about', label: t.nav.about, href: '#about' },
     { id: 'professional-experience', label: t.nav.history, href: '#professional-experience' },
     { id: 'experience', label: t.nav.projects, href: '#experience' },
+    { id: 'ai-workflow', label: t.nav.aiWorkflow, href: '#ai-workflow' },
     { id: 'technologies', label: t.nav.technologies, href: '#technologies' },
     { id: 'contact', label: t.nav.contact, href: '#contact' },
   ]
@@ -96,6 +109,7 @@ export function Header() {
                 <a
                   key={item.id}
                   href={item.href}
+                  onClick={() => handleNavClick(item.id)}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
                     isActive ? 'text-primary' : 'text-text-secondary hover:text-primary'
                   }`}
@@ -166,7 +180,10 @@ export function Header() {
                   <a
                     key={item.id}
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      handleNavClick(item.id)
+                      setIsMenuOpen(false)
+                    }}
                     className={`py-2 text-sm font-medium transition-colors ${
                       activeSection === item.id ? 'text-primary' : 'text-text-secondary hover:text-primary'
                     }`}

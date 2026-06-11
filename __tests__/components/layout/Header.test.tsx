@@ -5,7 +5,10 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { MotionProvider } from '@/components/providers/MotionProvider'
 
 jest.mock('@/hooks/useScrollSpy', () => ({
-  useScrollSpy: () => 'home',
+  useScrollSpy: () => ({
+    activeId: 'home',
+    pinSection: jest.fn(),
+  }),
 }))
 
 const renderHeader = () => {
