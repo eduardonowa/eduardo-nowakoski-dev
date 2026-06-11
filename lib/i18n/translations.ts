@@ -4,12 +4,15 @@ export type BrandId = 'vivo' | 'enel' | 'stellantis';
 
 export type CompanyId = 'newfold' | 'ntt' | 'merkle' | 'compass';
 
+export type AiAgentId = 'cursor' | 'copilot' | 'claude' | 'codex';
+
 export interface Translations {
   nav: {
     home: string;
     about: string;
     history: string;
     projects: string;
+    aiWorkflow: string;
     technologies: string;
     contact: string;
   };
@@ -133,6 +136,34 @@ export interface Translations {
       devops: string;
     };
   };
+  aiWorkflow: {
+    title: string;
+    subtitle: string;
+    philosophy: string;
+    agentsTitle: string;
+    workflowTitle: string;
+    casesTitle: string;
+    metricsTitle: string;
+    usageLabel: string;
+    casesLabel: string;
+    benefitLabel: string;
+    cta: { text: string; button: string };
+    agents: Record<
+      AiAgentId,
+      {
+        name: string;
+        usage: string;
+        cases: string;
+        benefit: string;
+      }
+    >;
+    workflow: Array<{ step: string; role: string; example: string }>;
+    cases: {
+      frontend: { title: string; items: string[] };
+      aem: { title: string; items: string[] };
+    };
+    metrics: Array<{ label: string; description?: string }>;
+  };
   contact: {
     title: string;
     subtitle: string;
@@ -157,6 +188,7 @@ export const translations: Record<Locale, Translations> = {
       about: 'Sobre',
       history: 'Histórico',
       projects: 'Projetos',
+      aiWorkflow: 'Workflow IA',
       technologies: 'Tecnologias',
       contact: 'Contato',
     },
@@ -184,7 +216,7 @@ export const translations: Record<Locale, Translations> = {
         'Desenvolvedor Front-End Senior com mais de 4 anos de experiência construindo aplicações web escaláveis para e-commerce e ecossistemas integrados a CMS corporativos.',
         'Atuação sólida com React, Next.js, Vue.js, Angular e TypeScript, incluindo arquiteturas de microfrontends, Design Systems, SSR/SSG e otimização avançada de performance em ambientes de alto tráfego.',
         'Experiência em modernização de aplicações legadas, redução de incidentes em produção e melhoria de métricas Lighthouse. Integração com Adobe Experience Manager (AEM) como competência complementar.',
-        'Workflow de desenvolvimento assistido por IA (GitHub Copilot, Cursor, Claude), cultura de testes (Jest, Cypress), CI/CD e inglês avançado (C1) em equipes internacionais.',
+        'Cultura de testes (Jest, Cypress), pipelines CI/CD e inglês avançado (C1) em equipes internacionais.',
       ],
     },
     metrics: {
@@ -215,7 +247,6 @@ export const translations: Record<Locale, Translations> = {
             'Criação de Editable Templates, Experience Fragments e estruturas reutilizáveis de conteúdo.',
             'Desenvolvimento de componentes AEM para marcas do ecossistema Newfold: Domain, Network Solutions, HostGator, Bluehost e Web.com.',
             'Colaboração diária com times internacionais utilizando inglês como idioma principal.',
-            'Utilização de ferramentas de IA (GitHub Copilot, Cursor, Claude) para acelerar desenvolvimento e entrega.',
           ],
         },
         ntt: {
@@ -311,6 +342,116 @@ export const translations: Record<Locale, Translations> = {
         devops: 'Styling & DevOps',
       },
     },
+    aiWorkflow: {
+      title: 'Engenharia Aumentada por IA',
+      subtitle: 'Agentes de IA que utilizo no dia a dia em projetos enterprise',
+      philosophy:
+        'Utilizo IA como multiplicador de produtividade — não como substituto do julgamento de engenharia. Ela acelera pesquisa, debugging, refatoração e documentação, enquanto mantenho total ownership de arquitetura, decisões de implementação e qualidade de código. Todo output gerado por IA passa pelos mesmos critérios de revisão que aplico a qualquer código em produção.',
+      agentsTitle: 'Agentes',
+      workflowTitle: 'Workflow Diário',
+      casesTitle: 'Casos Reais',
+      metricsTitle: 'Impacto no Workflow',
+      usageLabel: 'Como utilizo',
+      casesLabel: 'Casos reais',
+      benefitLabel: 'Benefício',
+      cta: {
+        text: 'Vamos construir com mais velocidade — e rigor de engenharia.',
+        button: 'Conversar sobre um projeto',
+      },
+      agents: {
+        cursor: {
+          name: 'Cursor',
+          usage:
+            'Agente principal na IDE: implementação multi-arquivo, debugging, testes e navegação de codebase.',
+          cases:
+            'Scaffold de componentes React/HTL; ciclo debug→fix integrado ao repo (Newfold, Enel).',
+          benefit: 'Menor tempo entre ideia, código e validação local.',
+        },
+        copilot: {
+          name: 'GitHub Copilot',
+          usage: 'Autocomplete contextual inline durante a codificação.',
+          cases: 'Boilers TypeScript, testes Jest/Cypress, SCSS e dialogs AEM repetitivos.',
+          benefit: 'Menos friction em código repetitivo; foco em lógica de negócio.',
+        },
+        claude: {
+          name: 'Claude',
+          usage:
+            'Análise de código complexo, refatoração multi-arquivo, planejamento e documentação.',
+          cases:
+            'Revisão na migração AngularJS→Angular; estrutura de Sling Models; drafts de docs técnicos.',
+          benefit: 'Melhor contexto em tarefas longas e decisões arquiteturais.',
+        },
+        codex: {
+          name: 'Codex',
+          usage: 'Agente para tarefas focadas: snippets, transformações pontuais e automações.',
+          cases: 'Regex, scripts de build, ajustes HTL isolados, refatorações de escopo limitado.',
+          benefit: 'Ganho rápido em tarefas pequenas sem perder controle de escopo.',
+        },
+      },
+      workflow: [
+        {
+          step: 'Pesquisa',
+          role: 'Resumir docs e comparar abordagens no contexto do repo',
+          example: 'Claude/Cursor para analisar patterns de Editable Templates e APIs REST.',
+        },
+        {
+          step: 'Planejamento',
+          role: 'Decompor tarefas e identificar riscos',
+          example:
+            'Claude para breakdown de feature multi-componente; Cursor para mapear impacto no codebase.',
+        },
+        {
+          step: 'Codificação',
+          role: 'Scaffold, boilerplate e implementação assistida',
+          example: 'Copilot inline + Cursor agent para componentes React, HTL e testes.',
+        },
+        {
+          step: 'Debugging',
+          role: 'Análise de stack traces e hipóteses',
+          example: 'Cursor/Claude em incidentes de integração REST/AEM (NTT/Enel).',
+        },
+        {
+          step: 'Refatoração',
+          role: 'Modernização segura e diff review',
+          example: 'Claude/Cursor na migração AngularJS→20 e Vue 2→3.',
+        },
+        {
+          step: 'Documentação',
+          role: 'READMEs, JSDoc e guias de componente',
+          example: 'Claude para docs técnicos de Sling Models e componentes AEM.',
+        },
+        {
+          step: 'Entrega',
+          role: 'Checklists de PR e revisão pré-merge',
+          example: 'Cursor/Codex para validar testes, edge cases e ajustes finais antes do CI.',
+        },
+      ],
+      cases: {
+        frontend: {
+          title: 'Front-End',
+          items: [
+            'Geração e iteração de componentes React/Next.js com revisão manual de acessibilidade e performance.',
+            'Refatoração TypeScript em bases legadas (AngularJS, Vue 2) com validação de tipos e testes.',
+            'Análise Lighthouse e sugestões de otimização (Core Web Vitals) aplicadas com critério técnico.',
+            'Debugging de microfrontends e integrações REST em ambientes enterprise (Stellantis, Enel).',
+          ],
+        },
+        aem: {
+          title: 'AEM',
+          items: [
+            'Scaffold de componentes HTL + dialogs XML com validação de authoring experience.',
+            'Estruturação de Sling Models e data binding com revisão de performance no backend.',
+            'Criação de Editable Templates e Experience Fragments reutilizáveis (Newfold, Enel).',
+            'Troubleshooting de integrações front-end ↔ AEM Cloud Service e documentação para times globais.',
+          ],
+        },
+      },
+      metrics: [
+        { label: 'Ciclos de debugging mais rápidos' },
+        { label: 'Menor tempo de pesquisa inicial' },
+        { label: 'Melhor cobertura de documentação técnica' },
+      ],
+    },
     contact: {
       title: 'Entre em Contato',
       subtitle: 'Vamos conversar sobre oportunidades e projetos',
@@ -333,6 +474,7 @@ export const translations: Record<Locale, Translations> = {
       about: 'About',
       history: 'History',
       projects: 'Projects',
+      aiWorkflow: 'AI Workflow',
       technologies: 'Technologies',
       contact: 'Contact',
     },
@@ -360,7 +502,7 @@ export const translations: Record<Locale, Translations> = {
         'Senior Front-End Engineer with 4+ years of experience building scalable web applications for e-commerce and CMS-driven enterprise ecosystems.',
         'Strong expertise in React, Next.js, Vue.js, Angular, and TypeScript, including microfrontend architectures, Design Systems, SSR/SSG, and advanced performance optimization in high-traffic environments.',
         'Experienced in legacy modernization, production incident reduction, and Lighthouse metric improvements. Adobe Experience Manager (AEM) integration as a complementary skill.',
-        'AI-assisted development workflow (GitHub Copilot, Cursor, Claude), testing culture (Jest, Cypress), CI/CD, and advanced English (C1) in international teams.',
+        'Testing culture (Jest, Cypress), CI/CD pipelines, and advanced English (C1) in international teams.',
       ],
     },
     metrics: {
@@ -391,7 +533,6 @@ export const translations: Record<Locale, Translations> = {
             'Create Editable Templates, Experience Fragments, and reusable content structures.',
             'Build AEM components for Newfold ecosystem brands: Domain, Network Solutions, HostGator, Bluehost, and Web.com.',
             'Daily collaboration with international teams in a fully English-speaking environment.',
-            'Leverage AI tools (GitHub Copilot, Cursor, Claude) to accelerate development and delivery.',
           ],
         },
         ntt: {
@@ -486,6 +627,115 @@ export const translations: Record<Locale, Translations> = {
         testing: 'Testing & Docs',
         devops: 'Styling & DevOps',
       },
+    },
+    aiWorkflow: {
+      title: 'AI-Augmented Engineering',
+      subtitle: 'AI agents I use daily in enterprise workflows',
+      philosophy:
+        'I use AI as a productivity multiplier — not as a replacement for engineering judgment. It accelerates research, debugging, refactoring, and documentation while I retain full ownership of architecture, implementation decisions, and code quality. Every AI-generated output goes through the same review standards I apply to any production code.',
+      agentsTitle: 'Agents',
+      workflowTitle: 'Daily Workflow',
+      casesTitle: 'Real-World Cases',
+      metricsTitle: 'Workflow Impact',
+      usageLabel: 'How I use it',
+      casesLabel: 'Real use cases',
+      benefitLabel: 'Benefit',
+      cta: {
+        text: "Let's build faster — with engineering rigor.",
+        button: 'Discuss a project',
+      },
+      agents: {
+        cursor: {
+          name: 'Cursor',
+          usage:
+            'Primary IDE agent: multi-file implementation, debugging, testing, and codebase navigation.',
+          cases:
+            'Scaffold React/HTL components; integrated debug→fix cycle in the repo (Newfold, Enel).',
+          benefit: 'Shorter path from idea to code to local validation.',
+        },
+        copilot: {
+          name: 'GitHub Copilot',
+          usage: 'Contextual inline autocomplete while coding.',
+          cases: 'TypeScript boilerplate, Jest/Cypress tests, repetitive SCSS and AEM dialogs.',
+          benefit: 'Less friction on repetitive code; focus on business logic.',
+        },
+        claude: {
+          name: 'Claude',
+          usage: 'Complex code analysis, multi-file refactoring, planning, and documentation.',
+          cases:
+            'Review during AngularJS→Angular migration; Sling Models structure; technical doc drafts.',
+          benefit: 'Better context on long tasks and architectural decisions.',
+        },
+        codex: {
+          name: 'Codex',
+          usage: 'Focused agent for snippets, targeted transformations, and automations.',
+          cases: 'Regex, build scripts, isolated HTL tweaks, limited-scope refactors.',
+          benefit: 'Quick wins on small tasks without losing scope control.',
+        },
+      },
+      workflow: [
+        {
+          step: 'Research',
+          role: 'Summarize docs and compare approaches within the repo context',
+          example: 'Claude/Cursor to analyze Editable Template patterns and REST APIs.',
+        },
+        {
+          step: 'Planning',
+          role: 'Break down tasks and identify risks',
+          example:
+            'Claude for multi-component feature breakdown; Cursor to map codebase impact.',
+        },
+        {
+          step: 'Coding',
+          role: 'Scaffold, boilerplate, and assisted implementation',
+          example: 'Copilot inline + Cursor agent for React components, HTL, and tests.',
+        },
+        {
+          step: 'Debugging',
+          role: 'Stack trace analysis and hypothesis testing',
+          example: 'Cursor/Claude on REST/AEM integration incidents (NTT/Enel).',
+        },
+        {
+          step: 'Refactoring',
+          role: 'Safe modernization and diff review',
+          example: 'Claude/Cursor on AngularJS→20 and Vue 2→3 migrations.',
+        },
+        {
+          step: 'Documentation',
+          role: 'READMEs, JSDoc, and component guides',
+          example: 'Claude for Sling Models and AEM component technical docs.',
+        },
+        {
+          step: 'Delivery',
+          role: 'PR checklists and pre-merge review',
+          example: 'Cursor/Codex to validate tests, edge cases, and final tweaks before CI.',
+        },
+      ],
+      cases: {
+        frontend: {
+          title: 'Front-End',
+          items: [
+            'React/Next.js component generation and iteration with manual accessibility and performance review.',
+            'TypeScript refactoring in legacy codebases (AngularJS, Vue 2) with type validation and tests.',
+            'Lighthouse analysis and optimization suggestions (Core Web Vitals) applied with technical judgment.',
+            'Microfrontend and REST integration debugging in enterprise environments (Stellantis, Enel).',
+          ],
+        },
+        aem: {
+          title: 'AEM',
+          items: [
+            'HTL component + XML dialog scaffold with authoring experience validation.',
+            'Sling Models structure and data binding with backend performance review.',
+            'Reusable Editable Templates and Experience Fragments (Newfold, Enel).',
+            'Front-end ↔ AEM Cloud Service integration troubleshooting and documentation for global teams.',
+          ],
+        },
+      },
+      metrics: [
+        { label: 'Faster debugging cycles' },
+        { label: 'Reduced initial research time' },
+        { label: 'Improved technical documentation coverage' },
+      ],
     },
     contact: {
       title: 'Get in Touch',

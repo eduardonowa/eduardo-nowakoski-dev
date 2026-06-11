@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
+import { AiWorkflow } from '@/components/sections/AiWorkflow'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
@@ -45,6 +46,7 @@ export default function Home() {
       <ProfessionalExperience />
       <Metrics />
       <Experience />
+      <AiWorkflow />
       <Technologies />
       <Contact />
       <Footer />
