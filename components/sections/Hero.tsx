@@ -1,28 +1,135 @@
 'use client'
 
+import type React from 'react'
 import { useI18n } from '@/components/providers/I18nProvider'
-import { motion } from 'framer-motion'
-import { ArrowDown, Code, Briefcase } from 'lucide-react'
+import { m } from 'framer-motion'
+import { ArrowDown, Briefcase, Code } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
-import dynamic from 'next/dynamic'
-
-const CodeGridBackground = dynamic(() => import('../background/CodeGridBackground').then(mod => ({ default: mod.CodeGridBackground })), {
-  ssr: false,
-})
 import { useMagnetic } from '@/hooks/useMagnetic'
 import { TextReveal } from '@/components/ui/TextReveal'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useEffect, useState, useRef } from 'react'
 
-function MagneticButton({ href, className, children }: Readonly<{ href: string; className: string; children: React.ReactNode }>) {
+const CODE_GRID_LINES = [
+  'const component = () => {}',
+  'export default function Page() {}',
+  'useEffect(() => {}, [])',
+  'const theme = useTheme()',
+  '<Component />',
+  'interface Props {}',
+  'const styles = {}',
+  'return <Layout />',
+  'useState(false)',
+  'const tokens = designSystem',
+]
+
+function HeroCodeGrid() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [lines, setLines] = useState<string[]>([])
+
+  useEffect(() => {
+    setLines(
+      Array.from({ length: 32 }, () =>
+        CODE_GRID_LINES[Math.floor(Math.random() * CODE_GRID_LINES.length)]
+      )
+    )
+  }, [])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (containerRef.current) {
+            containerRef.current.style.transform = `translate3d(0, ${-window.scrollY * 0.12}px, 0)`
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      aria-hidden="true"
+      className="hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden"
+    >
+      <div
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 px-10 py-28 font-mono text-xs sm:text-sm select-none mask-gradient text-text-secondary dark:opacity-[0.06] opacity-[0.07]"
+        style={{ filter: 'blur(0.25px)' }}
+      >
+        {lines.map((line, index) => (
+          <span key={index} className="whitespace-nowrap">
+            {line}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function MagneticButton({
+  href,
+  className,
+  children,
+}: Readonly<{ href: string; className: string; children: React.ReactNode }>) {
   const magneticRef = useMagnetic({ strength: 0.2 })
   return (
-    <a ref={magneticRef as any} href={href} className={className}>
+    <a ref={magneticRef as React.RefObject<HTMLAnchorElement>} href={href} className={className}>
       {children}
     </a>
   )
 }
 
+function RotatingKeywords() {
+  const { t } = useI18n()
+  const reducedMotion = useReducedMotion()
+  const [index, setIndex] = useState(0)
+  const keywords = t.hero.keywords
+
+  useEffect(() => {
+    if (reducedMotion || keywords.length <= 1) return
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % keywords.length)
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [reducedMotion, keywords.length])
+
+  const current = keywords[index] ?? keywords[0]
+
+  if (reducedMotion) {
+    return (
+      <span className="text-primary font-semibold">
+        {keywords.join(' · ')}
+      </span>
+    )
+  }
+
+  return (
+    <m.span
+      key={current}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.4 }}
+      className="inline-block text-primary font-semibold min-w-[8ch]"
+    >
+      {current}
+    </m.span>
+  )
+}
+
 export function Hero() {
   const { t } = useI18n()
+  const reducedMotion = useReducedMotion()
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -32,10 +139,7 @@ export function Hero() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0,
-      },
+      transition: { staggerChildren: 0.3, delayChildren: 0 },
     },
   }
 
@@ -44,10 +148,7 @@ export function Hero() {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
+      transition: { duration: 0.8, ease: 'easeOut' },
     },
   }
 
@@ -56,10 +157,7 @@ export function Hero() {
     visible: {
       opacity: 1,
       translateY: 0,
-      transition: {
-        duration: 0.6,
-        delay: 0.8, // Espera o nome aparecer primeiro
-      },
+      transition: { duration: 0.6, delay: 0.8 },
     },
   }
 
@@ -67,79 +165,86 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
+      aria-labelledby="hero-title"
       className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-10"
     >
-          <CodeGridBackground />
+      <HeroCodeGrid />
       <div className="container mx-auto max-w-4xl relative z-10">
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           className="text-center"
         >
-          <motion.h1
+          <m.h1
+            id="hero-title"
             variants={nameVariants}
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-text mb-6"
           >
             <TextReveal splitBy="word">{t.hero.title}</TextReveal>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-primary font-medium mb-4"
-          >
+          <m.p variants={itemVariants} className="text-lg md:text-xl text-primary font-medium mb-4">
             {t.hero.greeting}
-          </motion.p>
+          </m.p>
 
-          <motion.h2
+          <m.h2
             variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl text-primary mb-8 font-medium"
+            className="text-xl md:text-2xl lg:text-3xl text-primary mb-4 font-medium"
           >
             {t.hero.subtitle}
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p variants={itemVariants} className="text-base md:text-lg text-text-muted mb-6">
+            <RotatingKeywords />
+          </m.p>
+
+          <m.p
             variants={itemVariants}
             className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             {t.hero.description}
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <MagneticButton href="#experience" className="group px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl glow-hover">
-              <Briefcase className="w-5 h-5 text-white" />
+            <MagneticButton
+              href="#experience"
+              className="group px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl glow-hover"
+            >
+              <Briefcase className="w-5 h-5 text-white" aria-hidden="true" />
               <span className="text-white font-semibold">{t.hero.ctaProjects}</span>
             </MagneticButton>
-            <MagneticButton href="#contact" className="group px-8 py-4 border-2 border-primary text-primary bg-background rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 glow-hover">
-              <Code className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
-              <span className="text-primary group-hover:text-white transition-colors font-semibold">{t.hero.ctaContact}</span>
-            </MagneticButton>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="mt-16"
-          >
-            <motion.a
-              href="#about"
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="inline-block"
-              aria-label="Scroll down"
+            <MagneticButton
+              href="#contact"
+              className="group px-8 py-4 border-2 border-primary text-primary bg-background rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 glow-hover"
             >
-              <ArrowDown className="w-6 h-6 text-text-muted hover:text-primary transition-colors" />
-            </motion.a>
-          </motion.div>
-        </motion.div>
+              <Code className="w-5 h-5 text-primary group-hover:text-white transition-colors" aria-hidden="true" />
+              <span className="text-primary group-hover:text-white transition-colors font-semibold">
+                {t.hero.ctaContact}
+              </span>
+            </MagneticButton>
+          </m.div>
+
+          <m.div variants={itemVariants} className="mt-16">
+            <m.a
+              href="#about"
+              animate={reducedMotion ? undefined : { y: [0, 10, 0] }}
+              transition={
+                reducedMotion
+                  ? undefined
+                  : { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+              }
+              className="inline-block"
+              aria-label={t.a11y.scrollDown}
+            >
+              <ArrowDown className="w-6 h-6 text-text-muted hover:text-primary transition-colors" aria-hidden="true" />
+            </m.a>
+          </m.div>
+        </m.div>
       </div>
     </section>
   )
 }
-

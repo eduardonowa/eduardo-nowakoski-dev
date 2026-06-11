@@ -77,6 +77,71 @@
   html {
     scroll-behavior: smooth;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-primary));
+    outline-offset: 2px;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white focus:font-medium;
+  }
+}
+
+@layer utilities {
+  .section-surface {
+    @apply bg-background-secondary/90 md:bg-background-secondary/70 md:backdrop-blur-sm;
+  }
+
+  .header-surface {
+    @apply bg-background md:bg-background/80 md:backdrop-blur-md;
+  }
+
+  @media (max-width: 768px) {
+    .glass {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  @keyframes code-float {
+    0% {
+      transform: translateY(100vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.2;
+    }
+    90% {
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateY(-20vh) translateX(var(--float-x, 0));
+      opacity: 0;
+    }
+  }
+
+  .animate-code-float {
+    animation: code-float linear infinite;
+  }
 }
 
 @layer utilities {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useI18n } from '@/components/providers/I18nProvider'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Mail, Phone, Linkedin, Send } from 'lucide-react'
 
@@ -37,25 +37,26 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-section bg-background-secondary/70 backdrop-blur-sm relative z-10"
+      aria-labelledby="contact-title"
+      className="py-section section-surface relative z-10 content-auto"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, translateY: 30 }}
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6 }}
           style={{ willChange: inView ? 'transform, opacity' : 'auto' }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
+          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-text mb-4">
             {t.contact.title}
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             {t.contact.subtitle}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, translateY: 30 }}
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -65,7 +66,7 @@ export function Contact() {
           {contactMethods.map((method, index) => {
             const Icon = method.icon
             return (
-              <motion.a
+              <m.a
                 key={method.label}
                 href={method.href}
                 target={method.href.startsWith('http') ? '_blank' : undefined}
@@ -79,7 +80,7 @@ export function Contact() {
                 className="glass bg-background-secondary/80 border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300 text-center group relative z-10 glow-hover"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
+                  <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <p className="text-sm font-medium text-text-secondary mb-1">
                   {method.label}
@@ -87,12 +88,12 @@ export function Contact() {
                 <p className="text-sm text-text-muted break-all">
                   {method.value}
                 </p>
-              </motion.a>
+              </m.a>
             )
           })}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, translateY: 30 }}
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -103,10 +104,10 @@ export function Contact() {
             href="mailto:eduardo_nowa@hotmail.com"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl glow-hover"
           >
-            <Send className="w-5 h-5" />
+            <Send className="w-5 h-5" aria-hidden="true" />
             {t.contact.cta}
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
