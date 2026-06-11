@@ -129,6 +129,7 @@ describe('Header', () => {
     const mockSetTheme = jest.fn()
     jest.spyOn(require('next-themes'), 'useTheme').mockReturnValue({
       theme: 'dark',
+      resolvedTheme: 'dark',
       setTheme: mockSetTheme,
     })
 

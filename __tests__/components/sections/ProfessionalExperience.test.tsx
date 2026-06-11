@@ -37,10 +37,10 @@ describe('ProfessionalExperience', () => {
 
   it('should render four companies including Newfold and Merkle', () => {
     renderWithProviders(<ProfessionalExperience />)
-    expect(screen.getByText('Newfold Digital')).toBeInTheDocument()
-    expect(screen.getByText(/Merkle|Merkle \(Grupo Dentsu\)/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Newfold Digital' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: /Merkle/i })).toBeInTheDocument()
     expect(screen.getAllByText(/Compass/i).length).toBeGreaterThan(0)
-    expect(screen.getByText('NTT Data')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'NTT Data' })).toBeInTheDocument()
   })
 
   it('should render company positions', () => {

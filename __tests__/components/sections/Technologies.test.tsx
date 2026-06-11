@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react'
 import { Technologies } from '@/components/sections/Technologies'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 
-// Mock react-intersection-observer
 const mockUseInView = jest.fn()
 jest.mock('react-intersection-observer', () => ({
   useInView: () => mockUseInView(),
@@ -36,6 +35,14 @@ describe('Technologies', () => {
     expect(screen.getByText(/Stack técnico|Technical stack/i)).toBeInTheDocument()
   })
 
+  it('should render category headings', () => {
+    renderTechnologies()
+
+    expect(screen.getByText(/Frontend Core/i)).toBeInTheDocument()
+    expect(screen.getByText(/CMS & Backend/i)).toBeInTheDocument()
+    expect(screen.getByText(/State Management/i)).toBeInTheDocument()
+  })
+
   it('should render technology items', () => {
     renderTechnologies()
 
@@ -63,10 +70,9 @@ describe('Technologies', () => {
     expect(screen.getByText(/Tecnologias|Technologies/i)).toBeInTheDocument()
   })
 
-  it('should render all technology cards', () => {
+  it('should render core and secondary skills', () => {
     renderTechnologies()
 
-    // Check for multiple technologies
     const technologies = [
       'Vue.js',
       'Angular',
@@ -79,9 +85,8 @@ describe('Technologies', () => {
       'Cypress',
     ]
 
-    technologies.forEach(tech => {
+    technologies.forEach((tech) => {
       expect(screen.getByText(tech)).toBeInTheDocument()
     })
   })
 })
-

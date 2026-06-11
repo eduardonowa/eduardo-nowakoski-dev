@@ -72,5 +72,6 @@ describe('Translations', () => {
     expect(Object.keys(ptBR.hero)).toEqual(Object.keys(enUS.hero))
     expect(Object.keys(ptBR.about)).toEqual(Object.keys(enUS.about))
     expect(Object.keys(ptBR.experience.companies)).toEqual(Object.keys(enUS.experience.companies))
+    expect(Object.keys(ptBR.technologies.categories)).toEqual(Object.keys(enUS.technologies.categories))
   })
 })
