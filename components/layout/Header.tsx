@@ -1,6 +1,6 @@
 'use client'
 
-import ReactCountryFlag from 'react-country-flag'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { Moon, Sun, Menu, X } from 'lucide-react'
@@ -13,19 +13,17 @@ type FlagIconProps = {
 }
 
 export function FlagIcon({ locale }: Readonly<FlagIconProps>) {
-  const countryCode = locale === 'pt-BR' ? 'BR' : 'US'
-  const ariaLabel = locale === 'pt-BR' ? 'Brasil' : 'United States'
+  const flagSrc = locale === 'pt-BR' ? '/flags/br.svg' : '/flags/us.svg'
 
   return (
-    <ReactCountryFlag
-      svg
-      countryCode={countryCode}
-      aria-hidden="true"
-      title={ariaLabel}
-      style={{
-        width: '1.5rem',
-        height: '1.5rem',
-      }}
+    <Image
+      src={flagSrc}
+      alt=""
+      aria-hidden
+      width={24}
+      height={18}
+      unoptimized
+      className="w-6 h-[1.125rem] object-cover rounded-sm"
     />
   )
 }
@@ -91,8 +89,8 @@ export function Header() {
 
   return (
     <m.header
-      initial={{ translateY: -100 }}
-      animate={{ translateY: 0 }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || isMenuOpen
@@ -110,6 +108,8 @@ export function Header() {
                   key={item.id}
                   href={item.href}
                   onClick={() => handleNavClick(item.id)}
+                  aria-label={item.label}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
                     isActive ? 'text-primary' : 'text-text-secondary hover:text-primary'
                   }`}
@@ -117,11 +117,12 @@ export function Header() {
                   {isActive && (
                     <m.span
                       layoutId="nav-pill"
+                      aria-hidden="true"
                       className="absolute inset-0 bg-primary/10 rounded-lg"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <span className="relative z-10">{item.label}</span>
+                  {item.label}
                 </a>
               )
             })}
@@ -184,6 +185,8 @@ export function Header() {
                       handleNavClick(item.id)
                       setIsMenuOpen(false)
                     }}
+                    aria-label={item.label}
+                    aria-current={activeSection === item.id ? 'page' : undefined}
                     className={`py-2 text-sm font-medium transition-colors ${
                       activeSection === item.id ? 'text-primary' : 'text-text-secondary hover:text-primary'
                     }`}

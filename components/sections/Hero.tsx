@@ -4,7 +4,6 @@ import type React from 'react'
 import { useI18n } from '@/components/providers/I18nProvider'
 import { m } from 'framer-motion'
 import { ArrowDown, Briefcase, Code } from 'lucide-react'
-import { useInView } from 'react-intersection-observer'
 import { useMagnetic } from '@/hooks/useMagnetic'
 import { TextReveal } from '@/components/ui/TextReveal'
 import { Button } from '@/components/ui/Button'
@@ -117,7 +116,7 @@ function RotatingKeywords() {
 
   if (reducedMotion) {
     return (
-      <span className="text-accent font-semibold">
+      <span className="text-accent-dark font-semibold">
         {keywords.join(' · ')}
       </span>
     )
@@ -126,100 +125,67 @@ function RotatingKeywords() {
   return (
     <m.span
       key={current}
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.4 }}
-      className="inline-block text-accent font-semibold min-w-[8ch]"
+      className="inline-block text-accent-dark font-semibold min-w-[8ch]"
     >
       {current}
     </m.span>
   )
 }
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+}
+
+const containerVariants = {
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0 },
+  },
+}
+
+const nameVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
+}
+
 export function Hero() {
   const { t } = useI18n()
   const reducedMotion = useReducedMotion()
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0 },
-    },
-  }
-
-  const nameVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, translateY: 20 },
-    visible: {
-      opacity: 1,
-      translateY: 0,
-      transition: { duration: 0.6, delay: 0.8 },
-    },
-  }
-
-  return (
-    <section
-      id="home"
-      ref={ref}
-      aria-labelledby="hero-title"
-      className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-10"
-    >
-      <HeroCodeGrid />
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <m.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="text-center"
-        >
-          <m.h1
-            id="hero-title"
-            variants={nameVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-text mb-6"
-          >
-            <TextReveal splitBy="word">{t.hero.title}</TextReveal>
-          </m.h1>
-
-          <m.p variants={itemVariants} className="text-lg md:text-xl text-primary font-medium mb-4">
-            {t.hero.greeting}
-          </m.p>
-
-          <m.h2
-            variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-4 font-medium"
-          >
+  if (reducedMotion) {
+    return (
+      <section
+        id="home"
+        aria-labelledby="hero-title"
+        className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-10"
+      >
+        <HeroCodeGrid />
+        <div className="container mx-auto max-w-4xl relative z-10 text-center">
+          <h1 id="hero-title" className="text-4xl md:text-6xl lg:text-7xl font-bold text-text mb-6">
+            {t.hero.title}
+          </h1>
+          <p className="text-lg md:text-xl text-primary font-medium mb-4">{t.hero.greeting}</p>
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-4 font-medium">
             {t.hero.subtitle}
-          </m.h2>
-
-          <m.p variants={itemVariants} className="text-base md:text-lg text-text-muted mb-6">
+          </h2>
+          <p className="text-base md:text-lg text-text-muted mb-6">
             <RotatingKeywords />
-          </m.p>
-
-          <m.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
+          </p>
+          <p className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto leading-relaxed">
             {t.hero.description}
-          </m.p>
-
-          <m.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <MagneticButton href="#experience" variant="primary">
               <Briefcase className="w-5 h-5" aria-hidden="true" />
               {t.hero.ctaProjects}
@@ -228,24 +194,89 @@ export function Hero() {
               <Code className="w-5 h-5" aria-hidden="true" />
               {t.hero.ctaContact}
             </MagneticButton>
+          </div>
+          <div className="mt-16">
+            <a href="#about" className="inline-block" aria-label={t.a11y.scrollDown}>
+              <ArrowDown className="w-6 h-6 text-text-muted hover:text-primary transition-colors" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section
+      id="home"
+      aria-labelledby="hero-title"
+      className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-10"
+    >
+      <HeroCodeGrid />
+      <div className="container mx-auto max-w-4xl relative z-10">
+        <div className="text-center">
+          <m.div initial="visible" animate="visible" variants={containerVariants}>
+            <m.h1
+              id="hero-title"
+              variants={nameVariants}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-text mb-6"
+            >
+              <TextReveal splitBy="word">{t.hero.title}</TextReveal>
+            </m.h1>
+
+            <m.p variants={itemVariants} className="text-lg md:text-xl text-primary font-medium mb-4">
+              {t.hero.greeting}
+            </m.p>
+
+            <m.h2
+              variants={itemVariants}
+              className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-4 font-medium"
+            >
+              {t.hero.subtitle}
+            </m.h2>
+
+            <m.p variants={itemVariants} className="text-base md:text-lg text-text-muted mb-6">
+              <RotatingKeywords />
+            </m.p>
           </m.div>
 
-          <m.div variants={itemVariants} className="mt-16">
-            <m.a
-              href="#about"
-              animate={reducedMotion ? undefined : { y: [0, 10, 0] }}
-              transition={
-                reducedMotion
-                  ? undefined
-                  : { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-              }
-              className="inline-block"
-              aria-label={t.a11y.scrollDown}
-            >
-              <ArrowDown className="w-6 h-6 text-text-muted hover:text-primary transition-colors" aria-hidden="true" />
-            </m.a>
+          <p className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto leading-relaxed">
+            {t.hero.description}
+          </p>
+
+          <m.div
+            initial="visible"
+            animate="visible"
+            variants={containerVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <m.div variants={itemVariants}>
+              <MagneticButton href="#experience" variant="primary">
+                <Briefcase className="w-5 h-5" aria-hidden="true" />
+                {t.hero.ctaProjects}
+              </MagneticButton>
+            </m.div>
+            <m.div variants={itemVariants}>
+              <MagneticButton href="#contact" variant="outline">
+                <Code className="w-5 h-5" aria-hidden="true" />
+                {t.hero.ctaContact}
+              </MagneticButton>
+            </m.div>
           </m.div>
-        </m.div>
+
+          <m.div initial="visible" animate="visible" variants={containerVariants} className="mt-16">
+            <m.div variants={itemVariants}>
+              <m.a
+                href="#about"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                className="inline-block"
+                aria-label={t.a11y.scrollDown}
+              >
+                <ArrowDown className="w-6 h-6 text-text-muted hover:text-primary transition-colors" aria-hidden="true" />
+              </m.a>
+            </m.div>
+          </m.div>
+        </div>
       </div>
     </section>
   )

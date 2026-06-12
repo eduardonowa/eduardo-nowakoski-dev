@@ -23,9 +23,9 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-on-primary hover:bg-primary-dark shadow-md hover:shadow-lg',
+    'bg-primary-dark text-on-primary hover:bg-primary shadow-md hover:shadow-lg',
   outline:
-    'border-2 border-primary text-primary bg-background hover:bg-primary hover:text-on-primary',
+    'border-2 border-primary-dark text-primary-dark bg-background hover:bg-primary-dark hover:text-on-primary',
 }
 
 function getButtonClasses(variant: ButtonVariant, size: ButtonSize, className: string) {
