@@ -4,6 +4,14 @@ import { I18nProvider } from '@/components/providers/I18nProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { MotionProvider } from '@/components/providers/MotionProvider'
 
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: { src: string; alt: string; title?: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={props.src} alt={props.alt} title={props.title} />
+  ),
+}))
+
 jest.mock('@/hooks/useScrollSpy', () => ({
   useScrollSpy: () => ({
     activeId: 'home',

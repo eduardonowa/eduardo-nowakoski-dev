@@ -1,6 +1,6 @@
 'use client'
 
-import ReactCountryFlag from 'react-country-flag'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { Moon, Sun, Menu, X } from 'lucide-react'
@@ -13,19 +13,18 @@ type FlagIconProps = {
 }
 
 export function FlagIcon({ locale }: Readonly<FlagIconProps>) {
-  const countryCode = locale === 'pt-BR' ? 'BR' : 'US'
+  const flagSrc = locale === 'pt-BR' ? '/flags/br.svg' : '/flags/us.svg'
   const ariaLabel = locale === 'pt-BR' ? 'Brasil' : 'United States'
 
   return (
-    <ReactCountryFlag
-      svg
-      countryCode={countryCode}
+    <Image
+      src={flagSrc}
+      alt=""
       aria-hidden="true"
       title={ariaLabel}
-      style={{
-        width: '1.5rem',
-        height: '1.5rem',
-      }}
+      width={24}
+      height={18}
+      className="w-6 h-[1.125rem] object-cover rounded-sm"
     />
   )
 }
