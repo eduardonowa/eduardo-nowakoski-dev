@@ -28,6 +28,12 @@
     "react-dom": "^18.3.0",
     "react-intersection-observer": "^9.5.3"
   },
+  "browserslist": [
+    "chrome >= 92",
+    "edge >= 92",
+    "firefox >= 90",
+    "safari >= 15"
+  ],
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
     "@next/bundle-analyzer": "^16.2.9",
