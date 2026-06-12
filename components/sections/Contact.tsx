@@ -70,6 +70,7 @@ export function Contact() {
               <m.a
                 key={method.label}
                 href={method.href}
+                aria-label={`${method.label}: ${method.value}`}
                 target={method.href.startsWith('http') ? '_blank' : undefined}
                 rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 initial={{ opacity: 0, scale: 0.9 }}

@@ -6,7 +6,7 @@ export function SkipLink() {
   const { t } = useI18n()
 
   return (
-    <a href="#main-content" className="skip-link">
+    <a href="#main-content" className="skip-link" aria-label={t.a11y.skipToContent}>
       {t.a11y.skipToContent}
     </a>
   )
