@@ -23,8 +23,8 @@ export function TextReveal({ children, className = '', delay = 0, splitBy = 'wor
       {words.map((word, index) => (
         <m.span
           key={index}
-          initial={{ opacity: 0, translateY: 20 }}
-          animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 20 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{
             duration: 0.3,
             delay: delay + index * 0.05,
