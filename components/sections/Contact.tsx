@@ -4,7 +4,7 @@ import { useI18n } from '@/components/providers/I18nProvider'
 import { CONTACT } from '@/lib/constants/contact'
 import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Mail, Phone, Linkedin, Github, Send, MessageCircle } from 'lucide-react'
+import { Mail, Linkedin, Github, Send, MessageCircle } from 'lucide-react'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
@@ -22,12 +22,6 @@ export function Contact() {
       label: t.contact.email,
       value: CONTACT.email,
       href: `mailto:${CONTACT.email}`,
-    },
-    {
-      icon: Phone,
-      label: t.contact.phone,
-      value: CONTACT.phoneDisplay,
-      href: CONTACT.whatsappUrl,
     },
     {
       icon: Linkedin,
@@ -66,7 +60,7 @@ export function Contact() {
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           style={{ willChange: inView ? 'transform, opacity' : 'auto' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-3xl mx-auto"
         >
           {contactMethods.map((method, index) => {
             const Icon = method.icon

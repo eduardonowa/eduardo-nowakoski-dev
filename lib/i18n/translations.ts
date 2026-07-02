@@ -221,7 +221,6 @@ export interface Translations {
     title: string;
     subtitle: string;
     email: string;
-    phone: string;
     linkedin: string;
     github: string;
     cta: string;
@@ -639,7 +638,6 @@ export const translations: Record<Locale, Translations> = {
       title: 'Entre em Contato',
       subtitle: 'Vamos conversar sobre oportunidades e projetos',
       email: 'Email',
-      phone: 'Telefone',
       linkedin: 'LinkedIn',
       github: 'GitHub',
       cta: 'Enviar Mensagem',
@@ -1055,7 +1053,6 @@ export const translations: Record<Locale, Translations> = {
       title: 'Get in Touch',
       subtitle: "Let's talk about opportunities and projects",
       email: 'Email',
-      phone: 'Phone',
       linkedin: 'LinkedIn',
       github: 'GitHub',
       cta: 'Send Message',
