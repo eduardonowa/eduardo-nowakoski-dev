@@ -3,6 +3,7 @@ import { Header, FlagIcon } from '@/components/layout/Header'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { MotionProvider } from '@/components/providers/MotionProvider'
+import { ScrollProvider } from '@/components/providers/ScrollProvider'
 
 jest.mock('next/image', () => ({
   __esModule: true,
@@ -24,7 +25,9 @@ const renderHeader = () => {
     <ThemeProvider>
       <I18nProvider>
         <MotionProvider>
-          <Header />
+          <ScrollProvider>
+            <Header />
+          </ScrollProvider>
         </MotionProvider>
       </I18nProvider>
     </ThemeProvider>
@@ -33,7 +36,7 @@ const renderHeader = () => {
 
 describe('Header', () => {
   beforeEach(() => {
-    // Mock window.scrollY
+    localStorage.clear()
     Object.defineProperty(window, 'scrollY', {
       writable: true,
       value: 0,
@@ -46,7 +49,7 @@ describe('Header', () => {
 
     expect(screen.getByText(/Início|Home/i)).toBeInTheDocument()
     expect(screen.getByText(/Sobre|About/i)).toBeInTheDocument()
-    expect(screen.getByText(/Histórico|History/i)).toBeInTheDocument()
+    expect(screen.getByText(/Experiência|Work Experience/i)).toBeInTheDocument()
     expect(screen.getByText(/Projetos|Projects/i)).toBeInTheDocument()
   })
 
@@ -119,7 +122,7 @@ describe('Header', () => {
 
     await waitFor(() => {
       // Menu should close; re-query so we don't use a stale reference
-      expect(screen.getByLabelText(/toggle menu/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/Alternar menu|Toggle menu/i)).toBeInTheDocument()
     })
   })
 
@@ -231,7 +234,7 @@ describe('Header', () => {
 
     // Menu should close (onClick handler should be called); re-query so we don't use a stale reference
     await waitFor(() => {
-      expect(screen.getByLabelText(/toggle menu/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/Alternar menu|Toggle menu/i)).toBeInTheDocument()
     })
   })
 

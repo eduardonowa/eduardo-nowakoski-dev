@@ -3,10 +3,12 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, Github, Linkedin } from 'lucide-react'
 import { useI18n } from '@/components/providers/I18nProvider'
+import { CONTACT } from '@/lib/constants/contact'
 import { m, AnimatePresence } from 'framer-motion'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
+import { useScroll } from '@/components/providers/ScrollProvider'
 
 type FlagIconProps = {
   locale: 'pt-BR' | 'en-US'
@@ -40,11 +42,12 @@ const NAV_SECTION_IDS = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const { locale, setLocale, t } = useI18n()
   const { activeId: activeSection, pinSection } = useScrollSpy([...NAV_SECTION_IDS])
+  const { scrollY } = useScroll()
+  const scrolled = scrollY > 20
 
   const handleNavClick = (sectionId: string) => {
     pinSection(sectionId)
@@ -56,22 +59,6 @@ export function Header() {
 
   // Match defaultTheme="dark" on SSR to avoid Sun/Moon hydration mismatch
   const isDark = !mounted || resolvedTheme === 'dark'
-
-  useEffect(() => {
-    let ticking = false
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 20)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const toggleLocale = () => {
     setLocale(locale === 'pt-BR' ? 'en-US' : 'pt-BR')
@@ -108,7 +95,6 @@ export function Header() {
                   key={item.id}
                   href={item.href}
                   onClick={() => handleNavClick(item.id)}
-                  aria-label={item.label}
                   aria-current={isActive ? 'page' : undefined}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
                     isActive ? 'text-primary' : 'text-text-secondary hover:text-primary'
@@ -129,6 +115,24 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-3 ml-auto md:ml-0">
+            <a
+              href={CONTACT.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-background-secondary transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" aria-hidden="true" />
+            </a>
+            <a
+              href={CONTACT.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-background-secondary transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" aria-hidden="true" />
+            </a>
             <button
               type="button"
               onClick={toggleLocale}
@@ -185,7 +189,6 @@ export function Header() {
                       handleNavClick(item.id)
                       setIsMenuOpen(false)
                     }}
-                    aria-label={item.label}
                     aria-current={activeSection === item.id ? 'page' : undefined}
                     className={`py-2 text-sm font-medium transition-colors ${
                       activeSection === item.id ? 'text-primary' : 'text-text-secondary hover:text-primary'
