@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Eduardo Nowakoski | Senior Front-End Engineer'
+export const alt = 'Eduardo Nowakoski | Senior AEM & Front-End Engineer'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -37,7 +37,7 @@ export default function OpenGraphImage() {
             marginBottom: 32,
           }}
         >
-          Senior Front-End Engineer
+          Senior AEM & Front-End Engineer
         </div>
         <div
           style={{
@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
             color: '#A8A29E',
           }}
         >
-          React · Next.js · Vue.js · Angular · TypeScript
+          AEM Cloud · HTL · Sling Models · React · Next.js
         </div>
       </div>
     ),

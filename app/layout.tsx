@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { I18nProvider } from '@/components/providers/I18nProvider'
 import { MotionProvider } from '@/components/providers/MotionProvider'
+import { ScrollProvider } from '@/components/providers/ScrollProvider'
 import { SkipLink } from '@/components/ui/SkipLink'
 import JsonLd from '@/components/seo/JsonLd'
 
@@ -16,9 +17,9 @@ const inter = Inter({
 })
 
 const siteUrl = 'https://eduardonowakoski.dev'
-const defaultTitle = 'Eduardo Nowakoski | Senior Front-End Engineer'
+const defaultTitle = 'Eduardo Nowakoski | Senior AEM & Front-End Engineer'
 const defaultDescription =
-  'Senior Front-End Engineer specialized in React, Next.js, Vue.js, Angular, TypeScript, microfrontends, and AEM integration. Enterprise web applications with measurable performance impact.'
+  'Senior AEM Engineer specializing in Adobe Experience Manager, HTL, Sling Models, OSGi, and modern front-end integration with React, Next.js, Angular, and TypeScript. Enterprise CMS architecture with measurable performance impact.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,7 +29,15 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   keywords: [
+    'Senior AEM Engineer',
     'Senior Front-End Engineer',
+    'Adobe Experience Manager',
+    'AEM Cloud Service',
+    'HTL',
+    'Sling Models',
+    'OSGi',
+    'JCR',
+    'Dispatcher',
     'React',
     'Next.js',
     'Vue.js',
@@ -53,8 +62,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'pt-BR': '/',
       'en-US': '/',
+      'pt-BR': '/',
     },
   },
   openGraph: {
@@ -63,8 +72,8 @@ export const metadata: Metadata = {
     siteName: 'Eduardo Nowakoski Portfolio',
     title: defaultTitle,
     description: defaultDescription,
-    locale: 'pt_BR',
-    alternateLocale: 'en_US',
+    locale: 'en_US',
+    alternateLocale: 'pt_BR',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: defaultTitle }],
   },
   twitter: {
@@ -85,14 +94,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
         <JsonLd />
         <ThemeProvider>
           <I18nProvider>
             <MotionProvider>
-              <SkipLink />
-              {children}
+              <ScrollProvider>
+                <SkipLink />
+                {children}
+              </ScrollProvider>
             </MotionProvider>
           </I18nProvider>
         </ThemeProvider>

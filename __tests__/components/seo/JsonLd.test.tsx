@@ -13,10 +13,11 @@ describe('JsonLd', () => {
 
     expect(person['@type']).toBe('Person')
     expect(person.name).toBe('Eduardo Lopes Nowakoski')
-    expect(person.knowsAbout).toEqual(expect.arrayContaining(['React', 'Newfold Digital', 'Vivo']))
+    expect(person.jobTitle).toBe('Senior AEM & Front-End Engineer')
+    expect(person.knowsAbout).toEqual(expect.arrayContaining(['Adobe Experience Manager', 'HTL', 'Newfold Digital']))
 
     expect(website['@type']).toBe('WebSite')
     expect(website.url).toBe('https://eduardonowakoski.dev')
-    expect(website.inLanguage).toEqual(['pt-BR', 'en-US'])
+    expect(website.inLanguage).toEqual(['en-US', 'pt-BR'])
   })
 })
