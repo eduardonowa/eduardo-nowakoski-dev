@@ -38,5 +38,8 @@ next-env.d.ts
 # lighthouse reports
 localhost_*.json
 
+# java build artifacts
+**/target/
+
 *storybook.log
 storybook-static
