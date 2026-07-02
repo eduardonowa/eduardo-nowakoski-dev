@@ -26,6 +26,9 @@ describe('Translations', () => {
     expect(ptBR.footer).toBeDefined()
     expect(ptBR.a11y).toBeDefined()
     expect(ptBR.metrics).toBeDefined()
+    expect(ptBR.caseStudy).toBeDefined()
+    expect(ptBR.aemArchitecture).toBeDefined()
+    expect(ptBR.technologies.items).toBeDefined()
   })
 
   it('should have updated company keys with logos', () => {
@@ -61,7 +64,7 @@ describe('Translations', () => {
 
     expect(COMPANY_ASSETS.newfold.src).toBe('/companies/newfold.svg')
     expect(COMPANY_ASSETS.ntt.src).toBe('/companies/ntt-data.svg')
-    expect(COMPANY_ASSETS.merkle.src).toBe('/companies/dentsu.svg')
+    expect(COMPANY_ASSETS.merkle.src).toBe('/companies/merkle.svg')
     expect(COMPANY_ASSETS.compass.src).toBe('/companies/compass-uol.svg')
   })
 
@@ -74,8 +77,10 @@ describe('Translations', () => {
     expect(Object.keys(ptBR.about)).toEqual(Object.keys(enUS.about))
     expect(Object.keys(ptBR.experience.companies)).toEqual(Object.keys(enUS.experience.companies))
     expect(Object.keys(ptBR.technologies.categories)).toEqual(Object.keys(enUS.technologies.categories))
-    expect(Object.keys(ptBR.aiWorkflow.agents)).toEqual(Object.keys(enUS.aiWorkflow.agents))
+    expect(Object.keys(ptBR.technologies.items)).toEqual(Object.keys(enUS.technologies.items))
+    expect(ptBR.experience.projects.telecom.links).toEqual([])
     expect(ptBR.aiWorkflow.workflow).toHaveLength(7)
     expect(enUS.aiWorkflow.workflow).toHaveLength(7)
+    expect(ptBR.aiWorkflow.tools).toEqual(enUS.aiWorkflow.tools)
   })
 })

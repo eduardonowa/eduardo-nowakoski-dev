@@ -12,15 +12,14 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('pt-BR')
-  const [mounted, setMounted] = useState(false)
+  const [locale, setLocaleState] = useState<Locale>('en-US')
 
   useEffect(() => {
-    setMounted(true)
     const savedLocale = localStorage.getItem('locale') as Locale | null
     if (savedLocale && (savedLocale === 'pt-BR' || savedLocale === 'en-US')) {
       setLocaleState(savedLocale)
     }
+    document.documentElement.lang = savedLocale ?? 'en-US'
   }, [])
 
   const setLocale = (newLocale: Locale) => {
