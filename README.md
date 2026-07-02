@@ -268,7 +268,6 @@ This project is private and personal.
 
 - 📧 Email: contact@eduardonowakoski.dev
 - 💼 LinkedIn: [linkedin.com/in/eduardo-nowakoski-1598071a4](https://linkedin.com/in/eduardo-nowakoski-1598071a4)
-- 📱 Phone: +55 54 99648-5010
 
 ---
 

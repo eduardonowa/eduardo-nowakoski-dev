@@ -34,7 +34,6 @@ describe('Contact', () => {
     renderContact()
 
     expect(screen.getByText(/^Email$/i)).toBeInTheDocument()
-    expect(screen.getByText(/^Phone$|^Telefone$/i)).toBeInTheDocument()
     expect(screen.getByText(/^LinkedIn$/i)).toBeInTheDocument()
     expect(screen.getByText(/^GitHub$/i)).toBeInTheDocument()
   })
@@ -47,10 +46,8 @@ describe('Contact', () => {
 
     // Phone and LinkedIn might be in different format, so check if links exist
     const links = screen.getAllByRole('link')
-    const phoneLink = links.find(link => link.getAttribute('href')?.includes('wa.me'))
     const linkedinLink = links.find(link => link.getAttribute('href')?.includes('linkedin.com'))
 
-    expect(phoneLink).toBeDefined()
     expect(linkedinLink).toBeDefined()
   })
 
