@@ -33,17 +33,17 @@ describe('Contact', () => {
   it('should render contact methods', () => {
     renderContact()
 
-    expect(screen.getByText(/Email/i)).toBeInTheDocument()
-    expect(screen.getByText(/Phone|Telefone/i)).toBeInTheDocument()
-    // Usa correspondência exata para evitar colisão com a URL do LinkedIn
+    expect(screen.getByText(/^Email$/i)).toBeInTheDocument()
+    expect(screen.getByText(/^Phone$|^Telefone$/i)).toBeInTheDocument()
     expect(screen.getByText(/^LinkedIn$/i)).toBeInTheDocument()
+    expect(screen.getByText(/^GitHub$/i)).toBeInTheDocument()
   })
 
   it('should have correct contact links', () => {
     renderContact()
 
-    const emailLink = screen.getByText(/eduardo_nowa@hotmail.com/i)
-    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:eduardo_nowa@hotmail.com')
+    const emailLink = screen.getByText(/contact@eduardonowakoski.dev/i)
+    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:contact@eduardonowakoski.dev')
 
     // Phone and LinkedIn might be in different format, so check if links exist
     const links = screen.getAllByRole('link')
@@ -90,7 +90,7 @@ describe('Contact', () => {
   it('should not add target and rel to mailto links', () => {
     renderContact()
 
-    const emailLink = screen.getByText(/eduardo_nowa@hotmail.com/i).closest('a')
+    const emailLink = screen.getByText(/contact@eduardonowakoski.dev/i).closest('a')
     expect(emailLink).not.toHaveAttribute('target')
     expect(emailLink).not.toHaveAttribute('rel')
   })
