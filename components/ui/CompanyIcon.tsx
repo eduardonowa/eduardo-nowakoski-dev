@@ -1,6 +1,6 @@
 import type { CompanyId } from '@/lib/i18n/translations'
 import { COMPANY_ASSETS } from '@/lib/i18n/translations'
-import { LogoTile } from '@/components/ui/LogoTile'
+import { AssetLogo } from '@/components/ui/AssetLogo'
 
 const COMPANY_NEEDS_CONTRAST: Record<CompanyId, boolean> = {
   newfold: true,
@@ -30,17 +30,16 @@ export function CompanyIcon({
   const asset = COMPANY_ASSETS[company]
 
   return (
-    <LogoTile className={className} contrast={COMPANY_NEEDS_CONTRAST[company]}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={asset.src}
-        alt={asset.alt}
-        width={160}
-        height={48}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        className={`block object-contain object-left ${COMPANY_SIZE_CLASSES[size]}`}
-      />
-    </LogoTile>
+    <AssetLogo
+      src={asset.src}
+      alt={asset.alt}
+      contrast={COMPANY_NEEDS_CONTRAST[company]}
+      priority={priority}
+      size={size}
+      className={className}
+      width={160}
+      height={48}
+      sizeClasses={COMPANY_SIZE_CLASSES}
+    />
   )
 }
