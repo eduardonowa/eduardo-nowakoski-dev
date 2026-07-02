@@ -1,22 +1,30 @@
-const siteUrl = 'https://eduardonowakoski.dev'
+import { CONTACT } from '@/lib/constants/contact'
+
+const siteUrl = CONTACT.siteUrl
 
 export default function JsonLd() {
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Eduardo Lopes Nowakoski',
-    jobTitle: 'Senior Front-End Engineer',
+    jobTitle: 'Senior AEM & Front-End Engineer',
     url: siteUrl,
-    email: 'eduardo_nowa@hotmail.com',
-    sameAs: ['https://www.linkedin.com/in/eduardonowakoski/'],
+    email: CONTACT.email,
+    sameAs: [CONTACT.linkedinUrl, CONTACT.githubUrl],
     knowsAbout: [
+      'Adobe Experience Manager',
+      'AEM Cloud Service',
+      'HTL',
+      'Sling Models',
+      'OSGi',
+      'JCR',
+      'Dispatcher',
       'React',
       'Next.js',
       'Vue.js',
       'Angular',
       'TypeScript',
       'Microfrontends',
-      'Adobe Experience Manager',
       'Performance Optimization',
       'Vivo',
       'Stellantis',
@@ -35,7 +43,7 @@ export default function JsonLd() {
     '@type': 'WebSite',
     name: 'Eduardo Nowakoski Portfolio',
     url: siteUrl,
-    inLanguage: ['pt-BR', 'en-US'],
+    inLanguage: ['en-US', 'pt-BR'],
   }
 
   return (

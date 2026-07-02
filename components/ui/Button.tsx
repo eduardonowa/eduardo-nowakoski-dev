@@ -2,12 +2,12 @@ import { forwardRef, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type 
 
 type ButtonVariant = 'primary' | 'outline'
 type ButtonSize = 'md' | 'lg'
-
 type BaseProps = {
   variant?: ButtonVariant
   size?: ButtonSize
   className?: string
   children: ReactNode
+  download?: string | boolean
 }
 
 export type ButtonProps = BaseProps &
@@ -25,7 +25,10 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary:
     'bg-primary-dark text-on-primary hover:bg-primary shadow-md hover:shadow-lg',
   outline:
-    'border-2 border-primary-dark text-primary-dark bg-background hover:bg-primary-dark hover:text-on-primary',
+    'border-2 border-primary-dark text-primary-dark bg-background ' +
+    'dark:border-primary-light dark:text-primary-light ' +
+    'hover:bg-primary-dark hover:text-on-primary ' +
+    'dark:hover:bg-primary-light dark:hover:text-on-primary',
 }
 
 function getButtonClasses(variant: ButtonVariant, size: ButtonSize, className: string) {

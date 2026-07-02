@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/components/providers/I18nProvider'
+import { useScroll } from '@/components/providers/ScrollProvider'
 import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Briefcase, Calendar } from 'lucide-react'
 import { CompanyIcon } from '@/components/ui/CompanyIcon'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import type { BrandId, CompanyId } from '@/lib/i18n/translations'
 
 export function ProfessionalExperience() {
@@ -25,9 +27,9 @@ export function ProfessionalExperience() {
     [inViewRef]
   )
 
-  useEffect(() => {
-    let ticking = false
+  const { scrollY } = useScroll()
 
+  useEffect(() => {
     const updateProgress = () => {
       const el = sectionRef.current
       if (!el) return
@@ -39,20 +41,8 @@ export function ProfessionalExperience() {
       setLineProgress(progress)
     }
 
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          updateProgress()
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
     updateProgress()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [scrollY])
 
   const companies: Array<{
     id: string
@@ -84,14 +74,15 @@ export function ProfessionalExperience() {
           initial={{ opacity: 0, translateY: 30 }}
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 text-primary mb-4">
-            <Briefcase className="w-6 h-6" aria-hidden="true" />
-            <h2 id="professional-experience-title" className="text-3xl md:text-4xl font-bold text-text">
-              {t.experience.professionalTitle}
-            </h2>
-          </div>
+          <SectionHeading
+            icon={Briefcase}
+            title={t.experience.professionalTitle}
+            titleId="professional-experience-title"
+          />
+          <p className="text-sm text-text-muted text-center max-w-3xl mx-auto -mt-8 mb-12 leading-relaxed">
+            {t.experience.timelineNote}
+          </p>
         </m.div>
 
         <div className="relative">
@@ -130,7 +121,7 @@ export function ProfessionalExperience() {
                     <div className="mb-4 space-y-3 border-b border-border/40 pb-4">
                       <CompanyIcon company={company.logo} priority={index === 0} size="lg" />
                       <div>
-                        <h3 className="sr-only">{company.company}</h3>
+                        <h3 className="text-lg font-semibold text-text mb-1">{company.company}</h3>
                         <p className="text-sm font-medium text-primary mb-1">{company.position}</p>
                         {company.progression && (
                           <p className="text-xs text-text-muted mb-1">{company.progression}</p>

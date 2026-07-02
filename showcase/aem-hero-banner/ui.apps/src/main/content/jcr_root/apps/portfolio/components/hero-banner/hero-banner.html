@@ -1,0 +1,15 @@
+<sly data-sly-use.model="com.eduardonowa.aem.models.HeroBannerModel"
+     data-sly-test="${model.title}">
+  <section class="cmp-hero-banner" data-cmp-is="hero-banner">
+    <h1 class="cmp-hero-banner__title">${model.title @ context='html'}</h1>
+    <p class="cmp-hero-banner__subtitle" data-sly-test="${model.subtitle}">
+      ${model.subtitle @ context='html'}
+    </p>
+    <a data-sly-test="${model.hasCta}"
+       class="cmp-hero-banner__cta"
+       href="${model.ctaLink @ context='uri'}"
+       aria-label="${model.ctaLabel @ context='attribute'}">
+      ${model.ctaLabel @ context='html'}
+    </a>
+  </section>
+</sly>

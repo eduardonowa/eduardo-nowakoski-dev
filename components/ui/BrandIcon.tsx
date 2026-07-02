@@ -1,6 +1,6 @@
 import type { BrandId } from '@/lib/i18n/translations'
 import { BRAND_ASSETS } from '@/lib/i18n/translations'
-import { LogoTile } from '@/components/ui/LogoTile'
+import { AssetLogo } from '@/components/ui/AssetLogo'
 
 const BRAND_NEEDS_CONTRAST: Record<BrandId, boolean> = {
   stellantis: true,
@@ -29,17 +29,16 @@ export function BrandIcon({
   const asset = BRAND_ASSETS[brand]
 
   return (
-    <LogoTile className={className} contrast={BRAND_NEEDS_CONTRAST[brand]}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={asset.src}
-        alt={asset.alt}
-        width={140}
-        height={40}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        className={`block object-contain object-left ${BRAND_SIZE_CLASSES[size]}`}
-      />
-    </LogoTile>
+    <AssetLogo
+      src={asset.src}
+      alt={asset.alt}
+      contrast={BRAND_NEEDS_CONTRAST[brand]}
+      priority={priority}
+      size={size}
+      className={className}
+      width={140}
+      height={40}
+      sizeClasses={BRAND_SIZE_CLASSES}
+    />
   )
 }

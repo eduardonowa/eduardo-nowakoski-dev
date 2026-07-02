@@ -1,9 +1,12 @@
 'use client'
 
 import { useI18n } from '@/components/providers/I18nProvider'
+import { CONTACT } from '@/lib/constants/contact'
 import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Mail, Phone, Linkedin, Send } from 'lucide-react'
+import { Mail, Phone, Linkedin, Github, Send, MessageCircle } from 'lucide-react'
+import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
 
 export function Contact() {
@@ -17,20 +20,26 @@ export function Contact() {
     {
       icon: Mail,
       label: t.contact.email,
-      value: 'eduardo_nowa@hotmail.com',
-      href: 'mailto:eduardo_nowa@hotmail.com',
+      value: CONTACT.email,
+      href: `mailto:${CONTACT.email}`,
     },
     {
       icon: Phone,
       label: t.contact.phone,
-      value: '+55 54 99648-5010',
-      href: 'https://wa.me/5554996485010',
+      value: CONTACT.phoneDisplay,
+      href: CONTACT.whatsappUrl,
     },
     {
       icon: Linkedin,
       label: t.contact.linkedin,
-      value: 'linkedin.com/in/eduardonowakoski',
-      href: 'https://www.linkedin.com/in/eduardonowakoski/',
+      value: CONTACT.linkedinDisplay,
+      href: CONTACT.linkedinUrl,
+    },
+    {
+      icon: Github,
+      label: t.contact.github,
+      value: CONTACT.githubDisplay,
+      href: CONTACT.githubUrl,
     },
   ]
 
@@ -41,28 +50,23 @@ export function Contact() {
       aria-labelledby="contact-title"
       className="py-section section-surface relative z-10 content-auto"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-        <m.div
-          initial={{ opacity: 0, translateY: 30 }}
-          animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
-          transition={{ duration: 0.6 }}
-          style={{ willChange: inView ? 'transform, opacity' : 'auto' }}
-          className="text-center mb-12"
-        >
-          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-text mb-4">
-            {t.contact.title}
-          </h2>
-          <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            {t.contact.subtitle}
-          </p>
-        </m.div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10">
+        <AnimatedSection className="mb-12">
+          <SectionHeading
+            icon={MessageCircle}
+            title={t.contact.title}
+            titleId="contact-title"
+            subtitle={t.contact.subtitle}
+            className="mb-0"
+          />
+        </AnimatedSection>
 
         <m.div
           initial={{ opacity: 0, translateY: 30 }}
           animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           style={{ willChange: inView ? 'transform, opacity' : 'auto' }}
-          className="grid md:grid-cols-3 gap-6 mb-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
           {contactMethods.map((method, index) => {
             const Icon = method.icon
@@ -84,29 +88,19 @@ export function Contact() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
-                <p className="text-sm font-medium text-text-secondary mb-1">
-                  {method.label}
-                </p>
-                <p className="text-sm text-text-muted break-all">
-                  {method.value}
-                </p>
+                <p className="text-sm font-medium text-text-secondary mb-1">{method.label}</p>
+                <p className="text-sm text-text-muted break-all">{method.value}</p>
               </m.a>
             )
           })}
         </m.div>
 
-        <m.div
-          initial={{ opacity: 0, translateY: 30 }}
-          animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          style={{ willChange: inView ? 'transform, opacity' : 'auto' }}
-          className="text-center"
-        >
-          <Button href="mailto:eduardo_nowa@hotmail.com" className="glow-hover">
+        <AnimatedSection delay={0.5} className="text-center">
+          <Button href={`mailto:${CONTACT.email}`} className="glow-hover">
             <Send className="w-5 h-5" aria-hidden="true" />
             {t.contact.cta}
           </Button>
-        </m.div>
+        </AnimatedSection>
       </div>
     </section>
   )

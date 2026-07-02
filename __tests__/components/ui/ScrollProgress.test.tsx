@@ -1,11 +1,14 @@
 import { render, screen, waitFor, act } from '@testing-library/react'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { I18nProvider } from '@/components/providers/I18nProvider'
+import { ScrollProvider } from '@/components/providers/ScrollProvider'
 
 const renderScrollProgress = () =>
   render(
     <I18nProvider>
-      <ScrollProgress />
+      <ScrollProvider>
+        <ScrollProgress />
+      </ScrollProvider>
     </I18nProvider>
   )
 
@@ -38,26 +41,22 @@ describe('ScrollProgress', () => {
   it('should update progress on scroll', async () => {
     renderScrollProgress()
 
-    // Wait for component to mount
     await waitFor(() => {
       expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
     })
 
-    // Simulate scroll (wrap in act to flush setState from scroll handler)
     act(() => {
       Object.defineProperty(document.documentElement, 'scrollTop', {
         writable: true,
         value: 500,
         configurable: true,
       })
-      const scrollEvent = new Event('scroll', { bubbles: true })
-      window.dispatchEvent(scrollEvent)
+      window.dispatchEvent(new Event('scroll', { bubbles: true }))
     })
 
-    // Component should handle scroll
     await waitFor(() => {
       expect(document.documentElement.scrollTop).toBe(500)
-    }, { timeout: 1000 })
+    })
   })
 
   it('should throttle scroll events using requestAnimationFrame', async () => {
@@ -65,43 +64,23 @@ describe('ScrollProgress', () => {
       cb(0)
       return 0
     })
-    
+
     renderScrollProgress()
 
     await waitFor(() => {
       expect(screen.getByTestId('scroll-progress-bar')).toBeInTheDocument()
     })
 
-    // First scroll event - ticking should be false, so should enter if (!ticking)
     act(() => {
       Object.defineProperty(document.documentElement, 'scrollTop', {
         writable: true,
         value: 100,
         configurable: true,
       })
-      const scrollEvent1 = new Event('scroll', { bubbles: true })
-      window.dispatchEvent(scrollEvent1)
+      window.dispatchEvent(new Event('scroll', { bubbles: true }))
     })
 
-    // Should use requestAnimationFrame (covers the if (!ticking) branch)
     await waitFor(() => {
-      expect(rafSpy).toHaveBeenCalled()
-    })
-
-    // Second scroll event immediately after - ticking should be true, so should NOT enter if
-    act(() => {
-      Object.defineProperty(document.documentElement, 'scrollTop', {
-        writable: true,
-        value: 200,
-        configurable: true,
-      })
-      const scrollEvent2 = new Event('scroll', { bubbles: true })
-      window.dispatchEvent(scrollEvent2)
-    })
-
-    // After RAF callback, ticking should be false again
-    await waitFor(() => {
-      // RAF should have been called
       expect(rafSpy).toHaveBeenCalled()
     })
 
@@ -127,11 +106,8 @@ describe('ScrollProgress', () => {
     })
   })
 
-  it('should not render until mounted', () => {
+  it('should render after mount', () => {
     const { container } = renderScrollProgress()
-    
-    // Should render after mount
     expect(container.firstChild).toBeInTheDocument()
   })
 })
-

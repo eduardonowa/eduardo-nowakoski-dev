@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { Hero } from '@/components/sections/Hero'
 import { I18nProvider } from '@/components/providers/I18nProvider'
+import { ScrollProvider } from '@/components/providers/ScrollProvider'
 
 const mockUseInView = jest.fn()
 jest.mock('react-intersection-observer', () => ({
@@ -10,7 +11,9 @@ jest.mock('react-intersection-observer', () => ({
 const renderHero = () =>
   render(
     <I18nProvider>
-      <Hero />
+      <ScrollProvider>
+        <Hero />
+      </ScrollProvider>
     </I18nProvider>
   )
 
@@ -36,13 +39,15 @@ describe('Hero', () => {
 
   it('should render subtitle', () => {
     renderHero()
-    expect(screen.getByText(/Desenvolvedor Front-End Senior|Senior Front-End Engineer/i)).toBeInTheDocument()
+    expect(screen.getByText(/Engenheiro AEM|Senior AEM/i)).toBeInTheDocument()
   })
 
   it('should render CTA buttons', () => {
     renderHero()
     expect(screen.getByText(/Ver Projetos|View Projects/i)).toBeInTheDocument()
     expect(screen.getByText(/Entre em Contato|Get in Touch/i)).toBeInTheDocument()
+    expect(screen.getByText(/CV AEM|AEM CV/i)).toBeInTheDocument()
+    expect(screen.getByText(/CV Front-End|Frontend CV/i)).toBeInTheDocument()
   })
 
   it('should have correct links for CTAs', () => {

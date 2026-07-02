@@ -72,7 +72,7 @@ describe('Experience', () => {
   it('should display project details', () => {
     renderExperience()
 
-    expect(screen.getAllByText(/Empresa|Employer/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Empresa|Company/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText(/Tipo|Type/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText(/Stack/i).length).toBeGreaterThan(0)
   })

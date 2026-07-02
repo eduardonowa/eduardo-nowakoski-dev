@@ -1,38 +1,15 @@
 'use client'
 
 import { useI18n } from '@/components/providers/I18nProvider'
-import { Heart, Gauge } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { CONTACT } from '@/lib/constants/contact'
+import { Gauge } from 'lucide-react'
 
 export function Footer() {
-  const { t, locale } = useI18n()
-  const [isProduction, setIsProduction] = useState(false)
-
-  useEffect(() => {
-    if (globalThis.window !== undefined) {
-      setIsProduction(
-        globalThis.window.location.hostname !== 'localhost' && 
-        !globalThis.window.location.hostname.includes('127.0.0.1')
-      )
-    }
-  }, [])
+  const { t } = useI18n()
 
   const handleLighthouseClick = () => {
-    if (globalThis.window === undefined) return
-
-    if (isProduction) {
-      // Em produção, abre o PageSpeed Insights com o domínio do portfolio
-      const portfolioUrl = 'https://eduardonowakoski.dev/'
-      const pageSpeedUrl = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(portfolioUrl)}`
-      globalThis.window.open(pageSpeedUrl, '_blank', 'noopener,noreferrer')
-    } else {
-      // Em desenvolvimento, mostra instruções
-      const instructions = locale === 'pt-BR' 
-        ? 'Para abrir o Lighthouse:\n1. Pressione F12 ou Ctrl+Shift+I\n2. Vá para a aba "Lighthouse"\n3. Clique em "Analyze page load"'
-        : 'To open Lighthouse:\n1. Press F12 or Ctrl+Shift+I\n2. Go to the "Lighthouse" tab\n3. Click "Analyze page load"'
-      
-      alert(instructions)
-    }
+    const pageSpeedUrl = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(`${CONTACT.siteUrl}/`)}`
+    window.open(pageSpeedUrl, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -44,22 +21,18 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <button
+              type="button"
               onClick={handleLighthouseClick}
               className="text-sm text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 group"
               title={t.footer.lighthouseTooltip}
               aria-label={t.footer.lighthouse}
             >
-              <Gauge className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <Gauge className="w-4 h-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
               <span className="hidden sm:inline">{t.footer.lighthouse}</span>
             </button>
-            <p className="text-sm text-text-muted flex items-center gap-1">
-              {t.footer.madeWith} <Heart className="w-4 h-4 text-primary fill-primary" />{' '}
-              {t.footer.using} Next.js
-            </p>
           </div>
         </div>
       </div>
     </footer>
   )
 }
-

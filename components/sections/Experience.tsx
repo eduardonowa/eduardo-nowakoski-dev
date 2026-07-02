@@ -3,8 +3,10 @@
 import { useI18n } from '@/components/providers/I18nProvider'
 import { m } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Code } from 'lucide-react'
+import { Code, ExternalLink } from 'lucide-react'
 import { BrandIcon } from '@/components/ui/BrandIcon'
+import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { useCardTilt } from '@/hooks/useCardTilt'
 import type { BrandId } from '@/lib/i18n/translations'
 
@@ -27,6 +29,7 @@ function ProjectCard({
     role: string
     brand: BrandId
     maintenance?: string
+    links: Array<{ label: string; href: string }>
   }
   index: number
   inView: boolean
@@ -49,7 +52,7 @@ function ProjectCard({
         initial={{ opacity: 0, translateY: 30 }}
         animate={inView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 30 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="glass bg-background-secondary/80 border border-border rounded-xl p-6 hover:shadow-md transition-shadow duration-300 relative z-10 glow-hover h-full"
+        className="glass bg-background-secondary/80 border border-border rounded-xl p-6 hover:shadow-md transition-shadow duration-300 relative z-10 glow-hover h-full flex flex-col"
       >
         <div className="mb-4 border-b border-border/40 pb-4">
           <BrandIcon brand={project.brand} size="lg" />
@@ -69,9 +72,28 @@ function ProjectCard({
             <span className="font-medium">{stackLabel}</span> {project.stack}
           </p>
         </div>
-        <p className="text-sm text-text-muted leading-relaxed mb-3">{project.role}</p>
+        <p className="text-sm text-text-muted leading-relaxed mb-3 flex-1">{project.role}</p>
         {project.maintenance && (
-          <p className="text-xs text-text-muted italic">{project.maintenance}</p>
+          <p className="text-xs text-text-muted italic mb-4">{project.maintenance}</p>
+        )}
+        {project.links.length > 0 && (
+          <div className="flex flex-col gap-2 pt-2 border-t border-border/40">
+            {project.links.map((link) => {
+              const isExternal = link.href.startsWith('http')
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-light transition-colors"
+                >
+                  {link.label}
+                  {isExternal && <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />}
+                </a>
+              )
+            })}
+          </div>
         )}
       </m.div>
     </div>
@@ -99,19 +121,14 @@ export function Experience() {
       className="py-section section-surface relative z-10 content-auto"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
-        <m.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 text-primary mb-4">
-            <Code className="w-6 h-6" aria-hidden="true" />
-            <h2 id="experience-title" className="text-3xl md:text-4xl font-bold text-text">
-              {t.experience.projectsTitle}
-            </h2>
-          </div>
-        </m.div>
+        <AnimatedSection>
+          <SectionHeading
+            icon={Code}
+            title={t.experience.projectsTitle}
+            titleId="experience-title"
+            className="mb-16"
+          />
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (

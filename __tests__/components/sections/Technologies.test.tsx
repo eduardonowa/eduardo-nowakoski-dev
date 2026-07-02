@@ -38,6 +38,7 @@ describe('Technologies', () => {
   it('should render category headings', () => {
     renderTechnologies()
 
+    expect(screen.getByText(/Plataforma AEM|AEM Platform/i)).toBeInTheDocument()
     expect(screen.getByText(/Frontend Core/i)).toBeInTheDocument()
     expect(screen.getByText(/CMS & Backend/i)).toBeInTheDocument()
     expect(screen.getByText(/State Management/i)).toBeInTheDocument()
@@ -79,7 +80,8 @@ describe('Technologies', () => {
       'React',
       'TypeScript',
       'JavaScript',
-      'AEM',
+      'AEM Cloud Service',
+      'HTL',
       'Java',
       'Jest',
       'Cypress',

@@ -21,14 +21,14 @@ describe('I18nProvider', () => {
     jest.clearAllMocks()
   })
 
-  it('should provide default locale (pt-BR)', () => {
+  it('should provide default locale (en-US)', () => {
     render(
       <I18nProvider>
         <TestComponent />
       </I18nProvider>
     )
 
-    expect(screen.getByTestId('locale')).toHaveTextContent('pt-BR')
+    expect(screen.getByTestId('locale')).toHaveTextContent('en-US')
   })
 
   it('should load locale from localStorage', () => {
@@ -58,8 +58,8 @@ describe('I18nProvider', () => {
       button.click()
     })
 
-    expect(screen.getByTestId('locale')).toHaveTextContent('en-US')
-    expect(setItemSpy).toHaveBeenCalledWith('locale', 'en-US')
+    expect(screen.getByTestId('locale')).toHaveTextContent('pt-BR')
+    expect(setItemSpy).toHaveBeenCalledWith('locale', 'pt-BR')
     
     setItemSpy.mockRestore()
   })
