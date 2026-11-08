@@ -7,6 +7,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider'
 import { ScrollProvider } from '@/components/providers/ScrollProvider'
 import { SkipLink } from '@/components/ui/SkipLink'
 import JsonLd from '@/components/seo/JsonLd'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -107,6 +108,7 @@ export default function RootLayout({
             </MotionProvider>
           </I18nProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
